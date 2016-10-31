@@ -27,3 +27,9 @@
 - 'GET /api/recordings/:id'
 - 'DELETE /api/recordings/:id'
 - 'PATCH /api/recordings/:id'
+
+### Comments
+
+- 'GET /api/recordings/:id/comments'
+- 'POST /api/comments'
+- 'DELETE /api/comments/:id'
