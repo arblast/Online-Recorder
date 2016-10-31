@@ -4,14 +4,14 @@
 
 [Trello link][trello]
 
-[heroku]:
-[trello]:
+[heroku]: http://www.herokuapp.com
+[trello]: https://trello.com/b/5TEBb4hm
 
 ## Minimum Viable Product
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
-- [ ] Able to record and save songs
+- [ ] Able to record and save sounds
 - [ ] Favorite recordings
 - [ ] Comments on each recording
 - [ ] Search recordings by name and category
