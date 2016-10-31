@@ -12,6 +12,7 @@
     1: {
       title: "Recording 1",
       category: "music",
+      plays: 1234
     }
   },
   recordingDetail: {
@@ -19,7 +20,8 @@
     category: "music",
     uploader_id: 1,
     description: "this is a recording",
-    publicity: "public"
+    publicity: "public",
+    plays: 1234
   },
   recorder: {
     isRecording: false,
