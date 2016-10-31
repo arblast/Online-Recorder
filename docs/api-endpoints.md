@@ -28,6 +28,11 @@
 - 'DELETE /api/recordings/:id'
 - 'PATCH /api/recordings/:id'
 
+### Favorites
+
+- 'POST /api/favorites'
+- 'DELETE /api/favorites/:id'
+
 ### Comments
 
 - 'GET /api/recordings/:id/comments'
