@@ -15,6 +15,7 @@ column name     | data type | details
 id              | integer   | not null, primary key
 title           | string    | not null
 recording_url   | string    | not null
+image_url       | string    | 
 description     | text      |
 uploader_id     | integer   | not null, foreign key (references users), indexed
 plays           | integer   | not null, default = 0
