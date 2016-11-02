@@ -1,14 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { withRouter } from 'react-router';
 
-const Home = ({ children }) => {
-  return(
-    <div>
-      <h1>Welcome to Record Cloud!</h1>
-      <Link to="login">Login</Link> or <Link to="login">Sign up</Link>
-      {children}
-    </div>
-  );
-};
+class Home extends React.Component {
 
-export default Home;
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+
+  handleLogout(e) {
+    this.props.logout();
+    this.props.router.push("/");
+  }
+
+
+  render() {
+    return(
+      <div>
+        <h1>Hello, {this.props.currentUser.username} </h1>
+        {this.props.children}
+        <button onClick={this.handleLogout}>Logout</button>
+      </div>
+    );
+  }
+}
+
+export default withRouter(Home);

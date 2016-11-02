@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    render json: "Invalid password", status: 422 unless @user.is_password?(params[old_password])
+    render json: ["Invalid password"], status: 422 unless @user.is_password?(params[old_password])
     if @user.update(user_params)
       render json: @user
     else
