@@ -4,7 +4,7 @@
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://record-cloud.herokuapp.com/
 [trello]: https://trello.com/b/5TEBb4hm
 
 ## Minimum Viable Product
