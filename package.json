@@ -7,12 +7,17 @@
     "doc": "docs",
     "test": "test"
   },
+  "engines": {
+    "node": "4.2.6",
+    "npm": "3.5.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/arblast/Online-Recorder.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "keywords": [],
   "author": "",

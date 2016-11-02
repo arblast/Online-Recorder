@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SIGNUP , receiveCurrentUser, receiveErrors } from '../actions/session_actions';
+import { LOGIN, LOGOUT, SIGNUP, GUEST_LOGIN , receiveCurrentUser, receiveErrors } from '../actions/session_actions';
 import { signup, login, logout } from '../util/session_api_util';
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter} from 'react-router';
+import { Link, hashHistory} from 'react-router';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -23,14 +23,15 @@ class SessionForm extends React.Component {
 
   componentDidUpdate() {
     if (this.props.loggedIn) {
-      this.props.router.push('/home');
+      hashHistory.push('/home');
     }
   }
 
   backToWelcome(className) {
     return (e) => {
       if(e.target.className === className) {
-        this.props.router.push('/');
+        e.stopPropagation();
+        hashHistory.push('/');
       }
     }
   }
