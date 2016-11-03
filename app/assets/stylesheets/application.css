@@ -14,7 +14,7 @@
  *= require_self
  */
 
-html, main, body, li, h1, h2, h3, a {
+html, main, body, ul, li, h1, h2, h3, a, div {
   font-family: sans-serif;
   font-style: normal;
   color: inherit;

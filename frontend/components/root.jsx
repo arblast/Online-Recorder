@@ -5,7 +5,6 @@ import Welcome from './welcome';
 import HomeContainer from './home_container';
 import SessionFormContainer from './auth/session_form_container';
 import { login } from '../actions/session_actions';
-import GuestLoginContainer from './auth/guest_login_container';
 
 const Root = ({ store }) => {
 
@@ -23,17 +22,13 @@ const Root = ({ store }) => {
     }
   }
 
-  const guestLogin = () => {
-    const user = {username: "guest", password: "password"};
-    store.dispatch(login({user}));
-  }
   return(
     <Provider store={store}>
       <Router history={hashHistory}>
           <Route path="/" component={Welcome} onEnter={_redirectIfLoggedIn}>
             <Route path="/login" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
             <Route path="/signup" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
-            <Route path="/guest-login" component={GuestLoginContainer} onEnter = {guestLogin}/>
+            <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
           </Route>

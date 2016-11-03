@@ -3,15 +3,13 @@ import { Link } from 'react-router';
 
 const Welcome = ({children}) => {
   return(
-    <div>
-      <span className='welcome'>
-        <div className='welcome-content'>
-          <h1>Welcome to Record Cloud!</h1>
-          <h3 className='welcome-select'><Link to="/login">Login</Link> or <Link to="/signup">Sign up</Link></h3>
-          <br/>
-          <h3 className='welcome-select'><Link to="/guest-login">Guest Login</Link></h3>
-        </div>
-      </span>
+    <div className='splash'>
+      <h1>WELCOME TO RECORD CLOUD!</h1>
+      <section className='welcome'>
+        <Link to="/login">LOGIN</Link>
+        <Link to="/signup">SIGN UP</Link>
+        <Link to="/guest">GUEST LOGIN</Link>
+      </section>
       {children}
     </div>
   );

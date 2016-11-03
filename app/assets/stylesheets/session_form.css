@@ -18,14 +18,27 @@
   text-transform: capitalize;
 }
 
+.errorUL {
+  margin: 10px;
+  font-size: 10px;
+}
+
 .session-form {
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 30%; /* Could be more or less, depending on screen size */
+  width: 30%;
   position: relative;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+.session-form input {
+  padding-left: 5px;
 }
 
 .close {
@@ -42,4 +55,14 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
 }

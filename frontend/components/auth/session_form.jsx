@@ -13,7 +13,8 @@ class SessionForm extends React.Component {
     } else {
       this.state = {
         username: "",
-        password: ""
+        password: "",
+        time: 5
       }
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,9 +23,28 @@ class SessionForm extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.loggedIn) {
+    if (this.props.loggedIn && this.props.formType != 'guest') {
+      hashHistory.push('/home');
+    } else if (this.props.loggedIn && this.props.formType === 'guest' && this.state.time === 5){
+      this.startCountdown = setInterval(() => {this.setState({time: this.state.time - 1})}, 1000);
+    } else if (this.props.loggedIn && this.state.time === 0) {
+      clearInterval(this.startCountdown);
       hashHistory.push('/home');
     }
+  }
+
+  componentDidMount() {
+    if (this.props.formType ==='guest') {
+      const user = {username:"guest", password: "password"};
+      this.props.processForm({user});
+    }
+  }
+
+  componentWillUnmount() {
+    this.state.username = "";
+    this.state.password = "";
+    this.state.email = "";
+    this.props.clearErrors();
   }
 
   backToWelcome(className) {
@@ -50,22 +70,38 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'signup') {
       emailForm = <input type='text' onChange={this.update('email')} placeholder='Email'/>
     }
+    let submit = <input type='submit'value='Submit'/>;
+    let userForm =
+      <div>
+        <input type='text'onChange={this.update('username')} placeholder='Username'/>
+        <br/>
+        <br/>
+        <input type='password'onChange={this.update('password')} placeholder='Password'/>
+      </div>;
+      let timeLeft = <p>Redirecting in {this.state.time}s</p>;
+      if (this.props.loggedIn === false) {
+        timeLeft = null;
+      }
+      if (this.props.formType === 'guest') {
+        userForm =
+        <div>
+          Logging in a guest...
+          {timeLeft}
+        </div>;
+        submit = null;
+      }
     return (
       <div className='session-form-background' onClick={this.backToWelcome('session-form-background')}>
         <form className='session-form' onSubmit={this.handleSubmit}>
           <span className="close" onClick={this.backToWelcome('close')}>x</span>
           <h2 className='session-form-label'>{this.props.formType}</h2>
-          <input type='text'onChange={this.update('username')} placeholder='Username'/>
-          <br/>
-          <br/>
-          <input type='password'onChange={this.update('password')} placeholder='Password'/>
-          <br/>
+          {userForm}
           <br/>
           {emailForm}
-          <ul>
+          <ul className= 'errorUL'>
             {this.props.errors.map( (error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <input type='submit'value='Submit'/>
+          {submit}
         </form>
       </div>
     )
