@@ -15,12 +15,18 @@ column name     | data type | details
 id              | integer   | not null, primary key
 title           | string    | not null
 recording_url   | string    | not null
-image_url       | string    | 
+image_url       | string    |
 description     | text      |
 uploader_id     | integer   | not null, foreign key (references users), indexed
 plays           | integer   | not null, default = 0
 publicity       | string    | not null, "public" or "private"
-category        | string    | not null, indexed
+category_id     | integer   | not null, foreign key (references categories), indexed
+
+## categories
+column name     | data type | details
+----------------|-----------|----------------------
+id              | integer   | not null, primary key
+name            | integer   | not null
 
 ## favorites
 column name     | data type | details

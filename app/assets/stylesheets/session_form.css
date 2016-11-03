@@ -10,6 +10,10 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.session-form-label {
+  padding-bottom: 15px;
+}
+
 .session-form-label::first-letter {
   text-transform: capitalize;
 }

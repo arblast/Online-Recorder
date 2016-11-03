@@ -1,0 +1,2 @@
+module Api::RecordingsHelper
+end
