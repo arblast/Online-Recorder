@@ -14,8 +14,8 @@ class SessionForm extends React.Component {
       this.state = {
         username: "",
         password: "",
-        time: 5
-      }
+        time: 3
+      };
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -23,10 +23,10 @@ class SessionForm extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.loggedIn && this.props.formType != 'guest') {
+    if (this.props.loggedIn && this.props.formType !== 'guest') {
       hashHistory.push('/home');
-    } else if (this.props.loggedIn && this.props.formType === 'guest' && this.state.time === 5){
-      this.startCountdown = setInterval(() => {this.setState({time: this.state.time - 1})}, 1000);
+    } else if (this.props.loggedIn && this.props.formType === 'guest' && this.state.time === 3){
+      this.startCountdown = setInterval(() => {this.setState({time: this.state.time - 1});}, 1000);
     } else if (this.props.loggedIn && this.state.time === 0) {
       clearInterval(this.startCountdown);
       hashHistory.push('/home');
@@ -53,7 +53,7 @@ class SessionForm extends React.Component {
         e.stopPropagation();
         hashHistory.push('/');
       }
-    }
+    };
   }
 
   handleSubmit(e) {
@@ -68,7 +68,7 @@ class SessionForm extends React.Component {
   render() {
     let emailForm;
     if (this.props.formType === 'signup') {
-      emailForm = <input type='text' onChange={this.update('email')} placeholder='Email'/>
+      emailForm = <input type='text' onChange={this.update('email')} placeholder='Email'/>;
     }
     let submit = <input type='submit'value='Submit'/>;
     let userForm =
@@ -104,7 +104,7 @@ class SessionForm extends React.Component {
           {submit}
         </form>
       </div>
-    )
+    );
   }
 }
 
