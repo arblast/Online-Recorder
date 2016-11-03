@@ -48,12 +48,14 @@ class SessionForm extends React.Component {
   }
 
   backToWelcome(className) {
-    return (e) => {
-      if(e.target.className === className) {
-        e.stopPropagation();
-        hashHistory.push('/');
-      }
-    };
+    if(this.props.formType !== 'guest'){
+      return (e) => {
+        if(e.target.className === className) {
+          e.stopPropagation();
+          hashHistory.push('/');
+        }
+      };
+    }
   }
 
   handleSubmit(e) {
@@ -82,6 +84,7 @@ class SessionForm extends React.Component {
       if (this.props.loggedIn === false) {
         timeLeft = null;
       }
+      let closeButton = <span className="close" onClick={this.backToWelcome('close')}>x</span>;
       if (this.props.formType === 'guest') {
         userForm =
         <div>
@@ -89,11 +92,12 @@ class SessionForm extends React.Component {
           {timeLeft}
         </div>;
         submit = null;
+        closeButton = null;
       }
     return (
       <div className='session-form-background' onClick={this.backToWelcome('session-form-background')}>
         <form className='session-form' onSubmit={this.handleSubmit}>
-          <span className="close" onClick={this.backToWelcome('close')}>x</span>
+          {closeButton}
           <h2 className='session-form-label'>{this.props.formType}</h2>
           {userForm}
           <br/>
