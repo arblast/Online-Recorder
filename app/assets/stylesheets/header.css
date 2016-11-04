@@ -1,0 +1,21 @@
+.topbar {
+  display: block;
+  height: 50px;
+  background-color: maroon;
+}
+
+.topbar form {
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+}
+
+.topbar input {
+  display: block;
+}
+
+.search-button {
+  display: block;
+  width: 30px;
+  height: auto;
+}

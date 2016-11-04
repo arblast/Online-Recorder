@@ -14,7 +14,6 @@ const SessionMiddleware =  store => next => action => {
       return next(action);
     case LOGOUT:
       logout(() => next(action));
-      break;
     default:
       return next(action);
   }
