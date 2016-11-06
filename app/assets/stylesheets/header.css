@@ -1,21 +1,100 @@
 .topbar {
-  display: block;
+  width: 100%;
   height: 50px;
-  background-color: maroon;
+  background-color: #333;
+  display: flex;
+  overflow: visible;
 }
 
 .topbar form {
-  height: 70%;
-  display: flex;
-  flex-direction: row;
+  display: block;
+  padding: 15px;
 }
 
 .topbar input {
+  float: left;
+  background-color: #e5e5e5;
+  height: 20px;
+  padding-left: 5px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 12px;
+}
+
+.profile {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  margin-right: 40px;
+  position: relative;
+}
+
+.profile:hover, .focus{
+  background-color: black;
+}
+
+.profile-icon {
+  height: 40px;
+}
+
+.profile-menu {
+  background: black;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  display: none;
+  color: white;
+  text-align: center;
+  min-width: 60px;
+  font-size: 12px;
+}
+
+.show  {
   display: block;
 }
 
-.search-button {
-  display: block;
-  width: 30px;
-  height: auto;
+.profile-menu li {
+  padding: 10px;
+}
+
+.profile-menu li:hover {
+  background: gray;
+}
+
+.topbar input:focus {
+  outline:0;
+}
+
+.header-icon {
+  height: 45px;
+  margin-left: 10px;
+  margin-top: 2.5px;
+  cursor: pointer;
+}
+
+.search-submit {
+  cursor: pointer;
+  float: left;
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: url(http://res.cloudinary.com/record-cloud/image/upload/v1478420364/search-icon.png);
+  background-position: 95% 50%;
+  background-color: #e5e5e5;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+}
+
+.search-submit:focus {
+  outline:0;
+}
+
+.greeting {
+  display: inline-block;
 }

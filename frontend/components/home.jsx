@@ -18,6 +18,7 @@ class Home extends React.Component {
     return result;
   }
 
+
   handleLogout(e) {
     this.props.logout();
   }
@@ -26,10 +27,9 @@ class Home extends React.Component {
   render() {
     return(
       <div>
-        <Header/>
-        <h1>Hello, {this.props.currentUser.username} </h1>
+        <Header handleLogout={this.handleLogout}/>
+        <h1 className='greeting'>Hello, {this.props.currentUser.username} </h1>
         {this.props.children}
-        <button onClick={this.handleLogout}>Logout</button>
       </div>
     );
   }
