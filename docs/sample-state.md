@@ -18,10 +18,11 @@
   recordingDetail: {
     title: "Recording 1",
     category: "music",
-    uploader_id: 1,
+    uploader: "user1",
     description: "this is a recording",
     publicity: "public",
-    plays: 1234
+    plays: 1234,
+    errors: "Title cannot be blank"
   },
   recorder: {
     isRecording: false,

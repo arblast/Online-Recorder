@@ -1,5 +1,5 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import Header from './header.jsx';
 
 class Home extends React.Component {
@@ -29,6 +29,7 @@ class Home extends React.Component {
       <div>
         <Header handleLogout={this.handleLogout}/>
         <h1 className='greeting'>Hello, {this.props.currentUser.username} </h1>
+        <br/>
         {this.props.children}
       </div>
     );

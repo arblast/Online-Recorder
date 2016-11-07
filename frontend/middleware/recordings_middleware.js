@@ -1,9 +1,10 @@
 import { CREATE_RECORDING, UPDATE_RECORDING, DELETE_RECORDING, FETCH_RECORDING, FETCH_RECORDINGS, receiveRecording, receiveRecordings} from '../actions/recordings_actions';
+import { receiveErrors } from '../actions/session_actions';
 import { newRecording, updateRecording, deleteRecording, fetchRecordings, fetchRecording } from '../util/recordings_api_util';
 
 const RecordingMiddleware = store => next => action => {
   let success;
-  let error;
+  let error = (data) => store.dispatch(receiveErrors(data));
   switch (action.type) {
     case CREATE_RECORDING:
       success = (data) => store.dispatch(receiveRecording(data));

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, Link } from 'react-router';
 import Welcome from './welcome';
 import HomeContainer from './home_container';
 import SessionFormContainer from './auth/session_form_container';
-import { login } from '../actions/session_actions';
+import NewRecordingContainer from './recordings/new_recording_container';
 
 const Root = ({ store }) => {
 
@@ -22,6 +22,8 @@ const Root = ({ store }) => {
     }
   };
 
+  const newRecordingButton =  () => <Link to="/new">New Recording</Link>;
+
   return(
     <Provider store={store}>
       <Router history={hashHistory}>
@@ -31,6 +33,8 @@ const Root = ({ store }) => {
             <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
+            <IndexRoute component={newRecordingButton}/>
+            <Route path="/new" component={NewRecordingContainer}/>
           </Route>
       </Router>
     </Provider>

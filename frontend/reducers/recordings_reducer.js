@@ -1,4 +1,4 @@
-import { RECEIVE_RECORDINGS} from '../actions/recordings_actions.js';
+import { RECEIVE_RECORDINGS } from '../actions/recordings_actions';
 import { merge } from 'lodash';
 
 

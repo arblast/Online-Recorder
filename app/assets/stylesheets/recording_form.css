@@ -1,0 +1,25 @@
+.recording-form {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 50%;
+  position: relative;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  text-align: center;
+}
+
+.recording-form-label {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.recording-form input, textarea {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 70%;
+}

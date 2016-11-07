@@ -95,7 +95,7 @@ class SessionForm extends React.Component {
         closeButton = null;
       }
     return (
-      <div className='session-form-background' onClick={this.backToWelcome('session-form-background')}>
+      <div className='modal-background' onClick={this.backToWelcome('session-form-background')}>
         <form className='session-form' onSubmit={this.handleSubmit}>
           {closeButton}
           <h2 className='session-form-label'>{this.props.formType}</h2>
