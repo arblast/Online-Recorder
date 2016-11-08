@@ -66,48 +66,59 @@
 //   return convertedFile;
 // };
 
-const Recorder = (that) => {
+// const Recorder = (that) => {
+//   navigator.mediaDevices.getUserMedia ({audio: true}).then((stream) => {
+//     that.mediaRecorder = new MediaRecorder(stream);
+//     that.mediaStream = stream;
+//     let chunks = [];
+//     that.mediaRecorder.ondataavailable = function(e) {
+//       chunks.push(e.data);
+//     }
+//
+//     that.mediaRecorder.onstop = function(e) {
+//       console.log("recorder stopped");
+//
+//       const clipContainer = document.createElement('article');
+//       const audio = document.createElement('audio');
+//       const deleteButton = document.createElement('button');
+//
+//       clipContainer.classList.add('clip');
+//       audio.setAttribute('controls', '');
+//       deleteButton.innerHTML = "Delete";
+//
+//       const soundClips = document.querySelector('.sound-clips');
+//       clipContainer.appendChild(audio);
+//       clipContainer.appendChild(deleteButton);
+//       soundClips.appendChild(clipContainer);
+//
+//       const blob = new Blob(chunks, { 'type' : 'audio/webm; codecs=opus' });
+//       chunks = [];
+//       const audioURL = window.URL.createObjectURL(blob);
+//       console.log(audioURL);
+//       audio.src = audioURL;
+//       that.blob = blob;
+//       deleteButton.onclick = function(e) {
+//       const eTarget = e.target;
+//       eTarget.parentNode.parentNode.removeChild(eTarget.parentNode);
+//         }
+//       }
+//
+//     }).catch(function(err) {
+//         console.log('The following gUM error occured: ' + err);
+//       }
+//     );
+//   }
+import Recorder from './recorder_new';
+
+const Rec = (that) => {
   navigator.mediaDevices.getUserMedia ({audio: true}).then((stream) => {
-    let encoderWorker = new Worker('./mp3Worker.js');
-    that.mediaRecorder = new MediaRecorder(stream);
-    that.mediaStream = stream;
-    let chunks = [];
-    that.mediaRecorder.ondataavailable = function(e) {
-      chunks.push(e.data);
-    }
-
-    that.mediaRecorder.onstop = function(e) {
-      console.log("recorder stopped");
-
-      const clipContainer = document.createElement('article');
-      const audio = document.createElement('audio');
-      const deleteButton = document.createElement('button');
-
-      clipContainer.classList.add('clip');
-      audio.setAttribute('controls', '');
-      deleteButton.innerHTML = "Delete";
-
-      const soundClips = document.querySelector('.sound-clips');
-      clipContainer.appendChild(audio);
-      clipContainer.appendChild(deleteButton);
-      soundClips.appendChild(clipContainer);
-
-      const blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' });
-      chunks = [];
-      const audioURL = window.URL.createObjectURL(blob);
-      console.log(audioURL);
-      audio.src = audioURL;
-      that.audioURL = audioURL;
-      deleteButton.onclick = function(e) {
-      const eTarget = e.target;
-      eTarget.parentNode.parentNode.removeChild(eTarget.parentNode);
-        }
+    const audioCtx = new AudioContext();
+    const source = audioCtx.createMediaStreamSource(stream);
+    that.recorder = new Recorder(source);
+  }).catch(function(err) {
+      console.log('The following gUM error occured: ' + err);
       }
+  );
+}
 
-    }).catch(function(err) {
-        console.log('The following gUM error occured: ' + err);
-      }
-    );
-  }
-
-export default Recorder;
+export default Rec;

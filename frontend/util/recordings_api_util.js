@@ -45,3 +45,13 @@ export const fetchRecording = (recordingId, success, error) => {
     error
   });
 };
+
+export const uploadRecording = (file) => {
+  $.ajax({
+    type: 'POST',
+    url: 'https://api.cloudinary.com/v1_1/record-cloud/upload',
+    data: {file, upload_preset: window.cloudinary_options.upload_preset},
+    success: (e)=> console.log(e),
+    error: (e)=> console.log(e)
+  });
+};

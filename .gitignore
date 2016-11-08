@@ -16,6 +16,9 @@
 node_modules/
 bundle.js
 bundle.js.map
+server.crt
+server.csr
+server.key
 
 # Ignore application configuration
 /config/application.yml

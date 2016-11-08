@@ -31,6 +31,7 @@
     "cloudinary": "^1.4.4",
     "cloudinary-core": "^2.1.6",
     "cloudinary-jquery-file-upload": "^2.1.6",
+    "inline-worker": "^1.1.0",
     "react": "^15.3.2",
     "react-cloudinary": "^0.4.0",
     "react-dom": "^15.3.2",

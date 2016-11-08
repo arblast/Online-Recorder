@@ -1,8 +1,9 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 import RecordingForm from './recording_form';
-import Recorder from '../../util/recorder';
+import Rec from '../../util/recorder';
 import cloudinary from 'cloudinary-core';
+import { uploadRecording } from '../../util/recordings_api_util';
 
 class NewRecording extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class NewRecording extends React.Component {
   }
 
   componentDidMount() {
-    Recorder(this);
+    Rec(this);
   }
 
   cancel(e) {
@@ -42,17 +43,23 @@ class NewRecording extends React.Component {
   }
 
   startRecord() {
-    let mediaRecorder = this.mediaRecorder;
-    mediaRecorder.start();
-    console.log(mediaRecorder.state);
+    let recorder = this.recorder;
+    recorder.record();
     console.log("recorder started");
   }
 
   stopRecord() {
-    let mediaRecorder = this.mediaRecorder;
-    mediaRecorder.stop();
-    console.log(mediaRecorder.state);
+    let recorder = this.recorder;
+    recorder.stop();
     console.log("recorder stopped");
+  }
+
+  test() {
+    let recorder = this.recorder;
+    recorder.exportWAV((blob)=> {
+      this.recordingURL = URL.createObjectURL(blob);
+      console.log(this.recordingURL);
+    });
   }
 
   render() {
@@ -70,6 +77,9 @@ class NewRecording extends React.Component {
           </button>
           <button onClick={this.stopRecord} className='stop'>
             Stop
+          </button>
+          <button onClick={this.test.bind(this)} className='test'>
+            Test
           </button>
           <div className='sound-clips'>
           </div>
