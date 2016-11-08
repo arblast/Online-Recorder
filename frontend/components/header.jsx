@@ -1,12 +1,11 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-import { cloudinaryConfig, CloudinaryImage } from 'react-cloudinary';
+import cloudinary from 'cloudinary-core';
 
-cloudinaryConfig({
-  cloud_name: 'record-cloud'
-});
 
 const Header = (props) => {
+
+  const cloud = cloudinary.Cloudinary.new(window.cloudinary_options);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,15 +32,17 @@ const Header = (props) => {
     document.getElementById('profile').classList.toggle('focus');
   }
 
+  const iconSrc = cloud.image("icon_uscmav.png").src;
+  const profileSrc = cloud.image("profile.svg").src;
   return (
     <div className='topbar'>
-      <CloudinaryImage className='header-icon' publicId={"icon_uscmav.png"} onClick={returnHome} />
+      <img src={iconSrc} className="header-icon"/>
       <form>
         <input type='text' name='search' placeholder='Search'></input>
         <button className='search-submit' onClick={handleSubmit} type='submit'></button>
       </form>
       <div onClick={showMenu} className='profile' id='profile'>
-        <CloudinaryImage className='profile-icon' publicId={"profile.svg"}/>
+        <img src={profileSrc} className="profile-icon"/>
         <ul className='profile-menu' id='profile-menu'>
           <li onClick={props.handleLogout}>Logout</li>
         </ul>
