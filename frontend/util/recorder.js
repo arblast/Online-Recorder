@@ -116,7 +116,7 @@ const Rec = (that) => {
     const source = audioCtx.createMediaStreamSource(stream);
     that.recorder = new Recorder(source);
   }).catch(function(err) {
-      console.log('The following gUM error occured: ' + err);
+      alert('The following gUM error occured: ' + err);
       }
   );
 }

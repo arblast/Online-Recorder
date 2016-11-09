@@ -9,8 +9,8 @@ class NewRecording extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isRecording: "false",
-      recordingComplete: "false",
+      isRecording: false,
+      recordingComplete: false,
       showForm: false
     }
     this.showForm = this.showForm.bind(this);
@@ -26,7 +26,6 @@ class NewRecording extends React.Component {
 
   cancel(e) {
     e.preventDefault();
-    this.mediaStream.getTracks()[0].stop();
     hashHistory.push('/home');
   }
 
@@ -38,12 +37,13 @@ class NewRecording extends React.Component {
   closeForm(e) {
     e.preventDefault();
     if(e.target.className === 'modal-background' || e.target.className === 'close'){
-          this.setState({showForm: false});
+        this.setState({showForm: false});
     }
   }
 
   startRecord() {
     let recorder = this.recorder;
+    this.setState({isRecording: true})
     recorder.record();
     console.log("recorder started");
   }
@@ -52,35 +52,57 @@ class NewRecording extends React.Component {
     let recorder = this.recorder;
     recorder.stop();
     console.log("recorder stopped");
-  }
-
-  test() {
-    let recorder = this.recorder;
     recorder.exportWAV((blob)=> {
-      this.recordingURL = URL.createObjectURL(blob);
-      console.log(this.recordingURL);
+      this.recording = blob;
+      const audioURL = window.URL.createObjectURL(blob);
+
+      const clipContainer = document.createElement('article');
+      const audio = document.createElement('audio');
+      const deleteButton = document.createElement('button');
+
+      clipContainer.classList.add('clip');
+      audio.setAttribute('controls', '');
+      deleteButton.innerHTML = "Delete";
+
+      const soundClips = document.querySelector('.sound-clips');
+      clipContainer.appendChild(audio);
+      clipContainer.appendChild(deleteButton);
+      soundClips.appendChild(clipContainer);
+      audio.src = audioURL;
+      deleteButton.onclick = (e) => {
+        const eTarget = e.target;
+        eTarget.parentNode.parentNode.removeChild(eTarget.parentNode);
+        recorder.clear();
+        this.setState({isRecording: false, recordingComplete: false});
+      }
+      this.setState({isRecording: false, recordingComplete: true});
     });
   }
 
+
   render() {
     let form = null;
+    let recordingUI = <div>
+      <button onClick={this.startRecord} disabled={this.state.isRecording} className='record'>
+        Record
+      </button>
+      <button onClick={this.stopRecord} disabled={!this.state.isRecording} className='stop'>
+        Stop
+      </button>
+    </div>
 
     if(this.state.showForm) {
-      form = <RecordingForm currentRecording={{}} processForm={this.props.createRecording} errors={[]} closeForm={this.closeForm}/>;
+      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', categoryId: 1}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording}/>;
+    }
+
+    if(this.state.recordingComplete) {
+      recordingUI = null;
     }
 
     return(
       <div>
         <h2>New Recording</h2>
-          <button onClick={this.startRecord} className='record'>
-            Record
-          </button>
-          <button onClick={this.stopRecord} className='stop'>
-            Stop
-          </button>
-          <button onClick={this.test.bind(this)} className='test'>
-            Test
-          </button>
+          {recordingUI}
           <div className='sound-clips'>
           </div>
         <button onClick={this.showForm}>Save</button>

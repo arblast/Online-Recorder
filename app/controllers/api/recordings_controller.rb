@@ -19,7 +19,7 @@ class Api::RecordingsController < ApplicationController
     @recording = Recording.new(recording_params)
     @recording.uploader_id = current_user.id
     if @recording.save
-      render json: @recording
+      render :recording
     else
       render json: @recording.errors.full_messages, status: 422
     end

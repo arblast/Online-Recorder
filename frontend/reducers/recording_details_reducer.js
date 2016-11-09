@@ -1,5 +1,5 @@
-import { RECEIVE_RECORDING, DELETE_RECORDING } from '../actions/recordings_actions';
-import { RECEIVE_ERRORS } from '../actions/session_actions';
+import { RECEIVE_RECORDING, DELETE_RECORDING, RECEIVE_RECORDING_ERRORS } from '../actions/recordings_actions';
+import { merge } from 'lodash';
 
 const nullRecording = {
   title: "",
@@ -14,11 +14,11 @@ const RecordingDetailsReducer = (oldState=nullRecording, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_RECORDING:
-      return action.recording;
+      return merge({}, action.recording, { errors: []});
     case DELETE_RECORDING:
       return {};
-    case RECEIVE_ERRORS:
-      return merge({}, state, { errors: action.errors });
+    case RECEIVE_RECORDING_ERRORS:
+      return merge({}, oldState, { errors: action.errors });
     default:
       return oldState;
   }

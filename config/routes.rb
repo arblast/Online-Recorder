@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update]
     resources :recordings, only: [:create, :update, :destroy, :index, :show]
     resource :session, only: [:create, :destroy]
+    resources :sound_data, only: :create
   end
 
   root 'static_pages#root'

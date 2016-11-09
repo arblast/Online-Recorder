@@ -5,6 +5,7 @@ export const FETCH_RECORDING = "FETCH_RECORDING";
 export const FETCH_RECORDINGS = "FETCH_RECORDINGS";
 export const RECEIVE_RECORDING = "RECEIVE_RECORDING";
 export const RECEIVE_RECORDINGS = "RECEIVE_RECORDINGS";
+export const RECEIVE_RECORDING_ERRORS = "RECEIVE_RECORDING_ERRORS";
 
 export const createRecording = (recordingParams) => ({
   type: CREATE_RECORDING,
@@ -29,6 +30,11 @@ export const fetchRecording = (recordingId) => ({
 export const fetchRecordings = (requestParams) => ({
   type: FETCH_RECORDINGS,
   requestParams
+});
+
+export const receiveRecordingErrors = (errors) => ({
+  type: RECEIVE_RECORDING_ERRORS,
+  errors
 });
 
 export const receiveRecording = (recording) => ({

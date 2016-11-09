@@ -1,10 +1,9 @@
-import { CREATE_RECORDING, UPDATE_RECORDING, DELETE_RECORDING, FETCH_RECORDING, FETCH_RECORDINGS, receiveRecording, receiveRecordings} from '../actions/recordings_actions';
-import { receiveErrors } from '../actions/session_actions';
+import { CREATE_RECORDING, UPDATE_RECORDING, DELETE_RECORDING, FETCH_RECORDING, FETCH_RECORDINGS, receiveRecording, receiveRecordings, receiveRecordingErrors} from '../actions/recordings_actions';
 import { newRecording, updateRecording, deleteRecording, fetchRecordings, fetchRecording } from '../util/recordings_api_util';
 
 const RecordingMiddleware = store => next => action => {
   let success;
-  let error = (data) => store.dispatch(receiveErrors(data));
+  let error = (data) => store.dispatch(receiveRecordingErrors(data.responseJSON));
   switch (action.type) {
     case CREATE_RECORDING:
       success = (data) => store.dispatch(receiveRecording(data));
@@ -20,7 +19,7 @@ const RecordingMiddleware = store => next => action => {
       break;
     case FETCH_RECORDING:
       success = (data) => store.dispatch(receiveRecording(data));
-      fetchRecording(action.recordingId, success);
+      fetchRecording(action.recordingId, success, error);
       return next(action);
     case FETCH_RECORDINGS:
       success = (data) => store.dispatch(receiveRecordings(data));
