@@ -17,7 +17,7 @@ const Header = (props) => {
   }
 
   window.onclick = (e) => {
-    if(!e.target.matches('.profile') && !e.target.matches('.profile-icon')) {
+    if(!e.target.matches('.profile') && !e.target.matches('.profile-icon') && !e.target.matches('#username')) {
       let menu = document.getElementById('profile-menu');
       let profile = document.getElementById('profile');
       if (menu && profile){
@@ -28,8 +28,10 @@ const Header = (props) => {
   }
 
   const showMenu  = (e) => {
-    document.getElementById('profile-menu').classList.toggle('show');
-    document.getElementById('profile').classList.toggle('focus');
+    if(!e.target.matches('#username')){
+      document.getElementById('profile-menu').classList.toggle('show');
+      document.getElementById('profile').classList.toggle('focus');
+    }
   }
 
   const iconSrc = cloud.image("icon_uscmav.png").src;
@@ -44,6 +46,7 @@ const Header = (props) => {
       <div onClick={showMenu} className='profile' id='profile'>
         <img src={profileSrc} className="profile-icon"/>
         <ul className='profile-menu' id='profile-menu'>
+          <li id='username'>{props.currentUser.username}</li>
           <li onClick={props.handleLogout}>Logout</li>
         </ul>
       </div>

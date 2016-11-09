@@ -82,7 +82,12 @@ class NewRecording extends React.Component {
 
   render() {
     let form = null;
-    let recordingUI = <div>
+    let circle = null;
+    if (this.state.isRecording) {
+      circle = <div id="circle"></div>;
+    }
+    let recordingUI = <div className="recording-ui">
+      {circle}
       <button onClick={this.startRecord} disabled={this.state.isRecording} className='record'>
         Record
       </button>
@@ -100,11 +105,11 @@ class NewRecording extends React.Component {
     }
 
     return(
-      <div>
+      <div className='new-recording'>
         <h2>New Recording</h2>
           {recordingUI}
-          <div className='sound-clips'>
-          </div>
+        <div className='sound-clips'>
+        </div>
         <button onClick={this.showForm}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}

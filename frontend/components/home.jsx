@@ -26,9 +26,8 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div>
-        <Header handleLogout={this.handleLogout}/>
-        <h1 className='greeting'>Hello, {this.props.currentUser.username} </h1>
+      <div className="home">
+        <Header handleLogout={this.handleLogout} currentUser={this.props.currentUser}/>
         <br/>
         {this.props.children}
       </div>

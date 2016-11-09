@@ -34,6 +34,7 @@ const Root = ({ store }) => {
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
             <IndexRoute component={newRecordingButton}/>
+            <indexRoute component={myRecordingsContainer}/>
             <Route path="/new" component={NewRecordingContainer}/>
           </Route>
       </Router>

@@ -67,8 +67,6 @@ class RecordingForm extends React.Component {
 
   render() {
     console.log(this.state);
-    const isPublic = this.state.publicity === 'public';
-    const isPrivate = this.state.publicity === 'private';
     if(this.state.uploading) {
       this.disablePage = <div className="disable-page"><div className="loader"></div></div>;
     }
@@ -90,9 +88,9 @@ class RecordingForm extends React.Component {
             <br/><br/>
             <textarea className = 'recording-form-text' onChange={this.update('description')} placeholder='Description'></textarea>
             <br/><br/>
-            <label>Public <input type='radio'onChange={this.update('publicity')} value='public' checked={isPublic}/></label>
+            <label>Public <input type='radio' checked={this.state.publicity === 'public'} onChange={this.update('publicity')} value='public' /></label>
             <br/>
-            <label>Private <input type='radio'onChange={this.update('publicity')} value='private' checked={isPrivate}/></label>
+            <label>Private <input type='radio' checked={this.state.publicity === 'private'} onChange={this.update('publicity')} value='private' /></label>
           </div>
           <br/>
           <ul className= 'errorUL'>

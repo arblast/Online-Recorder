@@ -98,3 +98,12 @@
 .greeting {
   display: inline-block;
 }
+
+#username {
+  cursor: default;
+  background: #626262;
+}
+
+#username:hover {
+  background: #626262;
+}
