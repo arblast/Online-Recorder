@@ -52,6 +52,7 @@ class Recording extends React.Component {
         <h3>Recorded by {recording.uploader}</h3>
         <br/>
         <img className='recording-detail-image' src={recording.image_url}></img>
+        <br/>
         <audio controls src={recording.recording_url}></audio>
         <br/>
         <label className='description-label'>Description
