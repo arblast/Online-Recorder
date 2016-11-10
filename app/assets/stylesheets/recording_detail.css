@@ -1,3 +1,36 @@
 .recording-detail-image {
-  width: 50%;
+  width: 40%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.recording-detail h2 {
+  font-size: 30px;
+}
+
+.recording-detail h3 {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.recording-detail h4 {
+  font-size: 18px;
+}
+
+.recording-detail audio {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-buttons {
+  margin: 20px 0;
+}
+
+.description-label {
+  font-weight: bold;
+}
+
+.description-label p {
+  font-weight: normal;
+  font-size: 10px;
 }

@@ -25,7 +25,6 @@
 
 .recordings-list-image {
   height: 30px;
-  margin-right: 10px;
 }
 
 .my-recordings audio {
@@ -33,6 +32,27 @@
 
 .recordings-list-button, .recordings-list-image {
   cursor: pointer;
+}
+
+.recordings-list-button:hover {
+  color: red;
+}
+
+.my-recordings-list {
+  border-collapse: collapse;
+}
+
+.my-recordings-list td {
+  padding: 10px 5px 10px 0;
+  border-bottom: 2px solid peachpuff;
+}
+
+#item-image {
+  padding-right: 10px;
+}
+
+#item-image:hover + #item-button {
+  color: red;
 }
 
 .recordings-list-delete {

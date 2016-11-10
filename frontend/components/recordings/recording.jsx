@@ -41,7 +41,7 @@ class Recording extends React.Component {
     let editForm = null;
     let form = null;
     if (this.props.ownRecording) {
-      editForm = <div><button onClick={this.showForm} >Edit Recording Details</button><button onClick={this.handleDelete} >Delete Recording</button></div>
+      editForm = <div className="edit-buttons"><button onClick={this.showForm} >Edit Recording Details</button><button onClick={this.handleDelete} >Delete Recording</button></div>
     }
     if(this.state.showForm) {
       form = <RecordingForm formType={'edit'} currentRecording={recording} processForm={this.props.updateRecording} errors={this.props.errors} closeForm={this.closeForm} clearRecordingErrors={this.props.clearRecordingErrors}/>;
@@ -50,19 +50,18 @@ class Recording extends React.Component {
       <div className="recording-detail">
         <h2>{recording.title}</h2>
         <h3>Recorded by {recording.uploader}</h3>
-        <audio controls src={recording.recording_url}></audio>
         <br/>
         <img className='recording-detail-image' src={recording.image_url}></img>
+        <audio controls src={recording.recording_url}></audio>
         <br/>
-        <label>Description
+        <label className='description-label'>Description
           <p>{recording.description}</p>
         </label>
         <br/>
-        <label>Category
-          <p>{recording.category_name}</p>
-        </label>
+        <h5>Category: {recording.category_name}</h5>
         {editForm}
         {form}
+        <h4>Comments</h4>
       </div>
     );
   }
