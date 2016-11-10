@@ -6,7 +6,7 @@ class RecordingForm extends React.Component {
     super(props);
     this.state = {
       title: props.currentRecording.title,
-      category_name: props.currentRecording.categoryName,
+      category_name: props.currentRecording.category_name,
       description: props.currentRecording.description,
       publicity: props.currentRecording.publicity,
       uploading: false,
@@ -14,7 +14,7 @@ class RecordingForm extends React.Component {
     };
     if (props.formType === 'new') {
       this.state.recording_url = "";
-    };
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.disablePage = null;
   }
@@ -51,22 +51,21 @@ class RecordingForm extends React.Component {
     {
       this.setState({noTitleError: <li>Title can't be blank!</li>});
     } else {
-      this.uploadRecording(this.props.recording);
-      this.setState({uploading: true});
+      if(this.props.formType === 'new') {
+        this.uploadRecording(this.props.recording);
+        this.setState({uploading: true});
+      } else {
+        let recording = this.state;
+        recording.id = this.props.currentRecording.id;
+        this.props.processForm({recording});
+        this.props.closeForm({target: {className: "close"}, preventDefault: e.preventDefault});
+      }
     }
-  }
-
-  closeModal(className) {
-      return (e) => {
-        if(e.target.className === className) {
-          e.stopPropagation();
-          hashHistory.push('/new');
-        }
-      };
   }
 
   update(property) {
     return e => {
+      e.preventDefault();
       this.setState({[property]: e.target.value});
     }
   }
@@ -82,7 +81,7 @@ class RecordingForm extends React.Component {
           <span className="close" onClick={this.props.closeForm}>x</span>
           <h2 className='recording-form-label'>Recording Info</h2>
           <div>
-            <input className = 'recording-form-text' type='text'onChange={this.update('title')} placeholder='Title'/>
+            <input className = 'recording-form-text' value={this.state.title} type='text'onChange={this.update('title')} placeholder='Title'/>
             <br/><br/>
             <label>Category  <select value={this.state.category_name} onChange={this.update('category_name')}>
               <option value="Meeting">Meeting</option>
@@ -91,7 +90,7 @@ class RecordingForm extends React.Component {
               <option value="Other">Other</option>
             </select></label>
             <br/><br/>
-            <textarea className = 'recording-form-text' onChange={this.update('description')} placeholder='Description'></textarea>
+            <textarea className = 'recording-form-text' value={this.state.description} onChange={this.update('description')} placeholder='Description'></textarea>
             <br/><br/>
             <label>Public <input name='publicity' type='radio' checked={this.state.publicity === 'public'} onChange={this.update('publicity')} value='public' /></label>
             <br/>

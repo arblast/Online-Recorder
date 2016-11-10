@@ -103,7 +103,7 @@ class NewRecording extends React.Component {
     </div>
 
     if(this.state.showForm) {
-      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', categoryName: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
+      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
 
     if(this.state.recordingComplete) {
