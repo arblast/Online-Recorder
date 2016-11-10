@@ -5,6 +5,9 @@ import Welcome from './welcome';
 import HomeContainer from './home_container';
 import SessionFormContainer from './auth/session_form_container';
 import NewRecordingContainer from './recordings/new_recording_container';
+import MyRecordingsContainer from './my_recordings_container';
+import RecordingContainer from './recordings/recording_container';
+import { fetchRecordings, fetchRecording } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
 
@@ -19,10 +22,14 @@ const Root = ({ store }) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
       replace('/');
+    } else {
+      store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
     }
   };
 
-  const newRecordingButton =  () => <Link to="/new">New Recording</Link>;
+  const getRecording = (nextState) => {
+    store.dispatch(fetchRecording(nextState.params.recordingId));
+  }
 
   return(
     <Provider store={store}>
@@ -33,8 +40,9 @@ const Root = ({ store }) => {
             <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
-            <IndexRoute component={newRecordingButton}/>
+            <IndexRoute component={MyRecordingsContainer}/>
             <Route path="/new" component={NewRecordingContainer}/>
+            <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
           </Route>
       </Router>
     </Provider>

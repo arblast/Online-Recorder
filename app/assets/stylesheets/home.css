@@ -1,3 +1,41 @@
 .home {
   text-align: center;
 }
+
+.new-recording-button {
+  color: darkred;
+  padding: 5px;
+  border: 2px solid darkred;
+  border-radius: 5px;
+  position: relative;
+}
+
+.my-recordings {
+  text-align: center;
+}
+
+.my-recordings h2 {
+  margin: 20px;
+}
+
+.my-recordings-list {
+  margin: auto;
+
+}
+
+.recordings-list-image {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.my-recordings audio {
+}
+
+.recordings-list-button, .recordings-list-image {
+  cursor: pointer;
+}
+
+.recordings-list-delete {
+  height: 20px;
+  cursor: pointer;
+}

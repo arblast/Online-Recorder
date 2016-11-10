@@ -8,3 +8,7 @@
 
 
 User.create(username: "guest", password: "password", email: "guest@email.com")
+Category.create(name: "Meeting")
+Category.create(name: "Music")
+Category.create(name: "Lecture")
+Category.create(name: "Other")

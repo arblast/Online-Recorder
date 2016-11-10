@@ -2,7 +2,7 @@ import { RECEIVE_RECORDINGS } from '../actions/recordings_actions';
 import { merge } from 'lodash';
 
 
-const RecordingReducer = (oldState={}, action) => {
+const RecordingReducer = (oldState=[], action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_RECORDINGS:

@@ -38,7 +38,7 @@ const Header = (props) => {
   const profileSrc = cloud.image("profile.svg").src;
   return (
     <div className='topbar'>
-      <img src={iconSrc} className="header-icon"/>
+      <img src={iconSrc} onClick={returnHome} className="header-icon"/>
       <form>
         <input type='text' name='search' placeholder='Search'></input>
         <button className='search-submit' onClick={handleSubmit} type='submit'></button>

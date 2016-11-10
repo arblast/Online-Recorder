@@ -29,6 +29,12 @@ class NewRecording extends React.Component {
     hashHistory.push('/home');
   }
 
+  componentWillUnmount() {
+    this.audioCtx.close();
+    this.stream.getTracks()[0].stop();
+    this.props.fetchRecordings();
+  }
+
   showForm(e) {
     e.preventDefault();
     this.setState({showForm: true});
@@ -97,7 +103,7 @@ class NewRecording extends React.Component {
     </div>
 
     if(this.state.showForm) {
-      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', categoryId: 1}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording}/>;
+      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', categoryName: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
 
     if(this.state.recordingComplete) {
@@ -110,7 +116,7 @@ class NewRecording extends React.Component {
           {recordingUI}
         <div className='sound-clips'>
         </div>
-        <button onClick={this.showForm}>Save</button>
+        <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}
       </div>

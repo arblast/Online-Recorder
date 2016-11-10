@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NewRecording from './new_recording';
-import { createRecording } from '../../actions/recordings_actions';
+import { createRecording, fetchRecordings, clearRecordingErrors } from '../../actions/recordings_actions';
 
 const mapStateToProps = ({recordingDetail}) => ({
   errors: recordingDetail.errors
@@ -9,7 +9,9 @@ const mapStateToProps = ({recordingDetail}) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createRecording: (recordingParams) => dispatch(createRecording(recordingParams))
+    createRecording: (recordingParams) => dispatch(createRecording(recordingParams)),
+    fetchRecordings: () => dispatch(fetchRecordings({request: {type: 'uploaded'}})),
+    clearRecordingErrors: () => dispatch(clearRecordingErrors())
   }
 }
 

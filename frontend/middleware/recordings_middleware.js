@@ -14,7 +14,7 @@ const RecordingMiddleware = store => next => action => {
       updateRecording(action.recordingParams, success, error);
       return next(action);
     case DELETE_RECORDING:
-      success = () => next(action);
+      success = (data) => store.dispatch(receiveRecordings(data));
       deleteRecording(action.recordingId, success);
       break;
     case FETCH_RECORDING:

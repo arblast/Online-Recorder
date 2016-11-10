@@ -13,5 +13,8 @@ class Recording < ActiveRecord::Base
     self.image_url = "http://res.cloudinary.com/record-cloud/image/upload/v1478131735/music-note-5_p5oyxj.png" unless self.image_url
   end
 
+  def category_name=(name)
+    self.category_id = Category.find_by_name(name).id
+  end
 
 end

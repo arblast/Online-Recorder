@@ -1,4 +1,4 @@
-import { RECEIVE_RECORDING, DELETE_RECORDING, RECEIVE_RECORDING_ERRORS } from '../actions/recordings_actions';
+import { RECEIVE_RECORDING, DELETE_RECORDING, RECEIVE_RECORDING_ERRORS, CLEAR_RECORDING_ERRORS } from '../actions/recordings_actions';
 import { merge } from 'lodash';
 
 const nullRecording = {
@@ -16,9 +16,11 @@ const RecordingDetailsReducer = (oldState=nullRecording, action) => {
     case RECEIVE_RECORDING:
       return merge({}, action.recording, { errors: []});
     case DELETE_RECORDING:
-      return {};
+      return nullRecording;
     case RECEIVE_RECORDING_ERRORS:
       return merge({}, oldState, { errors: action.errors });
+    case CLEAR_RECORDING_ERRORS:
+      return merge({}, oldState, { errors: []});
     default:
       return oldState;
   }

@@ -6,7 +6,7 @@ class RecordingForm extends React.Component {
     super(props);
     this.state = {
       title: props.currentRecording.title,
-      category_id: props.currentRecording.categoryId,
+      category_name: props.currentRecording.categoryName,
       description: props.currentRecording.description,
       publicity: props.currentRecording.publicity,
       uploading: false,
@@ -17,6 +17,10 @@ class RecordingForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.disablePage = null;
+  }
+
+  componentWillUnmount() {
+    this.props.clearRecordingErrors();
   }
 
   uploadRecording(recordingBlob) {
@@ -62,11 +66,12 @@ class RecordingForm extends React.Component {
   }
 
   update(property) {
-    return e => this.setState({[property]: e.target.value});
+    return e => {
+      this.setState({[property]: e.target.value});
+    }
   }
 
   render() {
-    console.log(this.state);
     if(this.state.uploading) {
       this.disablePage = <div className="disable-page"><div className="loader"></div></div>;
     }
@@ -79,18 +84,18 @@ class RecordingForm extends React.Component {
           <div>
             <input className = 'recording-form-text' type='text'onChange={this.update('title')} placeholder='Title'/>
             <br/><br/>
-            <label>Category  <select value={this.state.category_id} onChange={this.update('category_id')}>
-              <option value="1">Meeting</option>
-              <option value="2">Music</option>
-              <option value="3">Lecture</option>
-              <option value="4">Other</option>
+            <label>Category  <select value={this.state.category_name} onChange={this.update('category_name')}>
+              <option value="Meeting">Meeting</option>
+              <option value="Music">Music</option>
+              <option value="Lecture">Lecture</option>
+              <option value="Other">Other</option>
             </select></label>
             <br/><br/>
             <textarea className = 'recording-form-text' onChange={this.update('description')} placeholder='Description'></textarea>
             <br/><br/>
-            <label>Public <input type='radio' checked={this.state.publicity === 'public'} onChange={this.update('publicity')} value='public' /></label>
+            <label>Public <input name='publicity' type='radio' checked={this.state.publicity === 'public'} onChange={this.update('publicity')} value='public' /></label>
             <br/>
-            <label>Private <input type='radio' checked={this.state.publicity === 'private'} onChange={this.update('publicity')} value='private' /></label>
+            <label>Private <input name='publicity' type='radio' checked={this.state.publicity === 'private'} onChange={this.update('publicity')} value='private' /></label>
           </div>
           <br/>
           <ul className= 'errorUL'>

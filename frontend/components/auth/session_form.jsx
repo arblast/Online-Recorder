@@ -88,7 +88,7 @@ class SessionForm extends React.Component {
       if (this.props.formType === 'guest') {
         userForm =
         <div>
-          Logging in a guest...
+          Logging in as guest...
           {timeLeft}
         </div>;
         submit = null;
