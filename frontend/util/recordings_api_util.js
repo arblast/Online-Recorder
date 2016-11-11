@@ -46,6 +46,44 @@ export const fetchRecording = (recordingId, success, error) => {
   });
 };
 
+export const createComment = (commentParams, success, error) => {
+  $.ajax({
+    type: 'POST',
+    url: '/api/comments',
+    data: commentParams,
+    success,
+    error
+  });
+};
+
+export const createFavorite = (favoriteParams, success, error) => {
+  $.ajax({
+    type: 'POST',
+    url: '/api/favorites',
+    data: favoriteParams,
+    success,
+    error
+  });
+};
+
+export const deleteComment = (commentId, success, error) => {
+  $.ajax({
+    type: 'DELETE',
+    url: `/api/comments/${commentId}`,
+    success,
+    error
+  });
+};
+
+export const deleteFavorite = (recordingId, success, error) => {
+  $.ajax({
+    type: 'DELETE',
+    url: `/api/favorites/${recordingId}`,
+    success,
+    error
+  });
+};
+
 // export const uploadRecording = (file) => {
 //   $.ajax({
 //     type: 'POST',

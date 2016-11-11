@@ -7,6 +7,10 @@ export const RECEIVE_RECORDING = "RECEIVE_RECORDING";
 export const RECEIVE_RECORDINGS = "RECEIVE_RECORDINGS";
 export const RECEIVE_RECORDING_ERRORS = "RECEIVE_RECORDING_ERRORS";
 export const CLEAR_RECORDING_ERRORS = "CLEAR_RECORDING_ERRORS";
+export const CREATE_COMMENT = "CREATE_COMMENT";
+export const CREATE_FAVORITE = "CREATE_FAVORITE";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
 
 export const createRecording = (recordingParams) => ({
   type: CREATE_RECORDING,
@@ -50,4 +54,24 @@ export const receiveRecordings = (recordings) => ({
 
 export const clearRecordingErrors = () => ({
   type: CLEAR_RECORDING_ERRORS
+});
+
+export const createComment = (commentParams) => ({
+  type: CREATE_COMMENT,
+  commentParams
+});
+
+export const createFavorite = (favoriteParams) => ({
+  type: CREATE_FAVORITE,
+  favoriteParams
+});
+
+export const deleteComment = (commentId) => ({
+  type: DELETE_COMMENT,
+  commentId
+});
+
+export const deleteFavorite = (recordingId) => ({
+  type: DELETE_FAVORITE,
+  recordingId
 });

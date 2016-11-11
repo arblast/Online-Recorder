@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
 
   has_many :recordings,
     foreign_key: :uploader_id
+  has_many :favorites
+  has_many :favorited_recordings,
+    through: :favorites,
+    source: :recording
+  has_many :comments,
+    foreign_key: :author_id
 
   attr_reader :password
 

@@ -4,7 +4,8 @@
   padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 50%;
+  width: 80%;
+  max-width: 500px;
   position: relative;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;

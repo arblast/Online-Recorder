@@ -7,7 +7,9 @@ const nullRecording = {
   publicity: "public",
   uploader: "",
   plays: "",
-  errors: []
+  errors: [],
+  comments: {},
+  is_favorite: false
 }
 
 const RecordingDetailsReducer = (oldState=nullRecording, action) => {

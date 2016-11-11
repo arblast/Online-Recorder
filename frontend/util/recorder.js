@@ -118,6 +118,7 @@ const Rec = (that) => {
     that.recorder = new Recorder(source);
     that.audioCtx = audioCtx;
   }).catch(function(err) {
+      that.setState({micAllowed: false})
       alert('The following gUM error occured: ' + err);
       }
   );

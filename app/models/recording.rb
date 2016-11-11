@@ -7,6 +7,11 @@ class Recording < ActiveRecord::Base
     foreign_key: :uploader_id,
     class_name: :User
   belongs_to :category
+  has_many :favorites
+  has_many :favorited_users,
+    through: :favorites,
+    source: :user
+  has_many :comments
 
 
   def set_default_image
@@ -15,6 +20,10 @@ class Recording < ActiveRecord::Base
 
   def category_name=(name)
     self.category_id = Category.find_by_name(name).id
+  end
+
+  def is_favorite?(user)
+    self.favorited_users.to_a.include?(user)
   end
 
 end

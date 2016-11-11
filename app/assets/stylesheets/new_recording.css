@@ -6,9 +6,10 @@
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
-  left: 20%;
+  left: -50%;
   width: 20px;
   height: 20px;
+  margin: 0 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -17,7 +18,6 @@
 }
 
 .recording-ui {
-  position: relative;
   padding: 30px;
 }
 
@@ -25,4 +25,16 @@
   0% {opacity: 0;}
   50% {opacity: 1;}
   100% {opacity: 0;}
+}
+
+#start-record {
+  position: relative;
+}
+
+.sound-clips {
+  padding: 30px;
+}
+
+.mic-error {
+  color: red;
 }

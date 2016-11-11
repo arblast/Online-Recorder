@@ -1,5 +1,6 @@
 .recording-detail-image {
-  width: 500px;
+  max-width: 400px;
+  width: 40%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -33,4 +34,9 @@
 .description-label p {
   font-weight: normal;
   font-size: 10px;
+}
+
+.favorite-icon-show {
+  cursor: pointer;
+  height: 20px;
 }

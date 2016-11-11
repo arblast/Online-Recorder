@@ -11,7 +11,8 @@ class NewRecording extends React.Component {
     this.state = {
       isRecording: false,
       recordingComplete: false,
-      showForm: false
+      showForm: false,
+      micAllowed: true
     }
     this.showForm = this.showForm.bind(this);
     this.closeForm = this.closeForm.bind(this);
@@ -30,9 +31,10 @@ class NewRecording extends React.Component {
   }
 
   componentWillUnmount() {
-    this.audioCtx.close();
-    this.stream.getTracks()[0].stop();
-    this.props.fetchRecordings();
+    if(this.state.micAllowed) {
+      this.audioCtx.close();
+      this.stream.getTracks()[0].stop();
+    }
   }
 
   showForm(e) {
@@ -48,16 +50,18 @@ class NewRecording extends React.Component {
   }
 
   startRecord() {
-    let recorder = this.recorder;
-    this.setState({isRecording: true})
-    recorder.record();
-    console.log("recorder started");
+    if(this.state.micAllowed){
+      let recorder = this.recorder;
+      this.setState({isRecording: true})
+      recorder.record();
+    } else {
+      alert("How are you doing this??")
+    }
   }
 
   stopRecord() {
     let recorder = this.recorder;
     recorder.stop();
-    console.log("recorder stopped");
     recorder.exportWAV((blob)=> {
       this.recording = blob;
       const audioURL = window.URL.createObjectURL(blob);
@@ -89,15 +93,19 @@ class NewRecording extends React.Component {
   render() {
     let form = null;
     let circle = null;
+    let micError = null;
+    if(!this.state.micAllowed) {
+      micError = <div className="mic-error">Error: You did not allow this site to access your microphone.</div>;
+      }
     if (this.state.isRecording) {
       circle = <div id="circle"></div>;
     }
     let recordingUI = <div className="recording-ui">
-      {circle}
-      <button onClick={this.startRecord} disabled={this.state.isRecording} className='record'>
+      <button id="start-record" onClick={this.startRecord} disabled={this.state.isRecording || !this.state.micAllowed} className='record'>
         Record
+        {circle}
       </button>
-      <button onClick={this.stopRecord} disabled={!this.state.isRecording} className='stop'>
+      <button onClick={this.stopRecord} disabled={!this.state.isRecording || !this.state.micAllowed} className='stop'>
         Stop
       </button>
     </div>
@@ -113,6 +121,7 @@ class NewRecording extends React.Component {
     return(
       <div className='new-recording'>
         <h2>New Recording</h2>
+          {micError}
           {recordingUI}
         <div className='sound-clips'>
         </div>

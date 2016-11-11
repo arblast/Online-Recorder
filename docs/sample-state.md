@@ -28,14 +28,15 @@
     isRecording: false,
     recordingComplete: false
   },
-  player: {
-    isPlaying: false,
-  },
   comments: {
     1: {
-      content: "this is a comment"
+      content: "this is a comment",
+      author: guest
     },
-    newComment: "content of new comment"  
+    2: {
+      content: "this is another comment",
+      author: guest1
+    }
   }
 }
 ```

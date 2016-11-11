@@ -14,7 +14,7 @@
  *= require_self
  */
 
-html, main, body, ul, li, h1, h2, h3, h4, h5, a, div {
+html, main, body, ul, li, h1, h2, h3, h4, h5, a, div, textarea {
   font-family: sans-serif;
   font-style: normal;
   color: inherit;
@@ -22,4 +22,8 @@ html, main, body, ul, li, h1, h2, h3, h4, h5, a, div {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+input {
+  font-family: sans-serif;
 }

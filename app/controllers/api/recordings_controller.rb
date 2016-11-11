@@ -13,6 +13,7 @@ class Api::RecordingsController < ApplicationController
 
   def show
     @recording = Recording.find(params[:id])
+    @is_favorite = @recording.is_favorite?(current_user)
   end
 
   def create

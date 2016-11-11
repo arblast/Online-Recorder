@@ -41,4 +41,4 @@ column name     | data type | details
 id              | integer   | not null, primary key
 content         | text      | not null
 recording_id    | integer   | not null, foreign key (references recordings), indexed
-user_id         | integer   | not null, foreign key (references users), indexed
+author_id       | integer   | not null, foreign key (references users), indexed

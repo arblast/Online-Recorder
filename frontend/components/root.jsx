@@ -22,10 +22,12 @@ const Root = ({ store }) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
       replace('/');
-    } else {
-      store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
     }
   };
+
+  const getRecordings = (nextState) => {
+    store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
+  }
 
   const getRecording = (nextState) => {
     store.dispatch(fetchRecording(nextState.params.recordingId));
@@ -40,7 +42,7 @@ const Root = ({ store }) => {
             <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
-            <IndexRoute component={MyRecordingsContainer}/>
+            <IndexRoute component={MyRecordingsContainer} onEnter={getRecordings}/>
             <Route path="/new" component={NewRecordingContainer}/>
             <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
           </Route>
