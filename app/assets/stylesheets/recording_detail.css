@@ -1,6 +1,6 @@
 .recording-detail-image {
   max-width: 400px;
-  width: 40%;
+  width: 35%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -102,6 +102,7 @@
 
 .comment-author-name {
   font-size: 13px;
+  text-align: center;
 }
 
 .comment-date {

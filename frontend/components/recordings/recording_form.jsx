@@ -1,6 +1,5 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
-import { RadioGroup, Radio } from 'react-radio-group';
 
 class RecordingForm extends React.Component {
   constructor(props) {
@@ -72,13 +71,22 @@ class RecordingForm extends React.Component {
   }
 
   updateRadio(value) {
-    this.setState({publicity: value});
+    return (e) => {
+      e.preventDefault;
+      this.setState({publicity: value});
+    }
   }
 
   render() {
-    console.log(this.state);
     if(this.state.uploading) {
       this.disablePage = <div className="disable-page"><div className="loader"></div></div>;
+    }
+    let publicRadio = "radio-circle";
+    let privateRadio = "radio-circle";
+    if(this.state.publicity === "public") {
+      publicRadio = "radio-circle filled";
+    } else {
+      privateRadio = "radio-circle filled";
     }
     return(
       <div className='modal-background' onClick={this.props.closeForm}>
@@ -98,10 +106,8 @@ class RecordingForm extends React.Component {
             <br/><br/>
             <textarea className = 'recording-form-text' value={this.state.description} onChange={this.update('description')} placeholder='Description'></textarea>
             <br/><br/>
-            <RadioGroup name="publicity" selectedValue={this.state.publicity} onChange={this.updateRadio}>
-              <Radio value="public" /> Public
-              <Radio value="private" /> Private
-            </RadioGroup>
+            <div className='radio-container' onClick={this.updateRadio("public")}><div className={publicRadio}></div><p>Public</p></div>
+            <div className='radio-container' onClick={this.updateRadio("private")}><div className={privateRadio}></div><p>Private</p></div>
           </div>
           <br/>
           <ul className= 'errorUL'>

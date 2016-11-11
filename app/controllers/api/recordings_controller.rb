@@ -30,6 +30,7 @@ class Api::RecordingsController < ApplicationController
     @recording = Recording.find(params[:id])
     if @recording.uploader_id == current_user.id
       if @recording.update(recording_params)
+        @is_favorite = @recording.is_favorite?(current_user)
         render :show
       else
         render json: @recording.errors.full_messages, status: 422

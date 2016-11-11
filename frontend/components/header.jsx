@@ -16,6 +16,17 @@ const Header = (props) => {
     hashHistory.push('/home');
   }
 
+  const goToFavorites = (e) => {
+    e.preventDefault();
+    hashHistory.push('/favorites');
+  }
+
+  const goToNew = (e) => {
+    e.preventDefault();
+    hashHistory.push('/new');
+  }
+
+
   window.onclick = (e) => {
     if(!e.target.matches('.profile') && !e.target.matches('.profile-icon') && !e.target.matches('#username')) {
       let menu = document.getElementById('profile-menu');
@@ -48,6 +59,9 @@ const Header = (props) => {
         <img src={profileSrc} className="profile-icon"/>
         <ul className='profile-menu' id='profile-menu'>
           <li id='username'>{props.currentUser.username}</li>
+          <li onClick={returnHome}>My Recordings</li>
+          <li onClick={goToFavorites}>Favorites</li>
+          <li onClick={goToNew}>New Recording</li>
           <li onClick={props.handleLogout}>Logout</li>
         </ul>
       </div>

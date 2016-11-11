@@ -72,3 +72,26 @@
   height: 20px;
   cursor: pointer;
 }
+
+.nav {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: left;
+  padding-bottom: 20px;
+  border-bottom: 2px solid lightpink;
+}
+
+.nav a {
+  margin: 0 8px;
+  transition: 0.5s ease;
+}
+
+.nav a:hover {
+  color: crimson;
+}
+
+.nav .selected {
+  color: lightpink;
+}

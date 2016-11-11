@@ -7,8 +7,11 @@ class MyRecordings extends React.Component {
 
   constructor(props) {
     super(props);
-    this.newRecordingButton = <Link className="new-recording-button" to="/new">New Recording</Link>;
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.setTab('home');
   }
 
   recordingDetail(recordingId) {
@@ -28,7 +31,7 @@ class MyRecordings extends React.Component {
   render() {
     return(
       <div className='my-recordings'>
-        {this.newRecordingButton}
+        {this.props.newRecordingButton}
         <h2>My Recordings</h2>
         <table className='my-recordings-list'>
           <tbody>

@@ -54,7 +54,7 @@
 
 .clip {
   display: flex;
-  justify-content: space-around;
+  justify-content:center;
   align-items: center;
 }
 
@@ -70,4 +70,8 @@
 
 .delete-clip {
   margin-left: 10px;
+}
+
+.clip .audio_player {
+  width: 50%;
 }

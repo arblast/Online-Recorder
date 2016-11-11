@@ -24,6 +24,7 @@ class NewRecording extends React.Component {
   }
 
   componentDidMount() {
+    this.props.setTab('new');
     Rec(this);
   }
 

@@ -8,6 +8,10 @@ class Favorites extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.setTab('favorites');
+  }
+
   recordingDetail(recordingId) {
     return e => {
       hashHistory.push(`/recording/${recordingId}`);
@@ -16,9 +20,9 @@ class Favorites extends React.Component {
 
 
   render() {
-    return(
+    return (
       <div className='my-recordings'>
-        {this.newRecordingButton}
+        {this.props.newRecordingButton}
         <h2>Favorites</h2>
         <table className='my-recordings-list'>
           <tbody>

@@ -25,6 +25,10 @@ class Recording extends React.Component {
     this.removeFavorite = this.removeFavorite.bind(this);
   }
 
+  componentDidMount() {
+    this.props.setTab('recording');
+  }
+
   showForm(e) {
     e.preventDefault();
     this.setState({showForm: true});

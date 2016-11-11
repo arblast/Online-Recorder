@@ -57,3 +57,37 @@
   background: #aaa;
   z-index: 10;
 }
+
+.radio-circle {
+	border: 2px solid darkred;
+	border-radius: 50%;
+  margin-right: 7px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);
+	opacity: 0.6;
+
+	-webkit-box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+	box-shadow: 0 0 1px 0px rgb( 255, 255, 255);
+	width: 10px;
+	height: 10px;
+	z-index: 86;
+
+	-webkit-transition: background-color .5s ease-in-out;
+	-moz-transition: background-color .5s ease-in-out;
+	-o-transition: background-color .5s ease-in-out;
+	-ms-transition: background-color .5s ease-in-out;
+	transition: background-color .5s ease-in-out;
+}
+
+.radio-circle.filled {
+	background-color: crimson;
+}
+
+.radio-container {
+  margin: 0 auto;
+  width: 100px;
+  cursor:pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
