@@ -4,6 +4,8 @@
   padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
   width: 80%;
   max-width: 500px;
   position: relative;
@@ -25,6 +27,23 @@
   padding-right: 5px;
   width: 70%;
   resize: none;
+}
+
+
+.submit-button {
+  color: white;
+  background-color: lightcoral;
+  margin-right: 5px;
+  padding: 10px;
+  font-size: 11px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.submit-button:hover {
+  color: crimson;
+  transition: 0.5s ease;
 }
 
 .disable-page {

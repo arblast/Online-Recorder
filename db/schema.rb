@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110181117) do
+ActiveRecord::Schema.define(version: 20161111095919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,13 @@ ActiveRecord::Schema.define(version: 20161110181117) do
   add_index "recordings", ["uploader_id"], name: "index_recordings_on_uploader_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "username",                                                                                                null: false
+    t.string   "email",                                                                                                   null: false
+    t.string   "password_digest",                                                                                         null: false
+    t.string   "session_token",                                                                                           null: false
+    t.datetime "created_at",                                                                                              null: false
+    t.datetime "updated_at",                                                                                              null: false
+    t.string   "image_url",       default: "http://res.cloudinary.com/record-cloud/image/upload/v1478421823/profile.svg", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

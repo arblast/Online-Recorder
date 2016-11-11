@@ -108,7 +108,7 @@ class RecordingForm extends React.Component {
             {this.props.errors.map( (error, idx) => <li key={idx}>{error}</li>)}
             {this.state.noTitleError}
           </ul>
-          <input onClick={this.handleSubmit} type='submit' value='Submit'/>
+          <a className= 'submit-button' onClick={this.handleSubmit}>Submit</a>
         </form>
       </div>
     )

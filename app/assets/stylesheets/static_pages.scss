@@ -9,8 +9,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border-top: 16px solid lightcoral; /* Blue */
     border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 2s linear infinite;
@@ -39,4 +41,18 @@ html {
 :-moz-placeholder { /* Firefox 4 - 18 */
   color: gray;
   opacity: 1;
+}
+
+select {
+  color: white;
+  background-color: lightcoral;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
 }

@@ -72,7 +72,7 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'signup') {
       emailForm = <input type='text' onChange={this.update('email')} placeholder='Email'/>;
     }
-    let submit = <input type='submit'value='Submit'/>;
+    let submit = <input className='submit-button' type='submit'value='Submit'/>;
     let userForm =
       <div>
         <input type='text'onChange={this.update('username')} placeholder='Username'/>

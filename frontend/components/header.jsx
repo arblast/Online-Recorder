@@ -35,7 +35,7 @@ const Header = (props) => {
   }
 
   const iconSrc = cloud.image("icon_uscmav.png").src;
-  const profileSrc = cloud.image("profile.svg").src;
+  const profileSrc = props.currentUser.image_url;
   return (
     <div className='topbar'>
       <img src={iconSrc} onClick={returnHome} className="header-icon"/>

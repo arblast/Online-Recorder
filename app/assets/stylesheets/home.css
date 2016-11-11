@@ -6,16 +6,18 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
-  background-color: darkred;
+  background-color: crimson;
   transition: all 0.5s ease;
   padding: 10px;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   position: relative;
 }
 
 .new-recording-button:hover {
   color: black;
-  background-color: firebrick;
+  background-color: darkred;
 }
 
 .my-recordings {
@@ -48,6 +50,8 @@
 }
 
 .my-recordings-list {
+  width: 70%;
+  max-width: 700px;
   border-collapse: collapse;
 }
 

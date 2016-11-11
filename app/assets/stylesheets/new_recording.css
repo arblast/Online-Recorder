@@ -38,3 +38,36 @@
 .mic-error {
   color: red;
 }
+
+.new-recording button {
+  color: white;
+  cursor: pointer;
+  background-color: lightcoral;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border: none;
+}
+
+.clip {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.new-recording button:hover {
+  color: crimson;
+  transition: 0.5s ease;
+}
+
+.new-recording button:disabled {
+  cursor: default;
+  color: pink;
+}
+
+.delete-clip {
+  margin-left: 10px;
+}

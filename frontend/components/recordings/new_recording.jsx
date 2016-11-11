@@ -4,6 +4,7 @@ import RecordingForm from './recording_form';
 import Rec from '../../util/recorder';
 import cloudinary from 'cloudinary-core';
 import { uploadRecording } from '../../util/recordings_api_util';
+import AudioPlayer from 'react-responsive-audio-player';
 
 class NewRecording extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class NewRecording extends React.Component {
     this.startRecord = this.startRecord.bind(this);
     this.stopRecord = this.stopRecord.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.deleteClip = this.deleteClip.bind(this);
   }
 
   componentDidMount() {
@@ -65,28 +67,22 @@ class NewRecording extends React.Component {
     recorder.exportWAV((blob)=> {
       this.recording = blob;
       const audioURL = window.URL.createObjectURL(blob);
+      this.soundClips = <div className="sound-clips">
+        <article className="clip">
+          <AudioPlayer playlist={[{url: audioURL, displayText: ""}]} hideBackSkip={true}/>
+          <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
+        </article>
+      </div>
 
-      const clipContainer = document.createElement('article');
-      const audio = document.createElement('audio');
-      const deleteButton = document.createElement('button');
-
-      clipContainer.classList.add('clip');
-      audio.setAttribute('controls', '');
-      deleteButton.innerHTML = "Delete";
-
-      const soundClips = document.querySelector('.sound-clips');
-      clipContainer.appendChild(audio);
-      clipContainer.appendChild(deleteButton);
-      soundClips.appendChild(clipContainer);
-      audio.src = audioURL;
-      deleteButton.onclick = (e) => {
-        const eTarget = e.target;
-        eTarget.parentNode.parentNode.removeChild(eTarget.parentNode);
-        recorder.clear();
-        this.setState({isRecording: false, recordingComplete: false});
-      }
       this.setState({isRecording: false, recordingComplete: true});
     });
+  }
+
+  deleteClip(e) {
+    const eTarget = e.target;
+    this.soundClips = null;
+    this.recorder.clear();
+    this.setState({isRecording: false, recordingComplete: false});
   }
 
 
@@ -123,8 +119,7 @@ class NewRecording extends React.Component {
         <h2>New Recording</h2>
           {micError}
           {recordingUI}
-        <div className='sound-clips'>
-        </div>
+        {this.soundClips}
         <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}

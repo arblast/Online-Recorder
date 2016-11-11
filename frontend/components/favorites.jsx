@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
+import AudioPlayer from 'react-responsive-audio-player';
 
 class Favorites extends React.Component {
 
@@ -17,16 +18,20 @@ class Favorites extends React.Component {
   render() {
     return(
       <div className='my-recordings'>
-        <h2>Favorite Recordings</h2>
+        {this.newRecordingButton}
+        <h2>Favorites</h2>
         <table className='my-recordings-list'>
           <tbody>
-            {this.props.myRecordings.map((recording, idx)=>(
-              <tr key={idx} className='my-recordings-list-item'>
-                  <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
-                  <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
-                  <td><audio controls src={recording.recording_url}></audio></td>
-              </tr>
-            ))}
+            {this.props.myRecordings.map((recording, idx)=>{
+              return (
+                <tr key={idx} className='my-recordings-list-item'>
+                    <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
+                    <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
+                    <td>
+                      <AudioPlayer playlist={[{url: recording.recording_url, displayText: `Recorded by ${recording.uploader}`}]} hideBackSkip={true}/>
+                    </td>
+                </tr>
+            )})}
           </tbody>
         </table>
       </div>

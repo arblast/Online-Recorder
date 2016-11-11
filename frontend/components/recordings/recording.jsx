@@ -2,6 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import RecordingForm from './recording_form';
 import cloudinary from 'cloudinary-core';
+import AudioPlayer from 'react-responsive-audio-player';
 
 class Recording extends React.Component {
 
@@ -74,6 +75,7 @@ class Recording extends React.Component {
   render() {
     const recording = this.props.recording;
     const comments = recording.comments;
+    const uploadDate = recording.upload_date;
     const that = this;
     let favorite;
     if (recording.is_favorite) {
@@ -88,7 +90,7 @@ class Recording extends React.Component {
     let editForm = null;
     let form = null;
     if (this.props.ownRecording) {
-      editForm = <div className="edit-buttons"><button onClick={this.showForm} >Edit Recording Details</button><button onClick={this.handleDelete} >Delete Recording</button></div>
+      editForm = <div className="edit-buttons"><a onClick={this.showForm} >Edit Recording Details</a><a onClick={this.handleDelete} >Delete Recording</a></div>
     }
     if(this.state.showForm) {
       form = <RecordingForm formType={'edit'} currentRecording={recording} processForm={this.props.updateRecording} errors={this.props.errors} closeForm={this.closeForm} clearRecordingErrors={this.props.clearRecordingErrors}/>;
@@ -100,33 +102,43 @@ class Recording extends React.Component {
         <br/>
         <img className='recording-detail-image' src={recording.image_url}></img>
         <br/>
-        <audio controls src={recording.recording_url}></audio>
+        <AudioPlayer playlist={[{url: recording.recording_url, displayText: `${recording.title}`}]} hideBackSkip={true}/>
         <br/>
-        <label className='description-label'>Description
-          <p>{recording.description}</p>
-        </label>
-        <br/>
-        <h5>Category: {recording.category_name}</h5>
-        {editForm}
-        {form}
-        <div className='comments'>
-          <h4>Comments</h4>
-          <ul className='comments-list'>
-            {commentIds.map( function(commentId) {
-              const comment = comments[commentId];
-              return(
-                <li className="single-comment" key={commentId}>
-                  {comment.author_name} - {comment.content}
-                  {that.props.currentUser === comment.author_name ? <button className="remove-comment" onClick={that.removeComment(commentId)}>Delete</button> : <div></div>}
-                </li>
-              )
-            })}
-          </ul>
-          <form className='comments-form' onSubmit={this.postComment}>
-            <textarea value={this.state.commentContent} onChange={this.updateComment} placeholder="Enter a comment"></textarea>
+        <div className='recording-info'>
+          <div className='description'>
+            <h4>Recorded on {uploadDate.month} {uploadDate.day}, {uploadDate.year}</h4>
+            <p>{recording.description}</p>
+            <h5>Category: {recording.category_name}</h5>
+          </div>
+          {editForm}
+          {form}
+          <div className='comments'>
+            <h4>Comments</h4>
+            <ul className='comments-list clearfix'>
+              {commentIds.map( function(commentId) {
+                const comment = comments[commentId];
+                return(
+                  <li className="single-comment" key={commentId}>
+                    <div className="comment-author">
+                      <img className="comment-author-image" src={comment.author_image}/>
+                      <h5 className="comment-author-name">{comment.author_name}</h5>
+                    </div>
+                    <div className="comment-details">
+                      <p className="comment-date">{comment.month} {comment.day}, {comment.year}</p>
+                      <p className="comment-content">{comment.content}</p>
+                    </div>
+                    {that.props.currentUser === comment.author_name ? <a className="remove-comment" onClick={that.removeComment(commentId)}>Delete Comment</a> : <div></div>}
+                  </li>
+                )
+              })}
+            </ul>
             <br/>
-            <input type='submit' value='Submit' disabled={this.state.commentContent === ""}></input>
-          </form>
+            <form className='comments-form' onSubmit={this.postComment}>
+              <textarea value={this.state.commentContent} onChange={this.updateComment} placeholder="Enter a comment"></textarea>
+              <br/>
+              <input className='submit-button' type='submit' value='Submit' disabled={this.state.commentContent === ""}></input>
+            </form>
+          </div>
         </div>
       </div>
     );
