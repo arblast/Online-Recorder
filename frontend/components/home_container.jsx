@@ -9,7 +9,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  searchRecordings: (searchParams) => dispatch(fetchRecordings({request: {type: 'search', params: searchParams}}))
 });
 
 export default connect(

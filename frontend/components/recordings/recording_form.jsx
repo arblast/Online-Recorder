@@ -10,14 +10,19 @@ class RecordingForm extends React.Component {
       description: props.currentRecording.description,
       publicity: props.currentRecording.publicity,
       uploading: false,
+      image_url: props.currentRecording.image_url,
       noTitleError: null
     };
     if (props.formType === 'new') {
       this.state.recording_url = "";
+      this.imageUploaded = false;
+    } else {
+      this.imageUploaded = true;
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.disablePage = null;
     this.updateRadio = this.updateRadio.bind(this);
+    this.openUpload = this.openUpload.bind(this);
   }
 
   componentWillUnmount() {
@@ -34,7 +39,7 @@ class RecordingForm extends React.Component {
         url: 'https://api.cloudinary.com/v1_1/record-cloud/upload',
         data: {file: res, upload_preset: window.cloudinary_options.upload_preset},
         success: (data) => {
-          that.state.recording_url = data.url;
+          that.state.recording_url = data.secure_url;
           console.log("Upload complete!");
           const recording = that.state;
           that.props.processForm({recording});
@@ -64,6 +69,16 @@ class RecordingForm extends React.Component {
     }
   }
 
+  openUpload() {
+    cloudinary.openUploadWidget({cloud_name: window.cloudinary_options.cloud_name, upload_preset: window.cloudinary_options.upload_preset},
+    (error, result) => {
+      if(!error){
+        this.imageUploaded = true;
+        this.setState({image_url: result[0].secure_url});
+      }
+    });
+  }
+
   update(property) {
     return e => {
       this.setState({[property]: e.target.value});
@@ -78,6 +93,8 @@ class RecordingForm extends React.Component {
   }
 
   render() {
+    let uploadItem = this.imageUploaded ? <img className='icon-preview' src={this.state.image_url}/> : <p>Upload Cover Picture</p>;
+    const imageForm = <div className="upload-picture" onClick={this.openUpload}>{uploadItem}</div>
     if(this.state.uploading) {
       this.disablePage = <div className="disable-page"><div className="loader"></div></div>;
     }
@@ -109,6 +126,7 @@ class RecordingForm extends React.Component {
             <div className='radio-container' onClick={this.updateRadio("public")}><div className={publicRadio}></div><p>Public</p></div>
             <div className='radio-container' onClick={this.updateRadio("private")}><div className={privateRadio}></div><p>Private</p></div>
           </div>
+          {imageForm}
           <br/>
           <ul className= 'errorUL'>
             {this.props.errors.map( (error, idx) => <li key={idx}>{error}</li>)}

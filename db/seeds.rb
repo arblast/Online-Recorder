@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create(username: "guest", password: "password", email: "guest@email.com", image_url: "http://res.cloudinary.com/record-cloud/image/upload/v1478861955/guest_profile.jpg")
+User.create(username: "guest", password: "password", email: "guest@email.com", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1478861955/guest_profile.jpg")
 Category.create(name: "Meeting")
 Category.create(name: "Music")
 Category.create(name: "Lecture")

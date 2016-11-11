@@ -40,5 +40,13 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def self.name_to_id(name)
+    user = User.find_by_username(name)
+    if user
+      return user.id
+    else
+      return -1
+    end
+  end
 
 end

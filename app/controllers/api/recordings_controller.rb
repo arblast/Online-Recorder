@@ -7,7 +7,12 @@ class Api::RecordingsController < ApplicationController
     when "uploaded"
       @recordings = current_user.recordings;
     when "search"
-      @recordings = Recording.all
+      search_params = params[:request][:params]
+      @recordings = []
+      @recordings.concat(Recording.where("title LIKE '%#{search_params.downcase}%' AND publicity='public'"))
+      @recordings.concat(Recording.where(category_id: Category.name_to_id(search_params), publicity: "public"))
+      @recordings.concat(Recording.where(uploader_id: User.name_to_id(search_params), publicity: "public"))
+      @recordings = @recordings.uniq
     end
   end
 

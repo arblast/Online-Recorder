@@ -13,6 +13,7 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   position: relative;
+  white-space: nowrap;
 }
 
 .new-recording-button:hover {
@@ -53,6 +54,7 @@
   width: 70%;
   max-width: 700px;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .my-recordings-list td {
@@ -81,6 +83,7 @@
   text-align: left;
   padding-bottom: 20px;
   border-bottom: 2px solid lightpink;
+  white-space: nowrap;
 }
 
 .nav a {

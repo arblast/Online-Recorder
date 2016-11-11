@@ -50,7 +50,7 @@ class Home extends React.Component {
     }
     return(
       <div className="home">
-        <Header handleLogout={this.handleLogout} currentUser={this.props.currentUser}/>
+        <Header handleLogout={this.handleLogout} currentUser={this.props.currentUser} searchRecordings={this.props.searchRecordings}/>
         <br/>
         <div className='nav'>
           <Link className={homeSelected} to='/home'>My Recordings</Link>

@@ -26,7 +26,7 @@ class Favorites extends React.Component {
         <h2>Favorites</h2>
         <table className='my-recordings-list'>
           <tbody>
-            {this.props.myRecordings.map((recording, idx)=>{
+            {this.props.favoriteRecordings.map((recording, idx)=>{
               return (
                 <tr key={idx} className='my-recordings-list-item'>
                     <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>

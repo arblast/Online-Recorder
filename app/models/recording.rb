@@ -15,11 +15,15 @@ class Recording < ActiveRecord::Base
 
 
   def set_default_image
-    self.image_url = "http://res.cloudinary.com/record-cloud/image/upload/v1478131735/music-note-5_p5oyxj.png" unless self.image_url
+    self.image_url = "https://res.cloudinary.com/record-cloud/image/upload/v1478131735/music-note-5_p5oyxj.png" unless self.image_url
   end
 
   def category_name=(name)
     self.category_id = Category.find_by_name(name).id
+  end
+
+  def category_name
+    self.category.name
   end
 
   def is_favorite?(user)

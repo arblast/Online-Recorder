@@ -63,6 +63,20 @@
   font-weight: bold;
 }
 
+.upload-picture {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0 5px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.icon-preview {
+  height: 50px;
+  margin: 10px;
+}
+
 .close:hover,
 .close:focus {
     color: black;

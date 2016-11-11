@@ -8,6 +8,7 @@ import NewRecordingContainer from './recordings/new_recording_container';
 import MyRecordingsContainer from './my_recordings_container';
 import RecordingContainer from './recordings/recording_container';
 import FavoritesContainer from './favorites_container';
+import SearchContainer from './search_container';
 import { fetchRecordings, fetchRecording } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
@@ -38,6 +39,14 @@ const Root = ({ store }) => {
     store.dispatch(fetchRecording(nextState.params.recordingId));
   }
 
+  const getSearchResults = (nextState) => {
+    store.dispatch(fetchRecordings({request: {type: 'search', params: nextState.params.searchParams}}));
+  }
+
+  const getAllRecordings = () => {
+    store.dispatch(fetchRecordings({request: {type: 'search', params: ""}}));
+  }
+
   return(
     <Provider store={store}>
       <Router history={hashHistory}>
@@ -51,6 +60,8 @@ const Root = ({ store }) => {
             <Route path="/favorites" component={FavoritesContainer} onEnter={getFavorites}/>
             <Route path="/new" component={NewRecordingContainer}/>
             <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
+            <Route path="/search/:searchParams" component={SearchContainer} onEnter={getSearchResults}/>
+            <Route path="/search/" component={SearchContainer} onEnter={getAllRecordings}/>
           </Route>
       </Router>
     </Provider>

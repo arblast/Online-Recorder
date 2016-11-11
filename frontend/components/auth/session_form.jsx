@@ -9,6 +9,7 @@ class SessionForm extends React.Component {
         username: "",
         password: "",
         email: "",
+        image_url: null
       };
     } else {
       this.state = {
@@ -17,9 +18,11 @@ class SessionForm extends React.Component {
         time: 3
       };
     }
+    this.imageUploaded = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.backToWelcome = this.backToWelcome.bind(this);
+    this.openUpload = this.openUpload.bind(this);
   }
 
   componentDidUpdate() {
@@ -64,13 +67,26 @@ class SessionForm extends React.Component {
     this.props.processForm({user});
   }
 
+  openUpload() {
+    cloudinary.openUploadWidget({cloud_name: window.cloudinary_options.cloud_name, upload_preset: window.cloudinary_options.upload_preset},
+    (error, result) => {
+      if(!error){
+        this.imageUploaded = true;
+        this.setState({image_url: result[0].secure_url});
+      }
+    });
+  }
+
   update(property) {
     return e => this.setState({[property]: e.target.value});
   }
   render() {
     let emailForm;
+    let imageForm;
+    let uploadItem = this.imageUploaded ? <img className='icon-preview' src={this.state.image_url}/> : <p>Upload Profile Picture</p>;
     if (this.props.formType === 'signup') {
       emailForm = <input type='text' onChange={this.update('email')} placeholder='Email'/>;
+      imageForm = <div className="upload-picture" onClick={this.openUpload}>{uploadItem}</div>
     }
     let submit = <input className='submit-button' type='submit'value='Submit'/>;
     let userForm =
@@ -102,6 +118,8 @@ class SessionForm extends React.Component {
           {userForm}
           <br/>
           {emailForm}
+          <br/>
+          {imageForm}
           <ul className= 'errorUL'>
             {this.props.errors.map( (error, idx) => <li key={idx}>{error}</li>)}
           </ul>

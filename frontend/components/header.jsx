@@ -9,6 +9,7 @@ const Header = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    hashHistory.push(`/search/${e.target.firstChild.value}`);
   }
 
   const returnHome = (e) => {
@@ -51,9 +52,9 @@ const Header = (props) => {
     <div className='topbar'>
       <img src={iconSrc} onClick={returnHome} className="header-icon"/>
       <h3 onClick={returnHome} className='logo-title'>Record Cloud</h3>
-      <form>
-        <input type='text' name='search' placeholder='Search'></input>
-        <button className='search-submit' onClick={handleSubmit} type='submit'></button>
+      <form className='search-form' onSubmit={handleSubmit}>
+        <input type='text' className='search-input' name='search' placeholder='Enter title, author, or category'></input>
+        <input type='submit' value=""></input>
       </form>
       <div onClick={showMenu} className='profile' id='profile'>
         <img src={profileSrc} className="profile-icon"/>
