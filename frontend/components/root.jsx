@@ -7,6 +7,7 @@ import SessionFormContainer from './auth/session_form_container';
 import NewRecordingContainer from './recordings/new_recording_container';
 import MyRecordingsContainer from './my_recordings_container';
 import RecordingContainer from './recordings/recording_container';
+import FavoritesContainer from './favorites_container';
 import { fetchRecordings, fetchRecording } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
@@ -29,6 +30,10 @@ const Root = ({ store }) => {
     store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
   }
 
+  const getFavorites = (nextState) => {
+    store.dispatch(fetchRecordings({request: {type: 'favorites'}}));
+  }
+
   const getRecording = (nextState) => {
     store.dispatch(fetchRecording(nextState.params.recordingId));
   }
@@ -43,6 +48,7 @@ const Root = ({ store }) => {
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
             <IndexRoute component={MyRecordingsContainer} onEnter={getRecordings}/>
+            <Route path="/favorites" component={FavoritesContainer} onEnter={getFavorites}/>
             <Route path="/new" component={NewRecordingContainer}/>
             <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
           </Route>

@@ -115,15 +115,16 @@ class Recording extends React.Component {
             {commentIds.map( function(commentId) {
               const comment = comments[commentId];
               return(
-                <li key={commentId}>
+                <li className="single-comment" key={commentId}>
                   {comment.author_name} - {comment.content}
-                  {that.props.currentUser === comment.author_name ? <button onClick={that.removeComment(commentId)}>Delete</button> : <div></div>}
+                  {that.props.currentUser === comment.author_name ? <button className="remove-comment" onClick={that.removeComment(commentId)}>Delete</button> : <div></div>}
                 </li>
               )
             })}
           </ul>
           <form className='comments-form' onSubmit={this.postComment}>
             <textarea value={this.state.commentContent} onChange={this.updateComment} placeholder="Enter a comment"></textarea>
+            <br/>
             <input type='submit' value='Submit' disabled={this.state.commentContent === ""}></input>
           </form>
         </div>

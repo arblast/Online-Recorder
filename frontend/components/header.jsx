@@ -1,5 +1,5 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import cloudinary from 'cloudinary-core';
 
 
@@ -39,6 +39,7 @@ const Header = (props) => {
   return (
     <div className='topbar'>
       <img src={iconSrc} onClick={returnHome} className="header-icon"/>
+      <h3 onClick={returnHome} className='logo-title'>Record Cloud</h3>
       <form>
         <input type='text' name='search' placeholder='Search'></input>
         <button className='search-submit' onClick={handleSubmit} type='submit'></button>

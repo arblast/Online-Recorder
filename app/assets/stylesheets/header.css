@@ -91,6 +91,14 @@
   height: 20px;
 }
 
+.logo-title {
+  cursor: pointer;
+  float: left;
+  color:white;
+  margin:auto 5px;
+  font-size: 12px;
+}
+
 .search-submit:focus {
   outline:0;
 }

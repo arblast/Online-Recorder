@@ -40,3 +40,18 @@
   cursor: pointer;
   height: 20px;
 }
+
+.single-comment {
+  margin: 10px;
+}
+
+.remove-comment {
+  margin-left: 10px;
+}
+
+.comments-form textarea {
+  width: 200px;
+  min-height: 100px;
+  margin-top: 20px
+  margin-bottom: 10px
+}

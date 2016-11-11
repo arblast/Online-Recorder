@@ -3,11 +3,19 @@
 }
 
 .new-recording-button {
-  color: darkred;
-  padding: 5px;
-  border: 2px solid darkred;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: darkred;
+  transition: all 0.5s ease;
+  padding: 10px;
   border-radius: 5px;
   position: relative;
+}
+
+.new-recording-button:hover {
+  color: black;
+  background-color: firebrick;
 }
 
 .my-recordings {
@@ -15,7 +23,7 @@
 }
 
 .my-recordings h2 {
-  margin: 20px;
+  margin: 40px;
 }
 
 .my-recordings-list {
@@ -31,6 +39,7 @@
 }
 
 .recordings-list-button, .recordings-list-image {
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
@@ -44,7 +53,7 @@
 
 .my-recordings-list td {
   padding: 10px 5px 10px 0;
-  border-bottom: 2px solid peachpuff;
+  border-bottom: 2px solid lightpink;
 }
 
 #item-image {

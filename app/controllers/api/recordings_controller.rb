@@ -3,7 +3,7 @@ class Api::RecordingsController < ApplicationController
   def index
     case params[:request][:type]
     when "favorites"
-      @recordings = current_user.favorites;
+      @recordings = current_user.favorited_recordings;
     when "uploaded"
       @recordings = current_user.recordings;
     when "search"
