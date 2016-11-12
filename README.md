@@ -6,6 +6,8 @@
 
 ## Features & Implementation
 
+Note: In order to record the audio using the web API, a SSL is required. The current SSL is self-signed, therefore will trigger a privacy warning. Make sure to bypass this in order to access the site.
+
 ### Recording Sounds
 
   In the database, each recording has columns for 'id', 'uploader_id', 'title', 'recording_url', 'image_url', 'description', 'publicity', and 'category_id'. When a recording is submit, the data is uploaded to Cloudinary and saved to a url, and the rest of the columns get the information from the RecordingForm component.
