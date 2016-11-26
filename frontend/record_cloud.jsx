@@ -15,9 +15,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   ReactDOM.render(<Root store={store} />, root);
   window.store = store;
-  window.createRecording = createRecording;
-  window.updateRecording = updateRecording;
-  window.deleteRecording = deleteRecording;
-  window.fetchRecording = fetchRecording;
-  window.fetchRecordings = fetchRecordings;
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
-import AudioPlayer from 'react-responsive-audio-player';
+import AudioPlayer from './audio_player';
 
 
 class MyRecordings extends React.Component {
@@ -41,7 +41,7 @@ class MyRecordings extends React.Component {
                     <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
                     <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
                     <td>
-                      <AudioPlayer playlist={[{url: recording.recording_url, displayText: `Recorded by ${recording.uploader}`}]} hideBackSkip={true}/>
+                      <AudioPlayer recordingUrl={recording.recording_url} />
                     </td>
                     <td><img src='https://res.cloudinary.com/record-cloud/image/upload/v1478740782/delete.jpg'className='recordings-list-delete' onClick={this.handleDelete(recording.id)}/></td>
                 </tr>
