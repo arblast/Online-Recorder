@@ -17,6 +17,20 @@
   transform: translate(-50%, -50%);
   top: 10%;
   left: 50%;
+  white-space: nowrap;
+  font-family: Roboto Condensed;
+  font-weight: 700px;
+}
+
+.splash h2 {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  top: calc(10% + 30px);
+  left: 50%;
   font-family: Roboto Condensed;
   font-weight: 700px;
 }

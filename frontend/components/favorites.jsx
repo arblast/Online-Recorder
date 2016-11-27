@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
-import AudioPlayer from 'react-responsive-audio-player';
+import AudioPlayer from './audio_player';
 
 class Favorites extends React.Component {
 
@@ -32,7 +32,7 @@ class Favorites extends React.Component {
                     <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
                     <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
                     <td>
-                      <AudioPlayer playlist={[{url: recording.recording_url, displayText: `Recorded by ${recording.uploader}`}]} hideBackSkip={true}/>
+                      <AudioPlayer recordingUrl={recording.recording_url} />
                     </td>
                 </tr>
             )})}

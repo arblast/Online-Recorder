@@ -4,7 +4,7 @@ import RecordingForm from './recording_form';
 import Rec from '../../util/recorder';
 import cloudinary from 'cloudinary-core';
 import { uploadRecording } from '../../util/recordings_api_util';
-import AudioPlayer from 'react-responsive-audio-player';
+import AudioPlayer from '../audio_player';
 
 class NewRecording extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class NewRecording extends React.Component {
       this.setState({isRecording: true})
       recorder.record();
     } else {
-      alert("How are you doing this??")
+      alert("Illegal action");
     }
   }
 
@@ -70,7 +70,7 @@ class NewRecording extends React.Component {
       const audioURL = window.URL.createObjectURL(blob);
       this.soundClips = <div className="sound-clips">
         <article className="clip">
-          <AudioPlayer playlist={[{url: audioURL, displayText: ""}]} hideBackSkip={true}/>
+          <AudioPlayer recordingUrl={audioURL} />
           <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
         </article>
       </div>

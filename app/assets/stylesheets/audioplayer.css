@@ -1,0 +1,41 @@
+#play-pause-button {
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin: 0 5px;
+  background-color: #FFDEAD;
+  cursor: pointer;
+}
+
+#play-pause-button:focus {
+  outline: none;
+}
+
+.timeline {
+  background-color: #FFA07A;
+  height: 35%;
+  width: calc(100% - 50px);
+  min-width: 100px;
+  margin: 0 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.audio-player {
+  border-radius: 5px;
+  display: flex;
+  background-color: #FFDEAD;
+  align-items: center;
+  height: 30px;
+}
+
+.time-ball {
+  cursor: pointer;
+  background: crimson;
+  position: relative;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 10.5px;
+  border-radius: 50%;
+}

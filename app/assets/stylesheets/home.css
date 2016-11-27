@@ -16,6 +16,47 @@
   white-space: nowrap;
 }
 
+.confirmation-window {
+  background-color: white;
+  border-radius: 5px;
+  margin: 5% auto;
+  width: 50%;
+  max-width: 300px;
+  position: relative;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  text-align: center;
+  overflow: auto;
+}
+
+.confirmation-window h3 {
+  font-size: 15px;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.confirmation-window button {
+  color: white;
+  cursor: pointer;
+  background-color: lightcoral;
+  margin-right: 10px;
+  width: 50px;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border: none;
+  margin: 10px;
+}
+
+.confirmation-window button:hover {
+  color: crimson;
+  transition: 0.5s ease;
+}
+
 .new-recording-button:hover {
   color: black;
   background-color: darkred;
