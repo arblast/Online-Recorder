@@ -126,3 +126,10 @@
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+.recording-detail-player {
+  display: inline-block;
+  margin: 0 auto 20px auto;
+  width: 70%;
+  max-width: 500px;
+}

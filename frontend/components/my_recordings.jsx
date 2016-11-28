@@ -63,7 +63,6 @@ class MyRecordings extends React.Component {
     if (this.state.showConfirm) {
       confirm = this.confirmation();
     }
-    console.log(this.state);
     return(
       <div className='my-recordings'>
         {this.props.newRecordingButton}

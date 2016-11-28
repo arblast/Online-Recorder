@@ -2,7 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import RecordingForm from './recording_form';
 import cloudinary from 'cloudinary-core';
-import AudioPlayer from 'react-responsive-audio-player';
+import AudioPlayer from '../audio_player';
 
 class Recording extends React.Component {
 
@@ -105,9 +105,9 @@ class Recording extends React.Component {
         <h3>Recorded by {recording.uploader}</h3>
         <br/>
         <img className='recording-detail-image' src={recording.image_url}></img>
-        <br/>
-        <AudioPlayer playlist={[{url: recording.recording_url, displayText: `${recording.title}`}]} hideBackSkip={true}/>
-        <br/>
+        <div className='recording-detail-player'>
+          <AudioPlayer recordingUrl={recording.recording_url} />
+        </div>
         <div className='recording-info'>
           <div className='description'>
             <h4>Recorded on {uploadDate.month} {uploadDate.day}, {uploadDate.year}</h4>
