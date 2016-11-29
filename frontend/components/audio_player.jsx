@@ -16,6 +16,10 @@ class AudioPlayer extends React.Component{
     clearInterval(this.moveInterval);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.audioTag = <audio ref={(audio) => {this.audio = audio;}}><source src={nextProps.recordingUrl} type='audio/wav'/></audio>;
+  }
+
   playPause() {
     if (this.state.playing) {
       this.audio.pause();
@@ -90,7 +94,7 @@ class AudioPlayer extends React.Component{
     return(
       <div className='audio-player'>
         <button id='play-pause-button' style={this.playPauseButtonStyle()} onClick={this.playPause}></button>
-        <audio ref={(audio) => {this.audio = audio}}><source src={this.props.recordingUrl} type='audio/wav'/></audio>
+        {this.audioTag}
         <div className='timeline' onClick={this.setTime} onMouseUp={this.stopSeeking} onMouseMove={seek}>
           <div className='time-ball' style={ballLoc} onMouseDown={this.seeking} onMouseUp={this.stopSeeking}></div>
         </div>
