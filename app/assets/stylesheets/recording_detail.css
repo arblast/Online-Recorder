@@ -128,7 +128,7 @@
 }
 
 .recording-detail-player {
-  display: inline-block;
+  display: block;
   margin: 0 auto 20px auto;
   width: 70%;
   max-width: 500px;
