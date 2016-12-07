@@ -47,15 +47,18 @@ const Header = (props) => {
   }
 
   const iconSrc = cloud.image("icon_uscmav.png").src;
+  const navSrc = cloud.image("nav-icon.png").src;
   const profileSrc = props.currentUser.image_url;
   return (
     <div className='topbar'>
+      <img className="nav-open" src={navSrc} />
       <img src={iconSrc} onClick={returnHome} className="header-icon"/>
       <h3 onClick={returnHome} className='logo-title'>Record Cloud</h3>
       <form className='search-form' onSubmit={handleSubmit}>
         <input type='text' className='search-input' name='search' placeholder='Enter title, author, or category'></input>
         <input type='submit' value=""></input>
       </form>
+      <Link className="new-recording-button" to="/new">New Recording</Link>
       <div onClick={showMenu} className='profile' id='profile'>
         <img src={profileSrc} className="profile-icon"/>
         <ul className='profile-menu' id='profile-menu'>

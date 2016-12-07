@@ -2,20 +2,6 @@
   text-align: center;
 }
 
-.new-recording-button {
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  background-color: crimson;
-  transition: all 0.5s ease;
-  padding: 10px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  position: relative;
-  white-space: nowrap;
-}
-
 .confirmation-window {
   background-color: white;
   border-radius: 5px;
@@ -57,9 +43,11 @@
   transition: 0.5s ease;
 }
 
-.new-recording-button:hover {
-  color: black;
-  background-color: darkred;
+.home-el {
+  width: calc(100% - 200px);
+  top: 50px;
+  left: 200px;
+  position: relative;
 }
 
 .my-recordings {
@@ -67,12 +55,7 @@
 }
 
 .my-recordings h2 {
-  margin: 40px;
-}
-
-.my-recordings-list {
-  margin: auto;
-
+  margin: 40px 0;
 }
 
 .recordings-list-image {
@@ -93,6 +76,7 @@
 
 .my-recordings-list {
   width: 70%;
+  margin: auto;
   max-width: 700px;
   border-collapse: collapse;
   margin-bottom: 20px;
@@ -115,7 +99,7 @@
   height: 20px;
   cursor: pointer;
 }
-
+/*
 .nav {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -138,4 +122,4 @@
 
 .nav .selected {
   color: lightpink;
-}
+}*/

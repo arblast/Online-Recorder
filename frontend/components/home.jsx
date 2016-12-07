@@ -7,9 +7,9 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.newRecordingButton = <Link className="new-recording-button" to="/new">New Recording</Link>;
     this.state = {
-      selectedTab: null
+      selectedTab: null,
+      openNav: false
     }
     this.setTab = (tab) => {
       this.setState({selectedTab: tab})
@@ -51,15 +51,15 @@ class Home extends React.Component {
     return(
       <div className="home">
         <Header handleLogout={this.handleLogout} currentUser={this.props.currentUser} searchRecordings={this.props.searchRecordings}/>
-        <br/>
         <div className='nav'>
-          <Link className={homeSelected} to='/home'>My Recordings</Link>
-          <Link className={favoritesSelected} to='/favorites'>My Favorites</Link>
-          <Link className={newSelected} to='/new'>New Recording</Link>
+          <ul className='nav-list'>
+            <li><Link className={homeSelected} to='/home'>My Recordings</Link></li>
+            <li><Link className={favoritesSelected} to='/favorites'>My Favorites</Link></li>
+            <li><Link className={newSelected} to='/new'>New Recording</Link></li>
+          </ul>
         </div>
-        <br/>
-        <div>
-          {React.cloneElement(this.props.children, { newRecordingButton: this.newRecordingButton, setTab: this.setTab})}
+        <div className="home-el">
+          {React.cloneElement(this.props.children, {setTab: this.setTab})}
         </div>
       </div>
     );

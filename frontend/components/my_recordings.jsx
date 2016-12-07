@@ -65,7 +65,6 @@ class MyRecordings extends React.Component {
     }
     return(
       <div className='my-recordings'>
-        {this.props.newRecordingButton}
         <h2>My Recordings</h2>
         <table className='my-recordings-list'>
           <tbody>

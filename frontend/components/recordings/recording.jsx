@@ -82,7 +82,6 @@ class Recording extends React.Component {
     const uploadDate = recording.upload_date;
     const that = this;
     let favorite;
-    let audioPlayer
     if (recording.is_favorite) {
       favorite = <img onClick={this.removeFavorite} className='favorite-icon-show' src={this.favoriteUrl}/>;
     } else {

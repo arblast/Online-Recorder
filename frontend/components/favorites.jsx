@@ -22,7 +22,6 @@ class Favorites extends React.Component {
   render() {
     return (
       <div className='my-recordings'>
-        {this.props.newRecordingButton}
         <h2>Favorites</h2>
         <table className='my-recordings-list'>
           <tbody>

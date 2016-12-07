@@ -1,9 +1,13 @@
 .topbar {
+  position: fixed;
   width: 100%;
   height: 50px;
   background-color: #333;
   display: flex;
   overflow: visible;
+  z-index: 100;
+  top: 0;
+  justify-content: space-between;
 }
 
 .topbar form {
@@ -11,7 +15,7 @@
 }
 
 .search-form {
-  display: inline-flex;
+  margin-left: auto;
   white-space: nowrap;
 }
 
@@ -26,6 +30,27 @@
   padding-top: 0;
   padding-bottom: 0;
   font-size: 12px;
+}
+
+.new-recording-button {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: crimson;
+  transition: all 0.5s ease;
+  padding: 5px;
+  height: 25px;
+  margin: auto 0 auto auto;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.new-recording-button:hover {
+  color: black;
+  background-color: darkred;
 }
 
 .profile {
