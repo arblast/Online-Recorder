@@ -6,8 +6,40 @@
   background: white;
   z-index: 100;
   border-right: 1px solid crimson;
+  transition: 0.5s ease;
 }
 
-.nav-open {
-  height: 40px;
+.nav-list {
+  margin-top: 30px;
+}
+
+.nav-list li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.nav-list li:hover {
+  padding: 5px;
+}
+
+.nav-close {
+  cursor: pointer;
+  position:absolute;
+  top: 0;
+  right: 10px;
+  color: #F7BDBD;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.nav-close:hover,
+.nav-close:focus {
+  color: crimson;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav .selected {
+  color: lightpink;
+  cursor: default;
 }

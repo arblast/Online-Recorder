@@ -28,7 +28,7 @@ class Search extends React.Component {
     }
     return (
       <div className='my-recordings'>
-        <h2>Search results for {searchParams}</h2>
+        <h2 className='title'>Search results for {searchParams}</h2>
         <table className='my-recordings-list'>
           <tbody>
             {this.props.searchRecordings.map((recording, idx)=>{

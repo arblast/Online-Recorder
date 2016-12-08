@@ -65,7 +65,7 @@ class MyRecordings extends React.Component {
     }
     return(
       <div className='my-recordings'>
-        <h2>My Recordings</h2>
+        <h2 className='title'>My Recordings</h2>
         <table className='my-recordings-list'>
           <tbody>
             {this.props.myRecordings.map((recording, idx)=>{

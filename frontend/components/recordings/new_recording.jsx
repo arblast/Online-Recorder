@@ -117,7 +117,7 @@ class NewRecording extends React.Component {
 
     return(
       <div className='new-recording'>
-        <h2>New Recording</h2>
+        <h2 className='title'>New Recording</h2>
           {micError}
           {recordingUI}
         {this.soundClips}

@@ -44,18 +44,17 @@
 }
 
 .home-el {
-  width: calc(100% - 200px);
   top: 50px;
-  left: 200px;
   position: relative;
+  transition: 0.5s ease;
 }
 
 .my-recordings {
   text-align: center;
 }
 
-.my-recordings h2 {
-  margin: 40px 0;
+.title {
+  margin: 20px 0;
 }
 
 .recordings-list-image {

@@ -51,7 +51,7 @@ const Header = (props) => {
   const profileSrc = props.currentUser.image_url;
   return (
     <div className='topbar'>
-      <img className="nav-open" src={navSrc} />
+      <img className="nav-open" src={navSrc} onClick={props.toggleNav} />
       <img src={iconSrc} onClick={returnHome} className="header-icon"/>
       <h3 onClick={returnHome} className='logo-title'>Record Cloud</h3>
       <form className='search-form' onSubmit={handleSubmit}>
@@ -63,9 +63,6 @@ const Header = (props) => {
         <img src={profileSrc} className="profile-icon"/>
         <ul className='profile-menu' id='profile-menu'>
           <li id='username'>{props.currentUser.username}</li>
-          <li onClick={returnHome}>My Recordings</li>
-          <li onClick={goToFavorites}>Favorites</li>
-          <li onClick={goToNew}>New Recording</li>
           <li onClick={props.handleLogout}>Logout</li>
         </ul>
       </div>

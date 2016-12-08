@@ -22,7 +22,7 @@ class Favorites extends React.Component {
   render() {
     return (
       <div className='my-recordings'>
-        <h2>Favorites</h2>
+        <h2 className='title'>Favorites</h2>
         <table className='my-recordings-list'>
           <tbody>
             {this.props.favoriteRecordings.map((recording, idx)=>{
