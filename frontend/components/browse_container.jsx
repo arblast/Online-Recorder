@@ -4,7 +4,7 @@ import Browse from './browse';
 
 const mapStateToProps = (state) => {
   return {
-    recordings: state.recordings
+    recordings: state.popular
   }
 ;}
 

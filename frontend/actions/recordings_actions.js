@@ -11,6 +11,8 @@ export const CREATE_COMMENT = "CREATE_COMMENT";
 export const CREATE_FAVORITE = "CREATE_FAVORITE";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const FETCH_POPULAR = "FETCH_POPULAR";
+export const RECEIVE_POPULAR = "RECEIVE_POPULAR";
 
 export const createRecording = (recordingParams) => ({
   type: CREATE_RECORDING,
@@ -37,6 +39,11 @@ export const fetchRecordings = (requestParams) => ({
   requestParams
 });
 
+export const fetchPopular = (requestParams) => ({
+  type: FETCH_POPULAR,
+  requestParams
+});
+
 export const receiveRecordingErrors = (errors) => ({
   type: RECEIVE_RECORDING_ERRORS,
   errors
@@ -50,6 +57,11 @@ export const receiveRecording = (recording) => ({
 export const receiveRecordings = (recordings) => ({
   type: RECEIVE_RECORDINGS,
   recordings
+});
+
+export const receivePopular = (popular) => ({
+  type: RECEIVE_POPULAR,
+  popular
 });
 
 export const clearRecordingErrors = () => ({

@@ -1,3 +1,3 @@
 json.array! @recordings do |recording|
-  json.partial! 'api/recordings/recording', recording: recording, is_favorite: recording.is_favorite?(current_user)
+  json.partial! 'api/recordings/recording', recording: recording
 end

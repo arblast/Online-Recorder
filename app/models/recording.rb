@@ -26,6 +26,10 @@ class Recording < ActiveRecord::Base
     self.category.name
   end
 
+  def num_favorites
+    self.favorites.length
+  end
+
   def is_favorite?(user)
     self.favorited_users.to_a.include?(user)
   end

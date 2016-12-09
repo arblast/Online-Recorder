@@ -1,4 +1,4 @@
-import { CREATE_RECORDING, UPDATE_RECORDING, DELETE_RECORDING, FETCH_RECORDING, FETCH_RECORDINGS, CREATE_COMMENT, CREATE_FAVORITE, DELETE_COMMENT, DELETE_FAVORITE, receiveRecording, receiveRecordings, receiveRecordingErrors} from '../actions/recordings_actions';
+import { CREATE_RECORDING, UPDATE_RECORDING, DELETE_RECORDING, FETCH_RECORDING, FETCH_RECORDINGS, FETCH_POPULAR, CREATE_COMMENT, CREATE_FAVORITE, DELETE_COMMENT, DELETE_FAVORITE, receiveRecording, receiveRecordings, receiveRecordingErrors, receivePopular} from '../actions/recordings_actions';
 import { newRecording, updateRecording, deleteRecording, fetchRecordings, fetchRecording, createComment, deleteComment, createFavorite, deleteFavorite } from '../util/recordings_api_util';
 
 const RecordingMiddleware = store => next => action => {
@@ -20,6 +20,10 @@ const RecordingMiddleware = store => next => action => {
       return next(action);
     case FETCH_RECORDINGS:
       success = (data) => store.dispatch(receiveRecordings(data));
+      fetchRecordings(action.requestParams, success);
+      return next(action);
+    case FETCH_POPULAR:
+      success = (data) => store.dispatch(receivePopular(data));
       fetchRecordings(action.requestParams, success);
       return next(action);
     case CREATE_COMMENT:

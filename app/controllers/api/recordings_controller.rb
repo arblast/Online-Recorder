@@ -13,11 +13,14 @@ class Api::RecordingsController < ApplicationController
       @recordings.concat(Recording.where(category_id: Category.name_to_id(search_params), publicity: "public"))
       @recordings.concat(Recording.where(uploader_id: User.name_to_id(search_params), publicity: "public"))
       @recordings = @recordings.uniq
+    when "popular"
+      @recordings = Category.top10
+      render :popular
     end
   end
 
   def show
-    @recording = Recording.find(params[:id])
+    @recording = Recording.includes(:comments, :favorites).find(params[:id])
     @is_favorite = @recording.is_favorite?(current_user)
   end
 

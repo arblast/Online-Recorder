@@ -10,7 +10,7 @@ import RecordingContainer from './recordings/recording_container';
 import FavoritesContainer from './favorites_container';
 import SearchContainer from './search_container';
 import BrowseContainer from './browse_container';
-import { fetchRecordings, fetchRecording } from '../actions/recordings_actions';
+import { fetchRecordings, fetchRecording, fetchPopular  } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
 
@@ -30,6 +30,10 @@ const Root = ({ store }) => {
 
   const getRecordings = (nextState) => {
     store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
+  }
+
+  const getPopular = (nextState) => {
+    store.dispatch(fetchPopular({request: {type: 'popular'}}));
   }
 
   const getFavorites = (nextState) => {
@@ -60,7 +64,7 @@ const Root = ({ store }) => {
             <IndexRoute component={MyRecordingsContainer} onEnter={getRecordings}/>
             <Route path="/favorites" component={FavoritesContainer} onEnter={getFavorites}/>
             <Route path="/new" component={NewRecordingContainer}/>
-            <Route path="/browse" component={BrowseContainer}/>
+            <Route path="/browse" component={BrowseContainer} onEnter={getPopular}/>
             <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
             <Route path="/search/:searchParams" component={SearchContainer} onEnter={getSearchResults}/>
             <Route path="/search/" component={SearchContainer} onEnter={getAllRecordings}/>
