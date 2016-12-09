@@ -20,9 +20,9 @@ class Favorites extends React.Component {
 
 
   render() {
-    return (
-      <div className='my-recordings'>
-        <h2 className='title'>Favorites</h2>
+    let recordingsList;
+    if (this.props.favoriteRecordings.length != 0) {
+      recordingsList =
         <table className='my-recordings-list'>
           <tbody>
             {this.props.favoriteRecordings.map((recording, idx)=>{
@@ -36,7 +36,19 @@ class Favorites extends React.Component {
                 </tr>
             )})}
           </tbody>
-        </table>
+        </table>;
+      } else {
+        recordingsList =
+        <div className="no-recordings">
+          Looks like you haven't added any recordings to your favorites.
+          <br/>
+          To add a recording to favorites, click on the heart icon next to the recording title while on the recording page!
+        </div>
+      }
+    return (
+      <div className='my-recordings'>
+        <h2 className='title'>Favorites</h2>
+        {recordingsList}
       </div>
     );
   }

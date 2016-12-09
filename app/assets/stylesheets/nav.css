@@ -11,15 +11,25 @@
 
 .nav-list {
   margin-top: 30px;
+  text-align: left;
 }
 
 .nav-list li {
+  color: crimson;
   cursor: pointer;
-  padding: 5px;
+  position: relative;
+  padding: 10px 20px;
+  transition: 0.5s ease;
 }
 
-.nav-list li:hover {
-  padding: 5px;
+.nav-list li:after {
+  content:"";
+  background: lightpink;
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  height: 2px;
+  width: 70%;
 }
 
 .nav-close {
@@ -42,4 +52,8 @@
 .nav .selected {
   color: lightpink;
   cursor: default;
+}
+
+.nav-list li:hover {
+  color: darkred;
 }

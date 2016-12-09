@@ -8,8 +8,7 @@ class SessionForm extends React.Component {
         this.state = {
         username: "",
         password: "",
-        email: "",
-        image_url: null
+        email: ""
       };
     } else {
       this.state = {

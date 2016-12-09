@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :set_default_image
 
   has_many :recordings,
     foreign_key: :uploader_id
@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     user = User.find_by_username(username)
     return nil unless user
     user.is_password?(password) ? user : nil
+  end
+
+  def set_default_image
+    self.image_url = "https://res.cloudinary.com/record-cloud/image/upload/v1478421823/profile.svg" unless self.image_url
   end
 
   def password=(password)

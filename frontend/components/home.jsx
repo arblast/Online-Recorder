@@ -55,7 +55,7 @@ class Home extends React.Component {
   render() {
     let homeSelected = null;
     let favoritesSelected = null;
-    let newSelected = null;
+    let browseSelected = null;
     switch (this.state.selectedTab) {
       case "home":
         homeSelected = 'selected';
@@ -63,8 +63,8 @@ class Home extends React.Component {
       case "favorites":
         favoritesSelected = 'selected';
         break;
-      case "new":
-        newSelected = 'selected';
+      case "browse":
+        browseSelected = 'selected';
         break;
       default:
         break;
@@ -75,9 +75,9 @@ class Home extends React.Component {
         <div className='nav' style={this.navStyle()}>
           <span className="nav-close" onClick={this.toggleNav}>x</span>
           <ul className='nav-list'>
+            <li><Link className={browseSelected} to='/browse'>Browse</Link></li>
             <li><Link className={homeSelected} to='/home'>My Recordings</Link></li>
             <li><Link className={favoritesSelected} to='/favorites'>My Favorites</Link></li>
-            <li><Link className={newSelected} to='/new'>New Recording</Link></li>
           </ul>
         </div>
         <div className="home-el" style={this.homeElStyle()}>

@@ -60,27 +60,34 @@ class MyRecordings extends React.Component {
 
   render() {
     let confirm = null;
+    let recordingsList;
     if (this.state.showConfirm) {
       confirm = this.confirmation();
+    }
+    if (this.props.myRecordings.length != 0) {
+       recordingsList =
+         <table className='my-recordings-list'>
+           <tbody>
+             {this.props.myRecordings.map((recording, idx)=>{
+               return (
+                 <tr key={idx} className='my-recordings-list-item'>
+                     <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
+                     <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
+                     <td>
+                       <AudioPlayer recordingUrl={recording.recording_url} />
+                     </td>
+                     <td><img src='https://res.cloudinary.com/record-cloud/image/upload/v1478740782/delete.jpg'className='recordings-list-delete' onClick={this.showConfirm(recording.id)}/></td>
+                 </tr>
+             )})}
+           </tbody>
+         </table>;
+    } else {
+      recordingsList = <div className="no-recordings">Looks like you don't have any recordings, click <Link to="/new">here</Link> to create a new recording!</div>
     }
     return(
       <div className='my-recordings'>
         <h2 className='title'>My Recordings</h2>
-        <table className='my-recordings-list'>
-          <tbody>
-            {this.props.myRecordings.map((recording, idx)=>{
-              return (
-                <tr key={idx} className='my-recordings-list-item'>
-                    <td id="item-image" onClick={this.recordingDetail(recording.id)}><img className='recordings-list-image' src={recording.image_url}/></td>
-                    <td id="item-button" className='recordings-list-button' onClick={this.recordingDetail(recording.id)}>{recording.title}</td>
-                    <td>
-                      <AudioPlayer recordingUrl={recording.recording_url} />
-                    </td>
-                    <td><img src='https://res.cloudinary.com/record-cloud/image/upload/v1478740782/delete.jpg'className='recordings-list-delete' onClick={this.showConfirm(recording.id)}/></td>
-                </tr>
-            )})}
-          </tbody>
-        </table>
+        {recordingsList}
         {confirm}
       </div>
     );
