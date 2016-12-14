@@ -44,7 +44,7 @@ class Recording extends React.Component {
   handleDelete() {
     if(window.confirm("Are you sure you want to delete this recording?")) {
       this.props.deleteRecording(this.props.recording.id);
-      hashHistory.push('/home');
+      hashHistory.push('/my-recordings');
     }
   }
 

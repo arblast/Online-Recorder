@@ -1,0 +1,87 @@
+.browse-container {
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s;
+}
+
+.left {
+  transform: rotate(180deg);
+  left: -30px;
+}
+
+.right {
+  right: -30px;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 500;
+  height: 25px;
+  cursor: pointer;
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s;
+}
+
+
+.top-recording-title {
+  font-family: Ubuntu;
+}
+
+.browse-slider {
+  margin: 10px 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  overflow: hidden;
+}
+
+.arrow-slider-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.slider-container {
+  margin: 30px 50px 0 50px;
+}
+
+.slider-item {
+  cursor: pointer;
+  position: relative;
+  min-width: 16.5%;
+  max-width: 16.5%;
+  height: 90%;
+  margin: 5px;
+  right: 0;
+  transition: 0.7s ease;
+}
+
+.slider-item:hover .thumbnail {
+  border-color: crimson;
+}
+
+.slider-item:hover .recording-title {
+  color: red;
+}
+
+.recording-title {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.5s ease;
+  max-width: 90%;
+  position: absolute;
+  bottom: 0;
+}
+
+.thumbnail {
+  border: 2px solid lightpink;
+  width: 100%;
+  height: 80%;
+}

@@ -43,7 +43,7 @@ class RecordingForm extends React.Component {
           console.log("Upload complete!");
           const recording = that.state;
           that.props.processForm({recording});
-          hashHistory.push('/home');
+          hashHistory.push('/my-recordings');
         },
         error: (e) => console.log(e)
       });

@@ -15,7 +15,7 @@ class MyRecordings extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setTab('home');
+    this.props.setTab('my-recordings');
   }
 
   recordingDetail(recordingId) {

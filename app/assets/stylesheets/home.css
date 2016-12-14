@@ -51,10 +51,16 @@
 
 .my-recordings {
   text-align: center;
+  -webkit-animation: fadein 1.5s;
+  -moz-animation: fadein 1.5s;
+  -ms-animation: fadein 1.5s;
+  -o-animation: fadein 1.5s;
+  animation: fadein 1.5s;
 }
 
 .title {
   margin: 20px 0;
+  font-family: Ubuntu;
 }
 
 .recordings-list-image {

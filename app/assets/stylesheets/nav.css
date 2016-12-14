@@ -16,10 +16,13 @@
 
 .nav-list li {
   color: crimson;
-  cursor: pointer;
   position: relative;
-  padding: 10px 20px;
   transition: 0.5s ease;
+}
+
+.nav-list a {
+  display: block;
+  padding: 10px 25px;
 }
 
 .nav-list li:after {

@@ -61,10 +61,10 @@ const Root = ({ store }) => {
             <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
-            <IndexRoute component={MyRecordingsContainer} onEnter={getRecordings}/>
+            <IndexRoute component={BrowseContainer} onEnter={getPopular}/>
             <Route path="/favorites" component={FavoritesContainer} onEnter={getFavorites}/>
             <Route path="/new" component={NewRecordingContainer}/>
-            <Route path="/browse" component={BrowseContainer} onEnter={getPopular}/>
+            <Route path="/my-recordings" component={MyRecordingsContainer} onEnter={getRecordings}/>
             <Route path="/recording/:recordingId" component={RecordingContainer} onEnter={getRecording}/>
             <Route path="/search/:searchParams" component={SearchContainer} onEnter={getSearchResults}/>
             <Route path="/search/" component={SearchContainer} onEnter={getAllRecordings}/>

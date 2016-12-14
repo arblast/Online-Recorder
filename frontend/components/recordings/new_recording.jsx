@@ -30,7 +30,7 @@ class NewRecording extends React.Component {
 
   cancel(e) {
     e.preventDefault();
-    hashHistory.push('/home');
+    hashHistory.push('/my-recordings');
   }
 
   componentWillUnmount() {
