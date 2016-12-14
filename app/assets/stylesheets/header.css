@@ -18,7 +18,7 @@
 
 .nav-open {
   cursor: pointer;
-  height: 30px;
+  height: 20px;
   margin-left: 10px;
 }
 
@@ -30,7 +30,7 @@
 .topbar input {
   float: left;
   background-color: #e5e5e5;
-  height: 20px;
+  height: 25px;
   padding-left: 5px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -97,7 +97,7 @@
 }
 
 .search-input {
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .show  {
@@ -120,7 +120,7 @@
 
 .header-icon {
   height: 45px;
-  margin-left: 30px;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -138,7 +138,7 @@
   background-color: #e5e5e5;
   background-size: cover;
   width: 20px;
-  height: 20px;
+  height: 25px;
 }
 
 .logo-title {

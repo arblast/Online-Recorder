@@ -1,5 +1,14 @@
+.recording-detail {
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s;
+}
+
 .recording-detail-image {
   max-width: 400px;
+  max-height: 300px;
   width: 35%;
   margin-top: 20px;
   margin-bottom: 20px;
