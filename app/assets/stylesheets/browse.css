@@ -52,8 +52,8 @@
 .slider-item {
   cursor: pointer;
   position: relative;
-  min-width: 11.5vw;
-  max-width: 11.5vw;
+  min-width: 16.5%;
+  max-width: 16.5%;
   height: 11.5vw;
   margin: 5px;
   right: 0;
