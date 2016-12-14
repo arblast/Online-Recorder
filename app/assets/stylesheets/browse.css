@@ -17,7 +17,7 @@
 
 .arrow {
   position: absolute;
-  z-index: 500;
+  z-index: 5;
   height: 25px;
   cursor: pointer;
   -webkit-animation: fadein 1s;
