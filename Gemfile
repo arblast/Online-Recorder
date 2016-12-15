@@ -28,6 +28,8 @@ gem 'bcrypt'
 
 gem 'seed_dump'
 
+gem 'faker'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
