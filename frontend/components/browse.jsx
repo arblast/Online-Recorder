@@ -52,8 +52,8 @@ class Browse extends React.Component {
         {
           Object.keys(this.props.recordings).map((category) => {
             if(category != 'Other') {
-              let arrowLeft = <div onClick={this.scrollLeft(category)} className="arrow left"></div>;
-              let arrowRight = <div onClick={this.scrollRight(category)} className="arrow right"></div>;
+              let arrowLeft = <div onClick={this.scrollLeft(category)} className="arrow left"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
+              let arrowRight = <div onClick={this.scrollRight(category)} className="arrow right"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
               let darkenIndex = null;
               if(this.state[`${category}Scrolled`]) {
                 arrowRight = null;
