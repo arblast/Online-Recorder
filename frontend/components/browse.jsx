@@ -38,7 +38,7 @@ class Browse extends React.Component {
 
   scrollRight(category) {
     return () => {
-      this[`${category}Style`] = {right: `calc(81.82%)`};
+      this[`${category}Style`] = {right: `81.82%`};
       let state = {};
       state[`${category}Scrolled`] = true;
       this.setState(state);
