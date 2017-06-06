@@ -52,8 +52,8 @@ class Browse extends React.Component {
         {
           Object.keys(this.props.recordings).map((category) => {
             if(category != 'Other') {
-              let arrowLeft = <img onClick={this.scrollLeft(category)} className="arrow left" src={arrowImg}/>;
-              let arrowRight = <img onClick={this.scrollRight(category)} className="arrow right" src={arrowImg}/>;
+              let arrowLeft = <div onClick={this.scrollLeft(category)} className="arrow left"></div>;
+              let arrowRight = <div onClick={this.scrollRight(category)} className="arrow right"></div>;
               let darkenIndex = null;
               if(this.state[`${category}Scrolled`]) {
                 arrowRight = null;
@@ -70,14 +70,15 @@ class Browse extends React.Component {
                     <div className="browse-slider">
                       {
                         this.props.recordings[category].map((recording, idx) => {
-                          let darken = "";
+                          let arrow = null;
                           if (idx === darkenIndex) {
-                            darken = "darken"
+                            arrow = arrowRight;
                           }
                           return (
                             <div key={idx} className="slider-item" style={this[`${category}Style`]} onClick={this.recordingDetail(recording.id)}>
                               <div className="thumbnail-container">
-                                <div className={"thumbnail " + darken} style={{backgroundImage: 'url(' + recording.image_url+ ')'}}/>
+                                <div className={"thumbnail"} style={{backgroundImage: 'url(' + recording.image_url+ ')'}}/>
+                                {arrow}
                               </div>
                             </div>
                           );
