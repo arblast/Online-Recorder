@@ -8,8 +8,8 @@
 
 .arrow {
   top: 5px;
-  height: calc(100%);
-  width: calc(9% - 7px);
+  height: 100%;
+  width: 18%;
   opacity: 0.4;
   background-color: black;
   position: absolute;
@@ -18,11 +18,11 @@
 }
 
 .left {
-  left:0;
+  right: calc(90.9%);
 }
 
 .right {
-  right:0;
+  left: calc(90.9% + 1px);
 }
 
 .arrow:hover {
@@ -58,8 +58,7 @@
 .slider-item {
   cursor: pointer;
   position: relative;
-  width: 18.1%;
-  flex: 0 0 18.1%;
+  flex: 0 0 calc(18.2% - 2px);
   margin: 5px 1px 0px 1px;
   right: 0;
   transition: 0.7s ease;
