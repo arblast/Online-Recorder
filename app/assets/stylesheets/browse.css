@@ -43,17 +43,13 @@
 }
 
 .browse-slider {
+  position: relative;
   margin: 10px 0;
   width: 100%;
   display: flex;
   overflow: hidden;
 }
 
-.arrow-slider-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
 
 .slider-container {
   margin: 30px 5px 0 5px;
