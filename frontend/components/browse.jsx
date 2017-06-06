@@ -70,15 +70,10 @@ class Browse extends React.Component {
                     <div className="browse-slider">
                       {
                         this.props.recordings[category].map((recording, idx) => {
-                          let arrow = null;
-                          if (idx === darkenIndex) {
-                            arrow = arrowRight;
-                          }
                           return (
-                            <div key={idx} className="slider-item" style={this[`${category}Style`]} onClick={this.recordingDetail(recording.id)}>
+                            <div key={idx} className="slider-item" style={this[`${category}Style`]} >
                               <div className="thumbnail-container">
-                                <div className={"thumbnail"} style={{backgroundImage: 'url(' + recording.image_url+ ')'}}/>
-                                {arrow}
+                                <div className={"thumbnail"} style={{backgroundImage: 'url(' + recording.image_url+ ')'}} onClick={this.recordingDetail(recording.id)}></div>
                               </div>
                             </div>
                           );
