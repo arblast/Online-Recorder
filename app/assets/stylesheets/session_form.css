@@ -65,11 +65,18 @@
 
 .upload-picture {
   display: inline-block;
-  font-weight: bold;
-  padding: 0 5px;
+  color: white;
+  background-color: lightcoral;
+  border-radius: 5px;
+  padding: 0px 10px;
   margin: 10px;
   cursor: pointer;
   font-size: 14px;
+  transition: 0.5s ease;
+}
+
+.upload-picture:hover {
+  color: crimson;
 }
 
 .icon-preview {
