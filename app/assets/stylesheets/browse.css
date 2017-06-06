@@ -7,9 +7,9 @@
 }
 
 .arrow {
-  top: 0;
+  top: 5px;
   height: calc(100%);
-  width: 9%;
+  width: calc(9% - 7px);
   opacity: 0.4;
   background-color: black;
   position: absolute;
@@ -58,8 +58,8 @@
 .slider-item {
   cursor: pointer;
   position: relative;
-  width: 18%;
-  flex: 0 0 18%;
+  width: 18.1%;
+  flex: 0 0 18.1%;
   margin: 5px 1px 0px 1px;
   right: 0;
   transition: 0.7s ease;
