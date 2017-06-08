@@ -26,6 +26,10 @@ class Browse extends React.Component {
     };
   }
 
+  moreDescription(e) {
+    e.stopPropagation();
+  }
+
   scrollLeft(category) {
     return () => {
       this[`${category}Style`] = {right: `0`};
@@ -70,11 +74,15 @@ class Browse extends React.Component {
                     {
                       this.props.recordings[category].map((recording, idx) => {
                         return (
-                          <div key={idx} className="slider-item" style={this[`${category}Style`]} >
+                          <div key={idx} className="slider-item" style={this[`${category}Style`]} onClick={this.recordingDetail(recording.id)}>
                             <div className="thumbnail-container">
-                              <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}} onClick={this.recordingDetail(recording.id)}></div>
+                              <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}}></div>
                             </div>
-                            <div className="recording-title-container"><div className="recording-title">{recording.title}</div></div>
+                            <div className="recording-title-container">
+                              <div className="recording-title">{recording.title}</div>
+                              <div className="more-description" onClick={this.moreDescription}></div>
+                              <div className="recording-description">{recording.description}</div>
+                            </div>
                           </div>
                         );
                       })
