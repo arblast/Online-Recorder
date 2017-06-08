@@ -71,9 +71,10 @@ class Browse extends React.Component {
                       this.props.recordings[category].map((recording, idx) => {
                         return (
                           <div key={idx} className="slider-item" style={this[`${category}Style`]} >
-                            <div className="thumbnail-contain er">
-                              <div className={"thumbnail"} style={{backgroundImage: 'url(' + recording.image_url+ ')'}} onClick={this.recordingDetail(recording.id)}></div>
+                            <div className="thumbnail-container">
+                              <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}} onClick={this.recordingDetail(recording.id)}></div>
                             </div>
+                            <div className="recording-title">{recording.title}</div>
                           </div>
                         );
                       })
