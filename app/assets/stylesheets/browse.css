@@ -49,10 +49,11 @@
 
 .browse-slider {
   position: relative;
+  display: flex;
   margin: 10px 0;
   width: 100%;
-  display: flex;
-  overflow: hidden;
+  white-space: nowrap;
+  overflow-y: visible;
 }
 
 
@@ -67,7 +68,6 @@
   margin: 5px 1px 0px 1px;
   right: 0;
   transition: 0.7s ease;
-  display: flex;
   flex-direction: column;
 }
 
@@ -103,8 +103,8 @@
  transform: rotate(60deg);
 }
 
-.slider-item:hover .thumbnail {
-
+.slider-item:hover {
+  transform: translateY(-10px);
 }
 
 
