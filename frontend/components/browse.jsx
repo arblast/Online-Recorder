@@ -74,7 +74,7 @@ class Browse extends React.Component {
                             <div className="thumbnail-container">
                               <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}} onClick={this.recordingDetail(recording.id)}></div>
                             </div>
-                            <div className="recording-title">{recording.title}</div>
+                            <div className="recording-title-container"><div className="recording-title">{recording.title}</div></div>
                           </div>
                         );
                       })
