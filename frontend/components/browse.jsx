@@ -80,7 +80,7 @@ class Browse extends React.Component {
                             </div>
                             <div className="recording-title-container">
                               <div className="recording-title">{recording.title}</div>
-                              <div className="more-description" onClick={this.moreDescription}></div>
+                              <div className="more-description" onClick={this.moreDescription}><div className="description-arrow left-arrow"></div><div className="description-arrow right-arrow"></div></div>
                               <div className="recording-description">{recording.description}</div>
                             </div>
                           </div>

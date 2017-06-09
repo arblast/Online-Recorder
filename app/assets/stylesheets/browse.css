@@ -79,27 +79,48 @@
   background-color: white;
 }
 
+.description-arrow {
+  position: absolute;
+  width: 17%;
+  height: 3%;
+  background-color: white;
+}
+
+.left-arrow {
+  left: 35%;
+  transform: rotate(30deg);
+}
+
+.right-arrow {
+  right: 35%;
+  transform: rotate(-30deg);
+}
+
 .right .top {
   top: 36%;
   left: 12%;
+  border-top-right-radius: 3px;
   transform: rotate(60deg);
 }
 
 .right .bot {
  bottom: 36%;
  left: 12%;
+ border-bottom-right-radius: 3px;
  transform: rotate(-60deg);
 }
 
 .left .top {
   top: 36%;
   right: 12%;
+  border-top-left-radius: 3px;
   transform: rotate(-60deg);
 }
 
 .left .bot {
  bottom: 36%;
  right: 12%;
+ border-bottom-left-radius: 3px;
  transform: rotate(60deg);
 }
 
@@ -140,11 +161,12 @@
 }
 
 .more-description {
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 5px;
-  transform: rotate(45deg);
+  display: block;
+  padding: 5% 0;
+}
+
+.more-description:hover {
+  border-color: white;
 }
 
 .thumbnail {
