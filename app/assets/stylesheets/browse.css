@@ -56,6 +56,10 @@
   overflow-y: visible;
 }
 
+.browse-slider-wrapper {
+  overflow-x: hidden;
+}
+
 
 .slider-container {
   margin: 30px 5px 0 5px;
@@ -88,11 +92,13 @@
 
 .left-arrow {
   left: 35%;
+  border-bottom-right-radius: 3px;
   transform: rotate(30deg);
 }
 
 .right-arrow {
   right: 35%;
+  border-bottom-left-radius: 3px;
   transform: rotate(-30deg);
 }
 
