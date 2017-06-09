@@ -57,7 +57,7 @@
 }
 
 .browse-slider-wrapper {
-  overflow-x: hidden;
+  overflow-x: hidden  ;
 }
 
 
@@ -81,25 +81,6 @@
   width: 30%;
   height: 5%;
   background-color: white;
-}
-
-.description-arrow {
-  position: absolute;
-  width: 17%;
-  height: 3%;
-  background-color: white;
-}
-
-.left-arrow {
-  left: 35%;
-  border-bottom-right-radius: 3px;
-  transform: rotate(30deg);
-}
-
-.right-arrow {
-  right: 35%;
-  border-bottom-left-radius: 3px;
-  transform: rotate(-30deg);
 }
 
 .right .top {
@@ -168,11 +149,18 @@
 
 .more-description {
   display: block;
-  padding: 5% 0;
 }
 
-.more-description:hover {
+.more-description:hover .down-arrow {
   border-color: white;
+}
+
+.down-arrow {
+  border: solid lightgrey;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 4px;
+  transform: rotate(45deg);
 }
 
 .thumbnail {
