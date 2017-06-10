@@ -28,6 +28,7 @@ class Browse extends React.Component {
 
   moreDescription(e) {
     e.stopPropagation();
+    e.currentTarget.nextSibling.style.display = "block";
   }
 
   scrollLeft(category) {
