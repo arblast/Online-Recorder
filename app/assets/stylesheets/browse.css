@@ -87,6 +87,7 @@
   top: 36%;
   left: 12%;
   border-top-right-radius: 3px;
+  -webkit-transform: rotate(60deg);
   transform: rotate(60deg);
 }
 
@@ -94,6 +95,7 @@
  bottom: 36%;
  left: 12%;
  border-bottom-right-radius: 3px;
+ -webkit-transform: rotate(-60deg);
  transform: rotate(-60deg);
 }
 
@@ -101,6 +103,7 @@
   top: 36%;
   right: 12%;
   border-top-left-radius: 3px;
+  -webkit-transform: rotate(-60deg);
   transform: rotate(-60deg);
 }
 
@@ -108,10 +111,12 @@
  bottom: 36%;
  right: 12%;
  border-bottom-left-radius: 3px;
+ -webkit-transform: rotate(60deg);
  transform: rotate(60deg);
 }
 
 .slider-item:hover {
+  -webkit-transform: translateY(-10px);
   transform: translateY(-10px);
 }
 
