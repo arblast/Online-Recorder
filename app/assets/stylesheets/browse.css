@@ -127,6 +127,7 @@
   position: absolute;
   top: 0px;
   white-space: normal;
+  transition: 0.5s ease;
 }
 
 .recording-title {
@@ -141,11 +142,13 @@
   padding-top: 100%;
 }
 
-.recording-description {
-  display: none;
+.description-wrapper {
+  height: 0;
+  overflow: hidden;
   color: white;
   font-size: 10px;
   padding: 3px;
+  transition: 0.5s ease;
 }
 
 .more-description {

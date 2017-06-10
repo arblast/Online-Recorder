@@ -29,10 +29,12 @@ class Browse extends React.Component {
   moreDescription(e) {
     e.stopPropagation();
     let description = e.currentTarget.nextSibling;
-    if (description.style.display === "block") {
-      description.style.display = "none";
+    let contentHeight = description.firstChild.clientHeight;
+    console.log(description.style.height);
+    if (description.style.height > "0px") {
+      description.style.height = "0px";
     } else {
-      description.style.display = "block";
+      description.style.height = description.clientHeight + contentHeight + "px";
     }
   }
 
@@ -88,7 +90,7 @@ class Browse extends React.Component {
                               <div className="recording-title-container">
                                 <div className="recording-title">{recording.title}</div>
                                 <div className="more-description" onClick={this.moreDescription}><div className="down-arrow"></div></div>
-                                <div className="recording-description">{recording.description}</div>
+                                <div className="description-wrapper"><div className="recording-description">{recording.description}</div></div>
                               </div>
                             </div>
                           );
