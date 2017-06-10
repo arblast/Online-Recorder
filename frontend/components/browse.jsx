@@ -30,13 +30,16 @@ class Browse extends React.Component {
     e.stopPropagation();
     let description = e.currentTarget.nextSibling;
     let contentHeight = description.firstChild.clientHeight;
+    let descriptionText = description.firstChild;
     let arrow = e.currentTarget.firstChild;
     if (description.style.height > "0px") {
       description.style.height = "0px";
       arrow.style.transform = "rotate(45deg)";
+      descriptionText.style.opacity = "0";
     } else {
       description.style.height = description.clientHeight + contentHeight + "px";
       arrow.style.transform = "rotate(-135deg)";
+      descriptionText.style.opacity = "1";
     }
   }
 

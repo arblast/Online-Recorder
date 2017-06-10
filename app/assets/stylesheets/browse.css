@@ -154,6 +154,8 @@
 .recording-description {
   color: white;
   font-size: 10px;
+  opacity: 0;
+  transition: 0.5s linear;
 }
 
 .more-description {
@@ -169,8 +171,10 @@
   border-width: 0 4px 4px 0;
   display: inline-block;
   padding: 4px;
-  transform: rotate(45deg);
+  transform: rotate(45deg) translateZ(0);
   transition: 0.5s linear;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotate(45deg) translateZ(0) scale(1.0, 1.0);
 }
 
 .thumbnail {
