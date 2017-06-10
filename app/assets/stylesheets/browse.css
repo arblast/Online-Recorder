@@ -168,6 +168,7 @@
   display: inline-block;
   padding: 4px;
   transform: rotate(45deg);
+  transition: 0.5s ease;
 }
 
 .thumbnail {
