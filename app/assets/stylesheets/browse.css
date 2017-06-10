@@ -33,15 +33,6 @@
   display: block;
 }
 
-/*.darken {
-  filter: brightness(60%);
-}
-
-.darken:hover {
-  filter: brightness(30%);
-}*/
-
-
 .top-recording-title {
   font-family: Ubuntu;
   text-align: left;
@@ -50,6 +41,7 @@
 .browse-slider {
   position: relative;
   display: flex;
+  display: -webkit-flex;
   margin: 10px 0;
   width: 100%;
   white-space: nowrap;
@@ -69,6 +61,7 @@
   cursor: pointer;
   position: relative;
   flex: 0 0 calc(18.2% - 2px);
+  -webkit-flex: 0 0 calc(18.2% - 2px);
   margin: 5px 1px 0px 1px;
   right: 0;
   transition: 0.5s linear;
