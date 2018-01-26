@@ -1,7 +1,8 @@
+
 module.exports = {
   entry: './frontend/record_cloud.jsx',
   output: {
-    path: 'app/assets/javascripts',
+    path: `${__dirname}/app/assets/javascripts`,
     filename: 'bundle.js',
   },
   module: {
@@ -9,15 +10,19 @@ module.exports = {
       {
         test: [/\.jsx?$/, /\.js?$/],
         exclude: /(node_modules)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader'}
       }
     ]
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx' ]
+    extensions: ['.js', '.jsx' ]
   }
 };

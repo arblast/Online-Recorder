@@ -1,7 +1,7 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 import RecordingForm from './recording_form';
-import Rec from '../../util/recorder';
+import Recorder from '../../util/recorder';
 import cloudinary from 'cloudinary-core';
 import { uploadRecording } from '../../util/recordings_api_util';
 import AudioPlayer from '../audio_player';
@@ -25,7 +25,20 @@ class NewRecording extends React.Component {
 
   componentDidMount() {
     this.props.setTab('new');
-    Rec(this);
+    this.createAudioContext();
+  }
+
+  createAudioContext() {
+    navigator.mediaDevices.getUserMedia ({audio: true}).then((stream) => {
+      this.audioCtx = new AudioContext();
+      this.source = this.audioCtx.createMediaStreamSource(stream);
+      this.stream = stream;
+      this.recorder = new Recorder(this.source);
+    }).catch((err) => {
+        this.setState({micAllowed: false})
+        alert('The following gUM error occured: ' + err);
+        }
+    );
   }
 
   cancel(e) {
@@ -35,6 +48,7 @@ class NewRecording extends React.Component {
 
   componentWillUnmount() {
     if(this.state.micAllowed) {
+      this.recorder.onTimeout = () => {};
       this.audioCtx.close();
       this.stream.getTracks()[0].stop();
     }
@@ -54,35 +68,36 @@ class NewRecording extends React.Component {
 
   startRecord() {
     if(this.state.micAllowed){
-      let recorder = this.recorder;
       this.setState({isRecording: true})
-      recorder.record();
+      this.recorder.startRecording();
+      this.recorder.onComplete = this.completeRecord;
     } else {
       alert("Illegal action");
     }
   }
 
   stopRecord() {
-    let recorder = this.recorder;
-    recorder.stop();
-    recorder.exportWAV((blob)=> {
-      this.recording = blob;
-      const audioURL = window.URL.createObjectURL(blob);
-      this.soundClips = <div className="sound-clips">
-        <article className="clip">
-          <AudioPlayer recordingUrl={audioURL} />
-          <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
-        </article>
-      </div>
+    this.recorder.finishRecording();
+  }
 
-      this.setState({isRecording: false, recordingComplete: true});
-    });
+  completeRecord(_, blob) {
+    let recorder = this.recorder;
+    this.recording = blob;
+    const audioURL = window.URL.createObjectURL(blob);
+    this.soundClips = <div className="sound-clips">
+      <article className="clip">
+        <AudioPlayer recordingUrl={audioURL} />
+        <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
+      </article>
+    </div>
+
+    this.setState({isRecording: false, recordingComplete: true});
   }
 
   deleteClip(e) {
     const eTarget = e.target;
     this.soundClips = null;
-    this.recorder.clear();
+    this.recording = null;
     this.setState({isRecording: false, recordingComplete: false});
   }
 
