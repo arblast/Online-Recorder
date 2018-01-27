@@ -1,7 +1,6 @@
 import merge from 'lodash/merge';
 import InlineWorker from 'inline-worker';
-import worker from './recorder_worker';
-const WORKER_PATH = '/frontend/util/recorder_worker.js';
+import RecorderWorker from './recorder_worker';
 
 const CONFIGS = {
   numChannels: 2,     // number of channels
@@ -105,7 +104,7 @@ class Recorder {
     if (this.worker != null)
       this.worker.terminate();
     this.onEncoderLoading(this, this.encoding);
-    this.worker = new Worker();
+    this.worker = new InlineWorker(RecorderWorker);
     let _this = this;
     this.worker.onmessage = function(event) {
       let data = event.data;
