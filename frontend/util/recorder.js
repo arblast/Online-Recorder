@@ -44,6 +44,22 @@ class Recorder {
     }
   }
 
+  encode(recBuffers, bufferCount) {
+    this.onEncodingProgress(this, 0);
+    this.encoder = new Mp3LameEncoder(44100, this.options.mp3.bitRate);
+    let timeout = Date.now() + this.options.progressInterval;
+    while (recBuffers.length > 0) {
+      this.encoder.encode(recBuffers.shift());
+      let now = Date.now();
+      if (now > timeout) {
+        this.onEncodingProgress(this, (bufferCount - recBuffers.length) / bufferCount);
+        timeout = now + this.options.progressInterval;
+      }
+    }
+    this.onEncodingProgress(this, 1);
+    this.onComplete(this, this.encoder.finish(this.options.mp3.mimeType));
+  }
+
   setOptions(options) {
     if (!this.isRecording()) {
       merge(this.options, options);
@@ -119,7 +135,7 @@ class Recorder {
           _this.onEncodingProgress(_this, data.progress);
           break;
         case "complete":
-          _this.onComplete(_this, data.blob);
+          _this.encode(data.recBuffers, data.bufferCount);
       }
     }
     this.worker.postMessage({

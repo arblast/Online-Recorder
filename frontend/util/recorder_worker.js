@@ -1,12 +1,10 @@
 
 export default function (self) {
-  importScripts("/assets/sitewide/Mp3Encoder.self.js");
 
   let NUM_CH = 2, // constant
       sampleRate = 44100,
       options = undefined,
       maxBuffers = undefined,
-      encoder = undefined,
       recBuffers = undefined,
       bufferCount = 0;
 
@@ -23,7 +21,7 @@ export default function (self) {
   };
 
   function setOptions(opt) {
-    if (encoder || recBuffers)
+    if (recBuffers)
       error("cannot set options during recording");
     else
       options = opt;
@@ -33,16 +31,11 @@ export default function (self) {
     maxBuffers = Math.ceil(options.timeLimit * sampleRate / bufferSize);
     if (options.encodeAfterRecord)
       recBuffers = [];
-    else
-      encoder = new Mp3LameEncoder(sampleRate, options.mp3.bitRate);
   }
 
   function record(buffer) {
     if (bufferCount++ < maxBuffers)
-      if (encoder)
-        encoder.encode(buffer);
-      else
-        recBuffers.push(buffer);
+      recBuffers.push(buffer);
     else
       self.postMessage({ command: "timeout" });
   };
@@ -52,29 +45,16 @@ export default function (self) {
   };
 
   function finish() {
-    if (recBuffers) {
-      postProgress(0);
-      encoder = new Mp3LameEncoder(sampleRate, options.mp3.bitRate);
-      let timeout = Date.now() + options.progressInterval;
-      while (recBuffers.length > 0) {
-        encoder.encode(recBuffers.shift());
-        let now = Date.now();
-        if (now > timeout) {
-          postProgress((bufferCount - recBuffers.length) / bufferCount);
-          timeout = now + options.progressInterval;
-        }
-      }
-      postProgress(1);
-    }
     self.postMessage({
       command: "complete",
-      blob: encoder.finish(options.mp3.mimeType)
+      recBuffers,
+      bufferCount
     });
     cleanup();
   };
 
   function cleanup() {
-    encoder = recBuffers = undefined;
+    recBuffers = undefined;
     bufferCount = 0;
   }
 

@@ -70,7 +70,7 @@ class NewRecording extends React.Component {
     if(this.state.micAllowed){
       this.setState({isRecording: true})
       this.recorder.startRecording();
-      this.recorder.onComplete = this.completeRecord;
+      this.recorder.onComplete = this.completeRecord.bind(this);
     } else {
       alert("Illegal action");
     }
