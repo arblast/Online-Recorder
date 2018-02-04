@@ -249,11 +249,11 @@ Category.create!([
 #   {title:"Utaite", recording_url:"https://res.cloudinary.com/record-cloud/video/upload/v1481790066/favorite_utaite_rrfnui.wav", image_url:"https://res.cloudinary.com/record-cloud/image/upload/v1481797679/utaite.jpg", description:"Best", uploader_id: 6, publicity:"public", category_id: 1}
 #   ])
 User.create!([
-  {username: "admin", email: "admin@record-cloud.com", password_digest: "$2a$10$wEJybja3eKcR08zwXirGV.p2Ne2f1FdAALDG.eY2A7lAotKGRsLZC", session_token: "Vfa07hzDHrjREqfQs9WjWA", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1481830502/hn9rjlxf4wrhed8fytaj.png"}
+  {username: "admin", email: "admin@record-cloud.com", password_digest: "$2a$10$wEJybja3eKcR08zwXirGV.p2Ne2f1FdAALDG.eY2A7lAotKGRsLZC", session_token: "Vfa07hzDHrjREqfQs9WjWA", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1481830502/hn9rjlxf4wrhed8fytaj.png"},
+  {username: "guest", email: "guest@email.com", password_digest: "$2a$10$5RryZq32hOKaJo9FqATWXOMt10VolOtazoVqqJIFucr1KlqXcCvbq", session_token: "NZxEjHRopdpDRyIFY5cJRw", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1481700841/guest_profile.png"}
 ])
 #
 # {username: "tiger", email: "tiger@record-cloud.com", password_digest: "$2a$10$KOezoD9JSVM4ucO8OsI.KuliwtLogkzDyQpSU4k2P7Ybc59F2L2xC", session_token: "yjmTkfL7jm4EFtHsdv5eTw", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1478905191/ctt8afzurniyjtv9kffv.jpg"},
 # {username: "faceless-man", email: "man@record-cloud.com", password_digest: "$2a$10$fWbqII3UGlF7AWxk158w8OPv4.X7v3uNgvYE4.ilkUajre7DSoKnS", session_token: "Tx9Kyz8A5IYdYffPnlpoyw", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1478905420/aqrb0lvyuqwxn7hht9tt.png"},
-# {username: "guest", email: "guest@email.com", password_digest: "$2a$10$5RryZq32hOKaJo9FqATWXOMt10VolOtazoVqqJIFucr1KlqXcCvbq", session_token: "NZxEjHRopdpDRyIFY5cJRw", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1481700841/guest_profile.png"},
 # {username: "cat", email: "cat@record-cloud.com", password_digest: "$2a$10$rltAqwmj.KsNg2nIHouZxuzXYf4A5oiGZAx77PrF07/.8hkLhnPo.", session_token: "i3DVdOvB79cF6cYF2wB35A", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1481700661/cat.png"},
 # {username: "pikachu", email: "pikachu@record-cloud.com", password_digest: "$2a$10$KtYhyM8lBV4sRt.F8PTMQuCP/rvNDykz/UjIzB11XuNVpm0WKAVj2", session_token: "sCUbe3p8IgazwmOegA-N3g", image_url: "https://res.cloudinary.com/record-cloud/image/upload/v1478905337/pikachu.png"},
