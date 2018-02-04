@@ -8,7 +8,7 @@
     "test": "test"
   },
   "engines": {
-    "node": "4.2.6",
+    "node": "4.3.0",
     "npm": "3.5.2"
   },
   "repository": {
