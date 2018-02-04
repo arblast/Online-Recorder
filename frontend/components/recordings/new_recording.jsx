@@ -97,7 +97,7 @@ class NewRecording extends React.Component {
     let recorder = this.recorder;
     this.recording = blob;
     this.audioURL = window.URL.createObjectURL(blob);
-    this.setState({isRecording: false, recordingComplete: true, encodingProgress: false});
+    this.setState({isRecording: false, recordingComplete: true});
   }
 
   updateProgress(_, progress) {
@@ -106,7 +106,6 @@ class NewRecording extends React.Component {
 
   progressBar() {
     let progress = this.state.encodingProgress ? this.state.encodingProgress * 100 : 0;
-    console.log(progress)
     return (
       <div className='progress-bar'>
         Encoding in Progress:
@@ -123,7 +122,7 @@ class NewRecording extends React.Component {
     const eTarget = e.target;
     this.audioURL = null;
     this.recording = null;
-    this.setState({isRecording: false, recordingComplete: false});
+    this.setState({isRecording: false, recordingComplete: false, encodingProgress: false});
   }
 
   soundClip() {
@@ -138,7 +137,7 @@ class NewRecording extends React.Component {
   }
 
   recordingUI() {
-    if(this.state.recordingComplete) return null;
+    if(this.state.recordingComplete || this.state.encodingProgress > 0) return null;
     else return (
       <div className="recording-ui">
         <button id="start-record" onClick={this.startRecord} disabled={this.state.isRecording || !this.state.micAllowed} className='record'>
@@ -162,6 +161,8 @@ class NewRecording extends React.Component {
     if(this.state.showForm) {
       form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
+    let progress = this.state.encodingProgress ? this.state.encodingProgress * 100 : 0;
+    console.log(progress)
     return(
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
