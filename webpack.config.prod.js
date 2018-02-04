@@ -32,6 +32,6 @@ module.exports = {
   ],
   devtool: 'cheap-module-source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx' ]
+    extensions: ['.js', '.jsx' ]
   }
 };
