@@ -12,6 +12,7 @@ class NewRecording extends React.Component {
     this.state = {
       isRecording: false,
       recordingComplete: false,
+      encodingProgress: false,
       showForm: false,
       micAllowed: true
     }
@@ -21,6 +22,8 @@ class NewRecording extends React.Component {
     this.stopRecord = this.stopRecord.bind(this);
     this.cancel = this.cancel.bind(this);
     this.deleteClip = this.deleteClip.bind(this);
+    this.recordingUI = this.recordingUI.bind(this);
+    this.soundClip = this.soundClip.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +37,8 @@ class NewRecording extends React.Component {
       this.source = this.audioCtx.createMediaStreamSource(stream);
       this.stream = stream;
       this.recorder = new Recorder(this.source);
+      this.recorder.onComplete = this.completeEncode.bind(this);
+      this.recorder.onEncodingProgress = this.updateProgress.bind(this);
     }).catch((err) => {
         this.setState({micAllowed: false})
         alert('The following gUM error occured: ' + err);
@@ -47,8 +52,14 @@ class NewRecording extends React.Component {
   }
 
   componentWillUnmount() {
+    if(this.state.encodingProgress) {
+      this.recorder.cancelEncoding();
+    }
+    if(this.state.isRecording) {
+      this.recorder.cancelRecording();
+    }
     if(this.state.micAllowed) {
-      this.recorder.onTimeout = () => {};
+      this.recorder = undefined;
       this.audioCtx.close();
       this.stream.getTracks()[0].stop();
     }
@@ -67,10 +78,9 @@ class NewRecording extends React.Component {
   }
 
   startRecord() {
-    if(this.state.micAllowed){
-      this.setState({isRecording: true})
+    if(this.state.micAllowed && !this.state.isRecording){
+      this.setState({isRecording: true});
       this.recorder.startRecording();
-      this.recorder.onComplete = this.completeRecord.bind(this);
     } else {
       alert("Illegal action");
     }
@@ -78,27 +88,51 @@ class NewRecording extends React.Component {
 
   stopRecord() {
     this.recorder.finishRecording();
+    this.setState({recordingComplete: true});
   }
 
-  completeRecord(_, blob) {
+  completeEncode(_, blob) {
     let recorder = this.recorder;
     this.recording = blob;
-    const audioURL = window.URL.createObjectURL(blob);
-    this.soundClips = <div className="sound-clips">
-      <article className="clip">
-        <AudioPlayer recordingUrl={audioURL} />
-        <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
-      </article>
-    </div>
-
+    this.audioURL = window.URL.createObjectURL(blob);
     this.setState({isRecording: false, recordingComplete: true});
+  }
+
+  updateProgress(_, progress) {
+    this.setState({encodingProgress: progress});
   }
 
   deleteClip(e) {
     const eTarget = e.target;
-    this.soundClips = null;
+    this.audioURL = null;
     this.recording = null;
     this.setState({isRecording: false, recordingComplete: false});
+  }
+
+  soundClip() {
+    return (
+      <div className="sound-clips">
+        <article className="clip">
+          <AudioPlayer recordingUrl={this.audioURL} />
+          <button className="delete-clip" onClick={this.deleteClip}>Delete</button>
+        </article>
+      </div>
+    );
+  }
+
+  recordingUI() {
+    if(this.state.recordingComplete) return null;
+    else return (
+      <div className="recording-ui">
+        <button id="start-record" onClick={this.startRecord} disabled={this.state.isRecording || !this.state.micAllowed} className='record'>
+          Record
+          {this.state.isRecording ? <div id="circle"></div> : null}
+        </button>
+        <button onClick={this.stopRecord} disabled={!this.state.isRecording || !this.state.micAllowed} className='stop'>
+          Stop
+        </button>
+      </div>
+    );
   }
 
 
@@ -109,33 +143,16 @@ class NewRecording extends React.Component {
     if(!this.state.micAllowed) {
       micError = <div className="mic-error">Error: You did not allow this site to access your microphone.</div>;
       }
-    if (this.state.isRecording) {
-      circle = <div id="circle"></div>;
-    }
-    let recordingUI = <div className="recording-ui">
-      <button id="start-record" onClick={this.startRecord} disabled={this.state.isRecording || !this.state.micAllowed} className='record'>
-        Record
-        {circle}
-      </button>
-      <button onClick={this.stopRecord} disabled={!this.state.isRecording || !this.state.micAllowed} className='stop'>
-        Stop
-      </button>
-    </div>
-
     if(this.state.showForm) {
       form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
-    }
-
-    if(this.state.recordingComplete) {
-      recordingUI = null;
     }
 
     return(
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
           {micError}
-          {recordingUI}
-        {this.soundClips}
+          {this.recordingUI}
+        {this.soundClip()}
         <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}

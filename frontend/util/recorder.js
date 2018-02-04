@@ -58,6 +58,7 @@ class Recorder {
     }
     this.onEncodingProgress(this, 1);
     this.onComplete(this, this.encoder.finish(this.options.mp3.mimeType));
+    this.encoder = recBuffers = undefined;
   }
 
   setOptions(options) {
