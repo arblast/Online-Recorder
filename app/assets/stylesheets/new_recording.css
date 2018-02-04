@@ -81,3 +81,27 @@
 .clip .audio_player {
   width: 50%;
 }
+
+.progress-bar {
+  color:black;
+  width: 80%;
+  margin: 0 auto 15px auto;
+  font-family: Ubuntu;
+}
+
+.progress-outer {
+  color: white;
+  margin-top: 15px;
+  line-height: 25px;
+  background-color: lightgrey;
+  height: 25px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.progress-inner {
+  background-color: crimson;
+  height: 100%;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}

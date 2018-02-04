@@ -34,10 +34,11 @@ export default function (self) {
   }
 
   function record(buffer) {
-    if (bufferCount++ < maxBuffers)
-      recBuffers.push(buffer);
-    else
+    if (bufferCount++ < maxBuffers) {
+      if (recBuffers) recBuffers.push(buffer);
+    } else {
       self.postMessage({ command: "timeout" });
+    }
   };
 
   function postProgress(progress) {

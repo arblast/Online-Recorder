@@ -105,13 +105,18 @@ class NewRecording extends React.Component {
   }
 
   progressBar() {
+    let progress = this.state.encodingProgress ? this.state.encodingProgress * 100 : 0;
+    console.log(progress)
     return (
-      <div className="progress-outer">
-        <div className="progress-inner" style={{width: `${this.state.encodingProgress}%`}}>
-          {this.state.encodingProgress}%
+      <div className='progress-bar'>
+        Encoding in Progress:
+        <div className="progress-outer">
+          {progress}%
+          <div className="progress-inner" style={{width: `${progress}%`}}>
+          </div>
         </div>
       </div>
-    )
+    );
   }
 
   deleteClip(e) {
@@ -150,7 +155,6 @@ class NewRecording extends React.Component {
 
   render() {
     let form = null;
-    let circle = null;
     let micError = null;
     if(!this.state.micAllowed) {
       micError = <div className="mic-error">Error: You did not allow this site to access your microphone.</div>;
@@ -158,14 +162,13 @@ class NewRecording extends React.Component {
     if(this.state.showForm) {
       form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
-
     return(
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
         {micError}
-        {this.recordingUI}
+        {this.state.encodingProgress > 0 ? this.progressBar() : null}
+        {this.recordingUI()}
         {this.audioURL ? this.soundClip() : null}
-        {this.state.encodingProgress ? this.progressBar() : null}
         <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}
