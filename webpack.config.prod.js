@@ -3,7 +3,7 @@ var webpack = require("webpack");
 module.exports = {
   entry: './frontend/record_cloud.jsx',
   output: {
-    path: 'app/assets/javascripts',
+    path: `${__dirname}/app/assets/javascripts/sitewide`,
     filename: 'bundle.js',
   },
   module: {
@@ -11,7 +11,7 @@ module.exports = {
       {
         test: [/\.jsx?$/, /\.js?$/],
         exclude: /(node_modules)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
         }
