@@ -60,6 +60,8 @@ class NewRecording extends React.Component {
     }
     if(this.state.micAllowed) {
       this.recorder = undefined;
+      this.recording = undefined;
+      this.audioURL = undefined;
       this.audioCtx.close();
       this.stream.getTracks()[0].stop();
     }
@@ -95,11 +97,21 @@ class NewRecording extends React.Component {
     let recorder = this.recorder;
     this.recording = blob;
     this.audioURL = window.URL.createObjectURL(blob);
-    this.setState({isRecording: false, recordingComplete: true});
+    this.setState({isRecording: false, recordingComplete: true, encodingProgress: false});
   }
 
   updateProgress(_, progress) {
     this.setState({encodingProgress: progress});
+  }
+
+  progressBar() {
+    return (
+      <div className="progress-outer">
+        <div className="progress-inner" style={{width: `${this.state.encodingProgress}%`}}>
+          {this.state.encodingProgress}%
+        </div>
+      </div>
+    )
   }
 
   deleteClip(e) {
@@ -150,9 +162,10 @@ class NewRecording extends React.Component {
     return(
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
-          {micError}
-          {this.recordingUI}
-        {this.soundClip()}
+        {micError}
+        {this.recordingUI}
+        {this.audioURL ? this.soundClip() : null}
+        {this.state.encodingProgress ? this.progressBar() : null}
         <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
         <button onClick={this.cancel}>Cancel</button>
         {form}
