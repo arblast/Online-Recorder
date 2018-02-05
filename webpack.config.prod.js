@@ -27,7 +27,8 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress:{
         warnings: true
-      }
+      },
+      exclude: /(util)/,
     })
   ],
   devtool: 'cheap-module-source-map',
