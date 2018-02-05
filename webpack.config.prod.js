@@ -23,6 +23,11 @@ module.exports = {
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{
+        warnings: true
+      }
     })
   ],
   devtool: 'cheap-module-source-map',

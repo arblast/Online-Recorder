@@ -1,5 +1,5 @@
 
-export default function (self) {
+export default function () {
 
   let NUM_CH = 2, // constant
       sampleRate = 44100,
@@ -9,7 +9,7 @@ export default function (self) {
       bufferCount = 0;
 
   function error(message) {
-    self.postMessage({ command: "error", message: "mp3: " + message });
+    this.postMessage({ command: "error", message: "mp3: " + message });
   }
 
   function init(data) {
@@ -37,16 +37,16 @@ export default function (self) {
     if (bufferCount++ < maxBuffers) {
       if (recBuffers) recBuffers.push(buffer);
     } else {
-      self.postMessage({ command: "timeout" });
+      this.postMessage({ command: "timeout" });
     }
   };
 
   function postProgress(progress) {
-    self.postMessage({ command: "progress", progress: progress });
+    this.postMessage({ command: "progress", progress: progress });
   };
 
   function finish() {
-    self.postMessage({
+    this.postMessage({
       command: "complete",
       recBuffers,
       bufferCount
@@ -59,7 +59,7 @@ export default function (self) {
     bufferCount = 0;
   }
 
-  self.onmessage = function(event) {
+  this.onmessage = function(event) {
     let data = event.data;
     switch (data.command) {
       case "init":    init(data);                 break;
@@ -71,6 +71,6 @@ export default function (self) {
     }
   };
 
-  self.postMessage({ command: "loaded" });
+  this.postMessage({ command: "loaded" });
 
 }
