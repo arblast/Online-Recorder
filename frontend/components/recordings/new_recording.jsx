@@ -14,7 +14,8 @@ class NewRecording extends React.Component {
       recordingComplete: false,
       encodingProgress: false,
       showForm: false,
-      micAllowed: true
+      micAllowed: true,
+      timeElapsed: 0
     }
     this.showForm = this.showForm.bind(this);
     this.closeForm = this.closeForm.bind(this);
@@ -64,6 +65,9 @@ class NewRecording extends React.Component {
       this.audioCtx.close();
       this.stream.getTracks()[0].stop();
     }
+    if(this.recTimer) {
+      clearInterval(this.recTimer)
+    }
   }
 
   showForm(e) {
@@ -80,17 +84,32 @@ class NewRecording extends React.Component {
 
   startRecord() {
     if(this.state.micAllowed && !this.state.isRecording){
-      this.setState({isRecording: true});
+      this.setState({isRecording: true, timeElapsed: 0}, () => {
+        this.startTimer();
+      });
       this.recorder.startRecording();
     } else {
       alert("Illegal action");
     }
   }
 
+  startTimer() {
+    this.recTimer = setInterval(() => {
+      this.setState(
+        prevState => {
+          return {timeElapsed: prevState.timeElapsed + 1};
+        }
+      )
+    }, 1000);
+  }
+
   stopRecord() {
-    this.setState({encodingProgress: true}, () => {
+    this.setState({isRecording: false, encodingProgress: true}, () => {
       setTimeout(() => this.recorder.finishRecording(), 300);
     });
+    if(this.recTimer) {
+      clearInterval(this.recTimer);
+    }
   }
 
   completeEncode(_, blob) {
@@ -105,6 +124,14 @@ class NewRecording extends React.Component {
     this.audioURL = null;
     this.recording = null;
     this.setState({isRecording: false, recordingComplete: false, encodingProgress: false});
+  }
+
+  displayTime(seconds) {
+    let sec = seconds%60;
+    let min = parseInt(seconds/60);
+    sec = (sec < 10) ? "0" + sec : sec;
+    min = (min < 10) ? "0" + min : min;
+    return min + ":" + sec;
   }
 
   soundClip() {
@@ -147,6 +174,10 @@ class NewRecording extends React.Component {
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
         {micError}
+        {this.state.isRecording ?
+          <div className="progress">{this.displayTime(this.state.timeElapsed)}</div>
+          : null
+        }
         {this.state.encodingProgress ?
           <div className="progress">Encoding in progress...</div>
           : null

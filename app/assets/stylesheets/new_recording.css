@@ -23,8 +23,8 @@
   animation: record 2s linear infinite;
 }
 
-.recording-ui {
-  padding: 30px;
+.recording-ui, .sound-clips {
+  padding: 10px 30px 30px 30px;
 }
 
 @keyframes record {
@@ -35,10 +35,6 @@
 
 #start-record {
   position: relative;
-}
-
-.sound-clips {
-  padding: 30px;
 }
 
 .mic-error {

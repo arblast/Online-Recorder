@@ -75,7 +75,7 @@ class AudioPlayer extends React.Component{
 
   playPauseButtonStyle() {
     if (this.state.playing) {
-      return {backgroundImage: 'url(http://res.cloudinary.com/record-cloud/image/upload/v1480237751/pause.png)'};
+      return {backgroundImage: 'url(https://res.cloudinary.com/record-cloud/image/upload/v1480237751/pause.png)'};
     } else {
       return {backgroundImage: 'url(https://res.cloudinary.com/record-cloud/image/upload/v1480237753/play.png)'};
     }
