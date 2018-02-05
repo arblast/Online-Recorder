@@ -14,7 +14,8 @@ class Api::RecordingsController < ApplicationController
       @recordings.concat(Recording.where(uploader_id: User.name_to_id(search_params), publicity: "public"))
       @recordings = @recordings.uniq
     when "popular"
-      @recordings = Category.top10
+      # @recordings = Category.top10
+      @recordings = Recording.last(20).reverse
       render :popular
     end
   end

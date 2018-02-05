@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    resources :categories, only: [:index]
   end
 
   root 'static_pages#root'
