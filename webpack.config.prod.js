@@ -28,7 +28,7 @@ module.exports = {
       compress:{
         warnings: true
       },
-      exclude: /(util)/,
+      exclude: `${__dirname}/frontend/util/`,
     })
   ],
   devtool: 'cheap-module-source-map',
