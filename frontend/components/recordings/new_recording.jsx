@@ -38,7 +38,6 @@ class NewRecording extends React.Component {
       this.stream = stream;
       this.recorder = new Recorder(this.source);
       this.recorder.onComplete = this.completeEncode.bind(this);
-      this.recorder.onEncodingProgress = this.updateProgress.bind(this);
     }).catch((err) => {
         this.setState({micAllowed: false})
         alert('The following gUM error occured: ' + err);
@@ -89,33 +88,16 @@ class NewRecording extends React.Component {
   }
 
   stopRecord() {
-    this.recorder.finishRecording();
-    this.setState({recordingComplete: true});
+    this.setState({encodingProgress: true}, () => {
+      setTimeout(() => this.recorder.finishRecording(), 100);
+    });
   }
 
   completeEncode(_, blob) {
     let recorder = this.recorder;
     this.recording = blob;
     this.audioURL = window.URL.createObjectURL(blob);
-    this.setState({isRecording: false, recordingComplete: true});
-  }
-
-  updateProgress(_, progress) {
-    this.setState({encodingProgress: progress});
-  }
-
-  progressBar() {
-    let progress = this.state.encodingProgress ? this.state.encodingProgress * 100 : 0;
-    return (
-      <div className='progress-bar'>
-        Encoding in Progress:
-        <div className="progress-outer">
-          {progress}%
-          <div className="progress-inner" style={{width: `${progress}%`}}>
-          </div>
-        </div>
-      </div>
-    );
+    this.setState({isRecording: false, recordingComplete: true, encodingProgress: false});
   }
 
   deleteClip(e) {
@@ -137,7 +119,7 @@ class NewRecording extends React.Component {
   }
 
   recordingUI() {
-    if(this.state.recordingComplete || this.state.encodingProgress > 0) return null;
+    if(this.state.recordingComplete || this.state.encodingProgress) return null;
     else return (
       <div className="recording-ui">
         <button id="start-record" onClick={this.startRecord} disabled={this.state.isRecording || !this.state.micAllowed} className='record'>
@@ -161,13 +143,14 @@ class NewRecording extends React.Component {
     if(this.state.showForm) {
       form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
-    let progress = this.state.encodingProgress ? this.state.encodingProgress * 100 : 0;
-    console.log(progress)
     return(
       <div className='new-recording'>
         <h2 className='title'>New Recording</h2>
         {micError}
-        {this.state.encodingProgress > 0 ? this.progressBar() : null}
+        {this.state.encodingProgress ?
+          <div className="progress">Encoding in progress...</div>
+          : null
+        }
         {this.recordingUI()}
         {this.audioURL ? this.soundClip() : null}
         <button onClick={this.showForm} disabled={!this.state.recordingComplete}>Save</button>
