@@ -89,7 +89,7 @@ class NewRecording extends React.Component {
 
   stopRecord() {
     this.setState({encodingProgress: true}, () => {
-      setTimeout(() => this.recorder.finishRecording(), 100);
+      setTimeout(() => this.recorder.finishRecording(), 300);
     });
   }
 
