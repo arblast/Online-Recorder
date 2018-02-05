@@ -115,10 +115,11 @@ class RecordingForm extends React.Component {
             <input className = 'recording-form-text' value={this.state.title} type='text'onChange={this.update('title')} placeholder='Title'/>
             <br/><br/>
             <label>Category  <select value={this.state.category_name} onChange={this.update('category_name')}>
-              <option value="Meeting">Meeting</option>
-              <option value="Music">Music</option>
-              <option value="Lecture">Lecture</option>
-              <option value="Other">Other</option>
+              {
+                this.props.categories.map(category => (
+                  <option value={category.name} key={category.id}>{category.name}</option>
+                ))
+              }
             </select></label>
             <br/><br/>
             <textarea className = 'recording-form-text' value={this.state.description} onChange={this.update('description')} placeholder='Description'></textarea>

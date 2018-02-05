@@ -84,6 +84,15 @@ export const deleteFavorite = (recordingId, success, error) => {
   });
 };
 
+export const fetchCategories = (success, error) => {
+  $.ajax({
+    type: 'GET',
+    url: `/api/categories`,
+    success,
+    error
+  });
+}
+
 // export const uploadRecording = (file) => {
 //   $.ajax({
 //     type: 'POST',

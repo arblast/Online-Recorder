@@ -13,6 +13,8 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 export const DELETE_FAVORITE = "DELETE_FAVORITE";
 export const FETCH_POPULAR = "FETCH_POPULAR";
 export const RECEIVE_POPULAR = "RECEIVE_POPULAR";
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 
 export const createRecording = (recordingParams) => ({
   type: CREATE_RECORDING,
@@ -86,4 +88,13 @@ export const deleteComment = (commentId) => ({
 export const deleteFavorite = (recordingId) => ({
   type: DELETE_FAVORITE,
   recordingId
+});
+
+export const fetchCategories = () => ({
+  type: FETCH_CATEGORIES
+});
+
+export const receiveCategories = (categories) => ({
+  type: RECEIVE_CATEGORIES,
+  categories
 });

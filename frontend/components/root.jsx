@@ -10,7 +10,7 @@ import RecordingContainer from './recordings/recording_container';
 import FavoritesContainer from './favorites_container';
 import SearchContainer from './search_container';
 import BrowseContainer from './browse_container';
-import { fetchRecordings, fetchRecording, fetchPopular  } from '../actions/recordings_actions';
+import { fetchRecordings, fetchRecording, fetchPopular, fetchCategories  } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
 
@@ -25,6 +25,8 @@ const Root = ({ store }) => {
     const currentUser = store.getState().session.currentUser;
     if (!currentUser) {
       replace('/');
+    } else {
+      store.dispatch(fetchCategories());
     }
   };
 
@@ -32,7 +34,7 @@ const Root = ({ store }) => {
     store.dispatch(fetchRecordings({request: {type: 'uploaded'}}));
   }
 
-  const getPopular = (nextState) => {
+  const getMain = (nextState) => {
     store.dispatch(fetchPopular({request: {type: 'popular'}}));
   }
 
@@ -61,7 +63,7 @@ const Root = ({ store }) => {
             <Route path="/guest" component={SessionFormContainer} onEnter = {_redirectIfLoggedIn}/>
           </Route>
           <Route path="/home" component={HomeContainer} onEnter={_ensureLoggedIn}>
-            <IndexRoute component={BrowseContainer} onEnter={getPopular}/>
+            <IndexRoute component={BrowseContainer} onEnter={getMain}/>
             <Route path="/favorites" component={FavoritesContainer} onEnter={getFavorites}/>
             <Route path="/new" component={NewRecordingContainer}/>
             <Route path="/my-recordings" component={MyRecordingsContainer} onEnter={getRecordings}/>

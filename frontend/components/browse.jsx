@@ -4,14 +4,20 @@ import { Link, hashHistory } from 'react-router';
 class Browse extends React.Component {
   constructor(props) {
     super(props);
-    this.MeetingStyle = {};
-    this.MusicStyle = {};
-    this.LectureStyle = {};
+    // this.MeetingStyle = {};
+    // this.MusicStyle = {};
+    // this.LectureStyle = {};
+    // this.state = {
+    //   MeetingScrolled: false,
+    //   MusicScrolled: false,
+    //   LectureScrolled: false
+    // };
+    this.top10Style = {};
+    this.top20Style = {};
     this.state = {
-      MeetingScrolled: false,
-      MusicScrolled: false,
-      LectureScrolled: false
-    };
+      top10Scrolled: false,
+      top20Scrolled: false
+    }
     this.scrollLeft = this.scrollLeft.bind(this);
     this.scrollRight = this.scrollRight.bind(this);
   }
@@ -63,50 +69,53 @@ class Browse extends React.Component {
   }
 
   render() {
+    let recordings = {
+      top10: this.props.recordings.slice(0, 10),
+      top20: this.props.recordings.slice(10,20)
+    }
     const arrowImg = "https://res.cloudinary.com/record-cloud/image/upload/v1481678021/arrow.svg";
     return (
       <div className="browse-container">
         {
-          Object.keys(this.props.recordings).map((category) => {
-            if(category != 'Other') {
-              let arrowLeft = <div onClick={this.scrollLeft(category)} className="arrow left"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
-              let arrowRight = <div onClick={this.scrollRight(category)} className="arrow right"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
-              let darkenIndex = null;
-              if(this.state[`${category}Scrolled`]) {
-                arrowRight = null;
-                darkenIndex = 4;
-              } else {
-                arrowLeft = null;
-                darkenIndex = 5;
-              }
-              return (
-                <div className="slider-container" key={category}>
-                  <h2 className="top-recording-title">Top Recordings for {category}</h2>
-                  <div className="browse-slider-wrapper">
-                    <div className="browse-slider">
-                      {arrowLeft}
-                      {
-                        this.props.recordings[category].map((recording, idx) => {
-                          return (
-                            <div key={idx} className="slider-item" style={this[`${category}Style`]} onClick={this.recordingDetail(recording.id)}>
-                              <div className="thumbnail-container">
-                                <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}}></div>
-                              </div>
-                              <div className="recording-title-container">
-                                <div className="recording-title">{recording.title}</div>
-                                <div className="more-description" onClick={this.moreDescription}><div className="down-arrow"></div></div>
-                                <div className="description-wrapper"><div className="recording-description">{recording.description}</div></div>
-                              </div>
+          Object.keys(recordings).map((category) => {
+            let arrowLeft = <div onClick={this.scrollLeft(category)} className="arrow left"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
+            let arrowRight = <div onClick={this.scrollRight(category)} className="arrow right"><div className="arrowline top"></div><div className="arrowline bot"></div></div>;
+            let darkenIndex = null;
+            if(this.state[`${category}Scrolled`]) {
+              arrowRight = null;
+              darkenIndex = 4;
+            } else {
+              arrowLeft = null;
+              darkenIndex = 5;
+            }
+            let title = category == 'top10' ? "1 - 10" : "11 - 20";
+            return (
+              <div className="slider-container" key={category}>
+                <h2 className="top-recording-title">Most Recent Recordings ({title})</h2>
+                <div className="browse-slider-wrapper">
+                  <div className="browse-slider">
+                    {arrowLeft}
+                    {
+                      recordings[category].map((recording, idx) => {
+                        return (
+                          <div key={idx} className="slider-item" style={this[`${category}Style`]} onClick={this.recordingDetail(recording.id)}>
+                            <div className="thumbnail-container">
+                              <div className="thumbnail" style={{backgroundImage: 'url(' + recording.image_url+ ')'}}></div>
                             </div>
-                          );
-                        })
-                      }
-                      {arrowRight}
-                    </div>
+                            <div className="recording-title-container">
+                              <div className="recording-title">{recording.title}</div>
+                              <div className="more-description" onClick={this.moreDescription}><div className="down-arrow"></div></div>
+                              <div className="description-wrapper"><div className="recording-description">{recording.description}</div></div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    }
+                    {arrowRight}
                   </div>
                 </div>
-              );
-            }
+              </div>
+            );
           })
         }
       </div>

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import NewRecording from './new_recording';
 import { createRecording, fetchRecordings, clearRecordingErrors } from '../../actions/recordings_actions';
 
-const mapStateToProps = ({recordingDetail}) => ({
-  errors: recordingDetail.errors
+const mapStateToProps = ({recordingDetail, categories}) => ({
+  errors: recordingDetail.errors,
+  categories
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

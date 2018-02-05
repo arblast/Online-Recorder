@@ -168,7 +168,7 @@ class NewRecording extends React.Component {
       micError = <div className="mic-error">Error: You did not allow this site to access your microphone.</div>;
       }
     if(this.state.showForm) {
-      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Meeting"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors}/>;
+      form = <RecordingForm formType={'new'} currentRecording={{title: '', publicity: 'public', category_name: "Memo"}} processForm={this.props.createRecording} errors={this.props.errors} closeForm={this.closeForm} recording={this.recording} clearRecordingErrors={this.props.clearRecordingErrors} categories={this.props.categories}/>;
     }
     return(
       <div className='new-recording'>
