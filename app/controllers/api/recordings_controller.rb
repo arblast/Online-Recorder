@@ -15,7 +15,7 @@ class Api::RecordingsController < ApplicationController
       @recordings = @recordings.uniq
     when "popular"
       # @recordings = Category.top10
-      @recordings = Recording.last(20).reverse
+      @recordings = Recording.where(publicity: 'public').last(20).reverse
       render :popular
     end
   end
