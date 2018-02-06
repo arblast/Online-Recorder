@@ -55,7 +55,8 @@ class MyRecordings extends React.Component {
 
   handleDelete() {
     this.props.deleteRecording(this.state.deleteId);
-    hashHistory.push('/my-recordings');
+    this.setState({showConfirm: false, deleteId: null});
+    this.props.fetchRecordings();
   }
 
   render() {

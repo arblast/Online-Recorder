@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MyRecordings from './my_recordings';
-import { deleteRecording } from '../actions/recordings_actions';
+import { deleteRecording, fetchRecordings } from '../actions/recordings_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 ;}
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteRecording: (recordingId) => dispatch(deleteRecording(recordingId))
+  deleteRecording: (recordingId) => dispatch(deleteRecording(recordingId)),
+  fetchRecordings: () => dispatch(fetchRecordings({request: {type: 'uploaded'}}))
 });
 
 export default connect(

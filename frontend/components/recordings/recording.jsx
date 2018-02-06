@@ -75,12 +75,12 @@ class Recording extends React.Component {
   removeComment(commentId) {
     return (e) => {
       e.preventDefault();
-      this.props.deleteComment(commentId)
+      this.props.deleteComment(commentId);
     }
   }
 
   showConfirm() {
-    this.setState(showConfirm: true);
+    this.setState({showConfirm: true});
   }
 
   closeConfirm(e) {
@@ -118,7 +118,7 @@ class Recording extends React.Component {
     let editForm = null;
     let form = null;
     if (this.props.ownRecording) {
-      editForm = <div className="edit-buttons"><a onClick={this.showForm} >Edit Recording Details</a><a onClick={this.handleDelete} >Delete Recording</a></div>
+      editForm = <div className="edit-buttons"><a onClick={this.showForm} >Edit Recording Details</a><a onClick={this.showConfirm} >Delete Recording</a></div>
     }
     if(this.state.showForm) {
       form = <RecordingForm formType={'edit'} categories={this.props.categories} currentRecording={recording} processForm={this.props.updateRecording} errors={this.props.errors} closeForm={this.closeForm} clearRecordingErrors={this.props.clearRecordingErrors}/>;
