@@ -10,7 +10,8 @@ class Recording extends React.Component {
     super(props);
     this.state = {
       showForm: false,
-      commentContent: ""
+      commentContent: "",
+      showConfirm: false
     }
     this.showForm = this.showForm.bind(this);
     this.closeForm = this.closeForm.bind(this);
@@ -23,6 +24,7 @@ class Recording extends React.Component {
     this.unFavoriteUrl = cloud.image("unfavorite.png").src;
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
+    this.showConfirm = this.showConfirm.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +36,19 @@ class Recording extends React.Component {
     this.setState({showForm: true});
   }
 
+  confirmation() {
+    return (
+      <div className='modal-background' onClick={this.closeConfirm}>
+        <div className='confirmation-window'>
+          <span className="close" onClick={this.closeConfirm}>x</span>
+          <h3>Are you sure you want to delete this recording?</h3>
+          <button onClick={this.handleDelete}>Yes</button>
+          <button className="cancel" onClick={this.closeConfirm}>No</button>
+        </div>
+      </div>
+    )
+  }
+
   closeForm(e) {
     e.preventDefault();
     if(e.target.className === 'modal-background' || e.target.className === 'close'){
@@ -42,10 +57,8 @@ class Recording extends React.Component {
   }
 
   handleDelete() {
-    if(window.confirm("Are you sure you want to delete this recording?")) {
-      this.props.deleteRecording(this.props.recording.id);
-      hashHistory.push('/my-recordings');
-    }
+    this.props.deleteRecording(this.props.recording.id);
+    hashHistory.push(`/home`);
   }
 
   updateComment(e) {
@@ -63,6 +76,17 @@ class Recording extends React.Component {
     return (e) => {
       e.preventDefault();
       this.props.deleteComment(commentId)
+    }
+  }
+
+  showConfirm() {
+    this.setState(showConfirm: true);
+  }
+
+  closeConfirm(e) {
+    e.preventDefault();
+    if(e.target.className === 'modal-background' || e.target.className === 'close' || e.target.className === 'cancel'){
+        this.setState({showConfirm: false});
     }
   }
 
@@ -97,7 +121,7 @@ class Recording extends React.Component {
       editForm = <div className="edit-buttons"><a onClick={this.showForm} >Edit Recording Details</a><a onClick={this.handleDelete} >Delete Recording</a></div>
     }
     if(this.state.showForm) {
-      form = <RecordingForm formType={'edit'} currentRecording={recording} processForm={this.props.updateRecording} errors={this.props.errors} closeForm={this.closeForm} clearRecordingErrors={this.props.clearRecordingErrors}/>;
+      form = <RecordingForm formType={'edit'} categories={this.props.categories} currentRecording={recording} processForm={this.props.updateRecording} errors={this.props.errors} closeForm={this.closeForm} clearRecordingErrors={this.props.clearRecordingErrors}/>;
     }
     return(
       <div className="recording-detail">
@@ -144,6 +168,7 @@ class Recording extends React.Component {
             </form>
           </div>
         </div>
+        {this.state.showConfirm ? this.confirmation() : null}
       </div>
     );
   }

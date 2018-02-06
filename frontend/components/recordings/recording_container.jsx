@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
     ownRecording: state.recordingDetail.uploader === currentUser.username,
     recording: state.recordingDetail,
     currentUser: currentUser.username,
-    errors: state.recordingDetail.errors
+    errors: state.recordingDetail.errors,
+    categories: state.categories
   }
 }
 
