@@ -34,6 +34,7 @@ class NewRecording extends React.Component {
 
   createAudioContext() {
     navigator.mediaDevices.getUserMedia ({audio: true}).then((stream) => {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
       this.audioCtx = new AudioContext();
       this.source = this.audioCtx.createMediaStreamSource(stream);
       this.stream = stream;
