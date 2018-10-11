@@ -102,8 +102,8 @@ class Recording extends React.Component {
 
   render() {
     const recording = this.props.recording;
+    const uploadDate = new Date(recording.upload_date).toLocaleString();
     const comments = recording.comments;
-    const uploadDate = recording.upload_date;
     const that = this;
     let favorite;
     if (recording.is_favorite) {
@@ -134,7 +134,7 @@ class Recording extends React.Component {
         </div>
         <div className='recording-info'>
           <div className='description'>
-            <h4>Recorded on {uploadDate.month} {uploadDate.day}, {uploadDate.year}</h4>
+            <h4>Recorded on {uploadDate}</h4>
             <p>{recording.description}</p>
             <h5>Category: {recording.category_name}</h5>
           </div>

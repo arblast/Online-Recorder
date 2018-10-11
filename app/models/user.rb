@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
   validates :password_digest, presence: true
-  validates :username, :email, :session_token, presence: true, uniqueness: true
+  validates :session_token, presence: true, uniqueness: true
+  validates :username, :email, presence: true, :uniqueness => {:case_sensitive => false}
   validates :password, length: {minimum: 6, allow_nil: true}
   after_initialize :ensure_session_token, :set_default_image
 
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+    user = User.ci_find(username)
     return nil unless user
     user.is_password?(password) ? user : nil
   end
@@ -44,8 +45,12 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def self.ci_find(username)
+    User.find_by('lower(username) = lower(?)', username)
+  end
+
   def self.name_to_id(name)
-    user = User.find_by_username(name)
+    user = User.ci_find(name)
     if user
       return user.id
     else

@@ -10,36 +10,52 @@
   border-radius: 10px;*/
 }
 
-.splash h1 {
-  color: white;
+.title {
   position: absolute;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  top: 10%;
-  left: 50%;
+  width: 100%;
+  color: black;
+  font-family: Kodchasan;
   white-space: nowrap;
-  font-family: Roboto Condensed;
-  font-weight: 700px;
+  top: 5%;
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 44px;
+  font-family: inherit;
+  font-weight: 700;
 }
 
 .tagline {
-  color: white;
   font-size: 15px;
+  font-family: inherit;
+}
+
+.verse {
   position: absolute;
+  top: 30%;
+  font-size: 16px;
+  font-family:
+  width: 100%;
+  padding: 0 25%;
+  font-family: Charmonman;
   text-align: center;
-  white-space: nowrap;
-  transform: translate(-50%, -50%);
-  top: calc(10% + 30px);
-  left: 50%;
-  font-family: Roboto Condensed;
-  font-weight: 700px;
+}
+
+.verse p {
+  font-weight: 700;
+  font-family: inherit;
+}
+.verse .verse-bot {
+  font-weight: 700;
+  font-family: inherit;
 }
 
 .welcome a {
   display: block;
-  border-right: 2px solid gray;
+  border-right: 1px solid black;
   padding: 15px;
-  color: white;
+  color: black;
   transition: color 0.5s ease;
   font-family: Ubuntu;
 }
@@ -49,7 +65,7 @@
 }
 
 .welcome a:hover {
-  color: black;
+  color: white;
 }
 
 
@@ -60,6 +76,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: url(https://res.cloudinary.com/record-cloud/image/upload/v1478156243/splash_ggnbzv.png) no-repeat center;
+  background: url(https://res.cloudinary.com/record-cloud/image/upload/v1539218679/splash2.jpg) no-repeat center;
   background-size: cover;
+}
+
+.awana-logo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10%;
 }

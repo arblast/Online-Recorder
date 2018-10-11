@@ -9,7 +9,7 @@ const nullRecording = {
   plays: "",
   errors: [],
   comments: {},
-  upload_date: {},
+  upload_date: "",
   is_favorite: false
 }
 
