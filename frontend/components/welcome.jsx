@@ -7,7 +7,7 @@ const Welcome = ({children}) => {
   return(
     <div className='splash'>
       <img className='awana-logo' src='https://res.cloudinary.com/record-cloud/image/upload/v1539218726/awanaym-logo_wvpa5u.png'/>
-      <div className='title'>
+      <div className='welcome-title'>
         <h1>WELCOME TO RECORD CLOUD!</h1>
         <h2 className='tagline'>Record and share your verses for Awana!</h2>
       </div>

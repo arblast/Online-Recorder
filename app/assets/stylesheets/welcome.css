@@ -10,7 +10,7 @@
   border-radius: 10px;*/
 }
 
-.title {
+.welcome-title {
   position: absolute;
   width: 100%;
   color: black;
@@ -32,6 +32,7 @@
 }
 
 .verse {
+  box-sizing: content-box;
   position: absolute;
   top: 30%;
   font-size: 16px;
