@@ -32,7 +32,7 @@
 }
 
 .verse {
-  box-sizing: content-box;
+  box-sizing: border-box;
   position: absolute;
   top: 30%;
   font-size: 16px;
