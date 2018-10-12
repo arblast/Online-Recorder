@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   def self.find_by_credentials(username, password)
-    user = User.ci_find(username)
+    user = User.ci_find('username', username)
     return nil unless user
     user.is_password?(password) ? user : nil
   end
@@ -41,16 +41,30 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def create_reset_digest
+    self.reset_digest = SecureRandom::urlsafe_base64
+    self.reset_sent_at = Time.zone.now
+    self.save
+  end
+
+  def password_reset_expired?
+    if self.reset_sent_at
+      self.reset_sent_at < 2.hours.ago
+    else
+      true
+    end
+  end
+
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  def self.ci_find(username)
-    User.find_by('lower(username) = lower(?)', username)
+  def self.ci_find(field, search)
+    User.find_by("lower(#{field}) = lower(?)", search)
   end
 
   def self.name_to_id(name)
-    user = User.ci_find(name)
+    user = User.ci_find('username', name)
     if user
       return user.id
     else

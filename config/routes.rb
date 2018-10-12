@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     resources :categories, only: [:index]
-    resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :password_resets, only: [:create, :edit, :update]
   end
 
   root 'static_pages#root'
