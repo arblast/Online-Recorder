@@ -1,4 +1,4 @@
-class PasswordResetsController < ApplicationController
+class Api::PasswordResetController < ApplicationController
 
   def create
     type = params[:password_reset][:type]
@@ -20,7 +20,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    token = params[:password_reset][:token]
+    token = params[:id]
     @user = User.find_by_reset_digest(token)
     if @user && token
       if !@user.password_reset_expired?
@@ -34,7 +34,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    token = params[:password_reset][:token]
+    token = params[:id]
     new_password = params[:user][:password]
     @user = User.find_by_reset_digest(token)
     if @user && token
