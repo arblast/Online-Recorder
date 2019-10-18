@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'do-not-reply@record-cloud.com'
+  default from: 'record.cloud.email@gmail.com'
 
   def welcome_email(user)
     @user = user
