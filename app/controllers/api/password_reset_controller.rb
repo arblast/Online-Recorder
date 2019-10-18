@@ -21,7 +21,7 @@ class Api::PasswordResetController < ApplicationController
 
   def edit
     token = params[:id]
-    @user = User.find_by_reset_digest(token)
+    @user = User.find_by(reset_digest:token)
     if @user && token
       if !@user.password_reset_expired?
         render json: "Valid reset link", status: 200
@@ -36,7 +36,7 @@ class Api::PasswordResetController < ApplicationController
   def update
     token = params[:id]
     new_password = params[:user][:password]
-    @user = User.find_by_reset_digest(token)
+    @user = User.find_by(reset_digest:token)
     if @user && token
       if !@user.password_reset_expired?
         @user.password = new_password
