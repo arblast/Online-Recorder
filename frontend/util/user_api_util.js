@@ -4,9 +4,9 @@ export const sendEmail = (email, type, success, error) => {
     url: '/api/password_reset',
     data: {
       'password_reset': {
-        email
-      },
-      type
+        email,
+        type
+      }
     },
     success,
     error
