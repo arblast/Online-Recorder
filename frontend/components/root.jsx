@@ -10,6 +10,8 @@ import RecordingContainer from './recordings/recording_container';
 import FavoritesContainer from './favorites_container';
 import SearchContainer from './search_container';
 import BrowseContainer from './browse_container';
+import PasswordReset from './password_reset';
+import PasswordResetToken from './password_reset_token';
 import { fetchRecordings, fetchRecording, fetchPopular, fetchCategories  } from '../actions/recordings_actions';
 
 const Root = ({ store }) => {
@@ -71,6 +73,8 @@ const Root = ({ store }) => {
             <Route path="/search/:searchParams" component={SearchContainer} onEnter={getSearchResults}/>
             <Route path="/search/" component={SearchContainer} onEnter={getAllRecordings}/>
           </Route>
+          <Route path="/password_reset" component={PasswordReset}/>
+          <Route path="/reset/:resetToken" component={PasswordResetToken}/>
       </Router>
     </Provider>
   );

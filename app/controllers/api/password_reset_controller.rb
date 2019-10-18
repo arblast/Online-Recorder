@@ -7,7 +7,7 @@ class Api::PasswordResetController < ApplicationController
       case type
       when "password"
         @user.create_reset_digest
-        UserMailer.recovery_password(@user).deliver_later
+        UserMailer.recovery_password(@user, @user.reset_digest).deliver_later
         @message = "Email has been sent with password reset instructions"
       when "username"
         UserMailer.recovery_username(@user).deliver_later
@@ -46,7 +46,7 @@ class Api::PasswordResetController < ApplicationController
           render json: @user.errors.full_messages, status: 422
         end
       else
-        render json: "password reset link has expired", status: 422
+        render json: "Password reset link has expired", status: 422
       end
     else
       render json: "Invalid password reset link", status: 422
