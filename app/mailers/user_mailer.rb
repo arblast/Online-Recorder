@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
 
   def recovery_password(user, reset_digest)
     @user = user
-    @link = "https://record-cloud.com/reset/#{reset_digest}"
+    @link = "https://record-cloud.com/#/reset/#{reset_digest}"
     mail(to: @user.email, subject: 'Record Cloud Password Reset')
   end
 
