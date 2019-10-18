@@ -13,7 +13,7 @@ class PasswordReset extends React.Component {
   }
 
   submit() {
-    sendEmail(this.state.email, 'username', this.displayMessage, this.displayMessage);
+    sendEmail(this.state.email, this.state.type, this.displayMessage, this.displayMessage);
   }
 
   displayMessage(message) {
